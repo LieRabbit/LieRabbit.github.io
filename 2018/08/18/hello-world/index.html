@@ -514,11 +514,6 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 <script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
 <script>
-AV.init({
-  appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
-  appKey: 'KnxEri0ETcoYVldkeror6EEM'
-});
-
 function showTime(Counter) {
 	var query = new AV.Query(Counter);
 		var visitors= $('.leancloud_visitors');
@@ -592,6 +587,10 @@ function addCount(Counter) {
 	});
 }
 $(function() {
+	AV.init({
+  		appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+  		appKey: '6FDWhh254T0GfhCBQsQ9OfWv'
+	});
 	var Counter = AV.Object.extend("Counter");
 	if ($('.leancloud_visitors').length == 1) {
 		addCount(Counter);
