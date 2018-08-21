@@ -284,11 +284,18 @@
     <span class="article-date">
     <i class="icon icon-calendar-check"></i>
 	<a href="/2018/08/20/test2/" class="article-date">
-	  <time datetime="2018-08-20T14:11:33.000Z" itemprop="datePublished">8月 20</time>
+	  <time datetime="2018-08-20T14:11:33.000Z" itemprop="datePublished">2018-08-20</time>
 	</a>
 </span>
     
     
+
+    
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2018/08/20/test2/" class="leancloud_visitors"  data-flag-title="test2">0</span>
+    </span>
 
     <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/08/20/test2/#comments" class="article-comment-link">评论</a></span>
     
@@ -311,11 +318,18 @@
     <span class="article-date">
     <i class="icon icon-calendar-check"></i>
 	<a href="/2018/08/18/test/" class="article-date">
-	  <time datetime="2018-08-18T09:04:36.000Z" itemprop="datePublished">8月 18</time>
+	  <time datetime="2018-08-18T09:04:36.000Z" itemprop="datePublished">2018-08-18</time>
 	</a>
 </span>
     
     
+
+    
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2018/08/18/test/" class="leancloud_visitors"  data-flag-title="test">0</span>
+    </span>
 
     <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/08/18/test/#comments" class="article-comment-link">评论</a></span>
     
@@ -338,11 +352,18 @@
     <span class="article-date">
     <i class="icon icon-calendar-check"></i>
 	<a href="/2018/08/18/hello-world/" class="article-date">
-	  <time datetime="2018-08-18T06:59:35.307Z" itemprop="datePublished">8月 18</time>
+	  <time datetime="2018-08-18T06:59:35.307Z" itemprop="datePublished">2018-08-18</time>
 	</a>
 </span>
     
     
+
+    
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2018/08/18/hello-world/" class="leancloud_visitors"  data-flag-title="Hello World">0</span>
+    </span>
 
     <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/08/18/hello-world/#comments" class="article-comment-link">评论</a></span>
     
@@ -405,96 +426,94 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     
         
 
+		
+			<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+			<script>
+				function showTime(Counter) {
+					var query = new AV.Query(Counter);
+					var visitors = $('.leancloud_visitors');
+					query.greaterThanOrEqualTo("time", 0);
+					query.find({
+						success: function (results) {
+							console.info(results);
+							if (results.length == 0) {
+								return;
+							}
+							var data = results;
+							visitors.each(function () {
+								var url = $(this).attr('id').trim();
+								for (var i = 0; i < data.length; i++) {
+									var object = data[i];
+									var content = object.get('time');
+									var _url = object.get('url')
+									if (url == _url) {
+										$(this).text(content);
+									}
+								}
+							})
 
-
-<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
-<script>
-function showTime(Counter) {
-	var query = new AV.Query(Counter);
-		var visitors= $('.leancloud_visitors');
-		query.greaterThanOrEqualTo("time", 0);		
-		query.find({
-			success: function(results) {
-				if (results.length == 0) {				
-					return;
-				}
-				var data = results;
-				visitors.each(function(){
-					var url = $(this).attr('id').trim();					
-					for (var i = 0; i < data.length; i++) {
-						var object = data[i];
-						var content = object.get('time');
-						var _url = object.get('url')
-						if(url == _url){
-							$(this).text(content);
+						},
+						error: function (object, error) {
+							console.log("Error: " + error.code + " " + error.message);
 						}
+					});
+				}
+
+				function addCount(Counter) {
+					url = $(".leancloud_visitors").attr('id').trim();
+					title = $(".leancloud_visitors").attr('data-flag-title').trim();
+					var query = new AV.Query(Counter);
+					query.equalTo("url", url);
+					query.find().then(results => {
+						if (results.length > 0) {
+							let counter = results[0];
+							counter.increment("time");
+							counter.fetchWhenSave(true);
+							counter.save().then(counter => {
+								var content = counter.get('time');
+								$(document.getElementById(url)).text(content);
+							}, error => console.log('Failed to save Visitor num, with error message: ' + error.message));
+						} else {
+							var newcounter = new Counter();
+							newcounter.set("title", title);
+							newcounter.set("url", url);
+							newcounter.set("time", 1);
+							newcounter.save().then(newcounter => {
+								var content = newcounter.get('time');
+								$(document.getElementById(url)).text(content);
+							}, error => {
+								console.log('Failed to create');
+							})
+						}
+					}, errors => console.log('Error:' + error.code + " " + error.message));
+				}
+				$(function () {
+					AV.init({
+						appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+						appKey: '6FDWhh254T0GfhCBQsQ9OfWv'
+					});
+					var Counter = AV.Object.extend("Counter");
+					if ($('.leancloud_visitors').length == 1) {
+						addCount(Counter);
+					} else {
+						showTime(Counter);
 					}
-				})
+				}); 
+			</script>
+			
+
 				
-			},
-			error: function(object, error) {
-				console.log("Error: " + error.code + " " + error.message);
-			}
-		});
-}
-
-function addCount(Counter) {
-	var Counter = AV.Object.extend("Counter");
-	url = $(".leancloud_visitors").attr('id').trim();
-	title = $(".leancloud_visitors").attr('data-flag-title').trim();
-	var query = new AV.Query(Counter);
-	query.equalTo("url", url);
-	query.find({
-		success: function(results) {
-			if (results.length > 0) {
-				var counter = results[0];
-				counter.fetchWhenSave(true);
-				counter.increment("time");
-				counter.save(null, {
-					success: function(counter) {
-						var content = counter.get('time');
-						$(document.getElementById(url)).text(content);
-					},
-					error: function(counter, error) {
-						console.log('Failed to save Visitor num, with error message: ' + error.message);
-					}
-				});
-			} else {
-				var newcounter = new Counter();
-				newcounter.set("title", title);
-				newcounter.set("url", url);
-				newcounter.set("time", 1);
-				newcounter.save(null, {
-					success: function(newcounter) {
-					    console.log("newcounter.get('time')="+newcounter.get('time'));
-						var content = newcounter.get('time');
-						$(document.getElementById(url)).text(content);
-					},
-					error: function(newcounter, error) {
-						console.log('Failed to create');
-					}
-				});
-			}
-		},
-		error: function(error) {
-			console.log('Error:' + error.code + " " + error.message);
-		}
-	});
-}
-$(function() {
-	AV.init({
-  		appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
-  		appKey: '6FDWhh254T0GfhCBQsQ9OfWv'
-	});
-	var Counter = AV.Object.extend("Counter");
-	if ($('.leancloud_visitors').length == 1) {
-		addCount(Counter);
-	} else {
-		showTime(Counter);
-	}
-}); 
-</script>
-
+					<script>
+						var _hmt = _hmt || [];
+						(function () {
+							var hm = document.createElement("script");
+							hm.src = "https://hm.baidu.com/hm.js?58b545d72bb5d2156afd850c3708a20e";
+							var s = document.getElementsByTagName("script")[0];
+							s.parentNode.insertBefore(hm, s);
+							console.info("百度统计开启");
+						})();
+					</script>
+					
     
     
     
