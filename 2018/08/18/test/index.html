@@ -489,6 +489,10 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 		
 			<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
 			<script>
+				AV.init({
+					appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+					appKey: '6FDWhh254T0GfhCBQsQ9OfWv'
+				});
 				function showTime(Counter) {
 					var query = new AV.Query(Counter);
 					var visitors = $('.leancloud_visitors');
@@ -547,10 +551,6 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 					}, errors => console.log('Error:' + error.code + " " + error.message));
 				}
 				$(function () {
-					AV.init({
-						appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
-						appKey: '6FDWhh254T0GfhCBQsQ9OfWv'
-					});
 					var Counter = AV.Object.extend("Counter");
 					if ($('.leancloud_visitors').length == 1) {
 						addCount(Counter);
@@ -565,7 +565,7 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
         
     
    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-   <script src="//cdn.jsdelivr.net/npm/valine"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
    <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
      var meta = 'nick,mail,link';
@@ -576,8 +576,8 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
          el: '#vcomments' ,
          verify: false,
          notify: false,
-         appId: '',
-         appKey: '',
+         appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+         appKey: '6FDWhh254T0GfhCBQsQ9OfWv',
          placeholder: 'Just go go',
          avatar:'mm',
          meta:meta,

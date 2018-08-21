@@ -289,7 +289,6 @@
     	<span id="/2018/08/20/test2/" class="leancloud_visitors"  data-flag-title="test2">0</span>
     </span>
 
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/08/20/test2/#comments" class="article-comment-link">评论</a></span>
     
   </p>
 </article>
@@ -323,7 +322,6 @@
     	<span id="/2018/08/18/test/" class="leancloud_visitors"  data-flag-title="test">0</span>
     </span>
 
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/08/18/test/#comments" class="article-comment-link">评论</a></span>
     
   </p>
 </article>
@@ -367,7 +365,6 @@
     	<span id="/2018/08/18/hello-world/" class="leancloud_visitors"  data-flag-title="Hello World">0</span>
     </span>
 
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/08/18/hello-world/#comments" class="article-comment-link">评论</a></span>
     
   </p>
 </article>
@@ -433,6 +430,10 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 		
 			<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
 			<script>
+				AV.init({
+					appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+					appKey: '6FDWhh254T0GfhCBQsQ9OfWv'
+				});
 				function showTime(Counter) {
 					var query = new AV.Query(Counter);
 					var visitors = $('.leancloud_visitors');
@@ -491,10 +492,6 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 					}, errors => console.log('Error:' + error.code + " " + error.message));
 				}
 				$(function () {
-					AV.init({
-						appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
-						appKey: '6FDWhh254T0GfhCBQsQ9OfWv'
-					});
 					var Counter = AV.Object.extend("Counter");
 					if ($('.leancloud_visitors').length == 1) {
 						addCount(Counter);
