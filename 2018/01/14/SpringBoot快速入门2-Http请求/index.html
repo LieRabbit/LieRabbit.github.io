@@ -25,24 +25,24 @@
 <meta property="og:site_name" content="谎话兔博客">
 <meta property="og:description" content="准备postman：一个接口测试工具创建一个新工程  选择web不会的请看Spring Boot快速入门（一）：Hello Spring Boot 开始新建java类RequestCtrl 添加一个all方法，使用@RequestMapping注解，可以处理所有的http请求 123456789@RestController//这是一个控制器并只返回数据不寻找视图public class Requ">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/1.jpeg">
-<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/2.jpg">
-<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/3.jpg">
-<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/4.jpg">
-<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/5.jpg">
-<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/6.jpg">
-<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/7.jpg">
-<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/8.jpg">
-<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/9.jpg">
-<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/10.jpg">
-<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/11.jpg">
-<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/12.jpg">
-<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/13.jpg">
-<meta property="og:updated_time" content="2018-08-23T12:52:22.666Z">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/1.jpeg">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/2.jpg">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/3.jpg">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/4.jpg">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/5.jpg">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/6.jpg">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/7.jpg">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/8.jpg">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/9.jpg">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/10.jpg">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/11.jpg">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/12.jpg">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/13.jpg">
+<meta property="og:updated_time" content="2018-08-23T13:02:37.419Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot快速入门2-Http请求">
 <meta name="twitter:description" content="准备postman：一个接口测试工具创建一个新工程  选择web不会的请看Spring Boot快速入门（一）：Hello Spring Boot 开始新建java类RequestCtrl 添加一个all方法，使用@RequestMapping注解，可以处理所有的http请求 123456789@RestController//这是一个控制器并只返回数据不寻找视图public class Requ">
-<meta name="twitter:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/1.jpeg">
+<meta name="twitter:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/1.jpeg">
   <!-- Canonical links -->
   <link rel="canonical" href="https://lierabbit.cn/2018/01/14/SpringBoot快速入门2-Http请求/index.html">
   
@@ -259,6 +259,18 @@
             
                 <div class="item-inner">
                   <p class="item-date">
+                    <time datetime="2018-01-15T12:49:41.000Z" itemprop="datePublished">2018-01-15</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/01/15/SpringBoot快速入门4-使用jpa进行数据库操作/" class="title">SpringBoot快速入门4-使用jpa进行数据库操作</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
                     <time datetime="2018-01-14T12:05:08.000Z" itemprop="datePublished">2018-01-14</time>
                   </p>
                   <p class="item-title">
@@ -348,36 +360,36 @@
     <div class="article-entry markdown-body" itemprop="articleBody">
       
         <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p><a href="https://www.getpostman.com/" target="_blank" rel="noopener">postman</a>：一个接口测试工具<br>创建一个新工程</p>
-<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/1.jpeg" alt="图片描述"></p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/1.jpeg" alt="图片描述"></p>
 <p>选择web<br>不会的请看<a href="https://lierabbit.cn/articles/2">Spring Boot快速入门（一）：Hello Spring Boot</a></p>
 <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>新建java类RequestCtrl</p>
-<h3 id="添加一个all方法，使用-RequestMapping注解，可以处理所有的http请求"><a href="#添加一个all方法，使用-RequestMapping注解，可以处理所有的http请求" class="headerlink" title="添加一个all方法，使用@RequestMapping注解，可以处理所有的http请求"></a>添加一个all方法，使用@RequestMapping注解，可以处理所有的http请求</h3><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/2.jpg" alt="图片描述"></p>
+<h3 id="添加一个all方法，使用-RequestMapping注解，可以处理所有的http请求"><a href="#添加一个all方法，使用-RequestMapping注解，可以处理所有的http请求" class="headerlink" title="添加一个all方法，使用@RequestMapping注解，可以处理所有的http请求"></a>添加一个all方法，使用@RequestMapping注解，可以处理所有的http请求</h3><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/2.jpg" alt="图片描述"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span><span class="comment">//这是一个控制器并只返回数据不寻找视图</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RequestCtrl</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/"</span>)<span class="comment">//将本方法映射到/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">all</span><span class="params">(String name, Integer age)</span><span class="comment">//接受2个参数,name和age</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"这里是all\n"</span> + <span class="string">"name: "</span> + name + <span class="string">"\n"</span> + <span class="string">"age: "</span> + age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>requestMapping的作用可以简单理解为给方法加个地址，让别人能访问</p>
-<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/3.jpg" alt="图片描述"></p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/3.jpg" alt="图片描述"></p>
 <p>通过源码可以看出@RestController是@Controller和ResponseBody的结合注解<br>@Controller 表明这是一个控制器，将会返回数据或者页面<br>@ResponseBody 表明只会返回数据，Spring Boot默认将数据使用jaskson序列化为json返回<br>JSON(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交换格式，常见表现形式为键值对{key:value}，例如{name:”lierabbit”,age:20}，字符串和数字直接返回<br>启动程序，打开postman<br>对<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a>发起get请求</p>
-<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/4.jpg" alt="图片描述"></p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/4.jpg" alt="图片描述"></p>
 <p>发起带参数的请求</p>
-<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/5.jpg" alt="图片描述"></p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/5.jpg" alt="图片描述"></p>
 <p>使用post请求</p>
-<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/6.jpg" alt="图片描述"></p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/6.jpg" alt="图片描述"></p>
 <h3 id="添加一个get方法，使用-GetMapping注解，只可以处理get类型的http请求"><a href="#添加一个get方法，使用-GetMapping注解，只可以处理get类型的http请求" class="headerlink" title="添加一个get方法，使用@GetMapping注解，只可以处理get类型的http请求"></a>添加一个get方法，使用@GetMapping注解，只可以处理get类型的http请求</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/get"</span>)<span class="comment">//将本方法映射到/get，且只能用get方式访问</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">get</span><span class="params">(String name, <span class="keyword">int</span> age)</span><span class="comment">//接受2个参数,name和age</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"这里是get\n"</span> + <span class="string">"name: "</span> + name + <span class="string">"\n"</span> + <span class="string">"age: "</span> + age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/7.jpg" alt="图片描述"></p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/7.jpg" alt="图片描述"></p>
 <p>使用get方式访问<a href="http://localhost:8080/get?name=lierabbit&amp;age=20" target="_blank" rel="noopener">http://localhost:8080/get?name=lierabbit&amp;age=20</a></p>
-<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/8.jpg" alt="图片描述"></p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/8.jpg" alt="图片描述"></p>
 <p>尝试使用post访问，将得到405异常</p>
 <h3 id="添加一个post方法，使用-PostMapping注解，只可以处理post类型的http请求"><a href="#添加一个post方法，使用-PostMapping注解，只可以处理post类型的http请求" class="headerlink" title="添加一个post方法，使用@PostMapping注解，只可以处理post类型的http请求"></a>添加一个post方法，使用@PostMapping注解，只可以处理post类型的http请求</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/post"</span>)<span class="comment">//将本方法映射到/post，且只能用post方式访问</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">post</span><span class="params">(String name, <span class="keyword">int</span> age)</span><span class="comment">//接受2个参数,name和age</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"这里是post\n"</span> + <span class="string">"name: "</span> + name + <span class="string">"\n"</span> + <span class="string">"age: "</span> + age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用post方式访问</p>
-<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/9.jpg" alt="图片描述"></p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/9.jpg" alt="图片描述"></p>
 <p>尝试使用get访问，得到405异常</p>
-<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/10.jpg" alt="图片描述"></p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/10.jpg" alt="图片描述"></p>
 <h3 id="添加一个put方法，使用-PutMapping注解，只可以处理put类型的http请求"><a href="#添加一个put方法，使用-PutMapping注解，只可以处理put类型的http请求" class="headerlink" title="添加一个put方法，使用@PutMapping注解，只可以处理put类型的http请求"></a>添加一个put方法，使用@PutMapping注解，只可以处理put类型的http请求</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PutMapping</span>(<span class="string">"/put"</span>)<span class="comment">//将本方法映射到/put，且只能用put方式访问</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">put</span><span class="params">(@RequestBody User user)</span><span class="comment">//接受一个user实体</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    user.setName(<span class="string">"名字已经被修改："</span> + user.getName());</span><br><span class="line">    user.setAge(user.getAge() + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@RequestBody</span> 表示接受一个user实体（user json）</span><br></pre></td></tr></table></figure>
 <p>返回User，会被spring boot自动序列化为json</p>
-<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/11.jpg" alt="图片描述"></p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/11.jpg" alt="图片描述"></p>
 <h3 id="添加一个delete方法，使用-DeleteMapping注解，只可以处理delete类型的http请求"><a href="#添加一个delete方法，使用-DeleteMapping注解，只可以处理delete类型的http请求" class="headerlink" title="添加一个delete方法，使用@DeleteMapping注解，只可以处理delete类型的http请求"></a>添加一个delete方法，使用@DeleteMapping注解，只可以处理delete类型的http请求</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DeleteMapping</span>(<span class="string">"/delete"</span>)<span class="comment">//将本方法映射到/delete，且只能用delete方式访问</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">delete</span><span class="params">(@RequestBody User user)</span><span class="comment">//接受一个user实体</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    user.setName(<span class="string">"这个用户将会被删除："</span> + user.getName());</span><br><span class="line">    user.setAge(user.getAge() + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/12.jpg" alt="图片描述"></p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/12.jpg" alt="图片描述"></p>
 <h3 id="添加一个patch方法，使用-PatchMapping注解，只可以处理patch类型的http请求"><a href="#添加一个patch方法，使用-PatchMapping注解，只可以处理patch类型的http请求" class="headerlink" title="添加一个patch方法，使用@PatchMapping注解，只可以处理patch类型的http请求"></a>添加一个patch方法，使用@PatchMapping注解，只可以处理patch类型的http请求</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PatchMapping</span>(<span class="string">"/patch"</span>)<span class="comment">//将本方法映射到/patch，且只能用patch方式访问</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">pathch</span><span class="params">(@RequestBody User user)</span><span class="comment">//接受一个user实体</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    user.setName(<span class="string">"只改名称："</span> + user.getName());</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82--Http%E8%AF%B7%E6%B1%82/13.jpg" alt="图片描述"></p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A82-Http%E8%AF%B7%E6%B1%82/13.jpg" alt="图片描述"></p>
 <p>源码地址：<a href="https://github.com/LieRabbit/SpringBoot-request" target="_blank" rel="noopener">https://github.com/LieRabbit/SpringBoot-request</a></p>
 
       
@@ -440,7 +452,7 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2018/01/15/SpringBoot快速入门3-依赖注入/" title="SpringBoot快速入门3-依赖注入"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/2018/01/15/SpringBoot快速入门4-使用jpa进行数据库操作/" title="SpringBoot快速入门4-使用jpa进行数据库操作"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     

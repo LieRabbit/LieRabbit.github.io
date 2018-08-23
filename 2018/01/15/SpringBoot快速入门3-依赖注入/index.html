@@ -17,18 +17,20 @@
   
   
   <title>SpringBoot快速入门3-依赖注入 | 谎话兔</title>
-  <meta name="description" content="SpringBoot快速入门3-依赖注入">
+  <meta name="description" content="spring boot使用依赖注入的方式很简单，只需要给添加相应的注解即可  @Service用于标注业务层组件  @Controller用于标注控制层组件 @Repository用于标注数据访问组件，即DAO组件  @Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。然后在使用的地方使用@Autowired即可  创建MyComponent，使用@Component">
 <meta name="keywords" content="谎话兔博客 LieRabbit 禤阳洋">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot快速入门3-依赖注入">
 <meta property="og:url" content="https://lierabbit.cn/2018/01/15/SpringBoot快速入门3-依赖注入/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="SpringBoot快速入门3-依赖注入">
+<meta property="og:description" content="spring boot使用依赖注入的方式很简单，只需要给添加相应的注解即可  @Service用于标注业务层组件  @Controller用于标注控制层组件 @Repository用于标注数据访问组件，即DAO组件  @Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。然后在使用的地方使用@Autowired即可  创建MyComponent，使用@Component">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-23T12:53:38.035Z">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A83-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/1.jpg">
+<meta property="og:updated_time" content="2018-08-23T13:05:37.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot快速入门3-依赖注入">
-<meta name="twitter:description" content="SpringBoot快速入门3-依赖注入">
+<meta name="twitter:description" content="spring boot使用依赖注入的方式很简单，只需要给添加相应的注解即可  @Service用于标注业务层组件  @Controller用于标注控制层组件 @Repository用于标注数据访问组件，即DAO组件  @Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。然后在使用的地方使用@Autowired即可  创建MyComponent，使用@Component">
+<meta name="twitter:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A83-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/1.jpg">
   <!-- Canonical links -->
   <link rel="canonical" href="https://lierabbit.cn/2018/01/15/SpringBoot快速入门3-依赖注入/index.html">
   
@@ -199,6 +201,15 @@
   <div class="slimContent">
     
       
+<div class="widget">
+    <nav class="article-toc">
+        <h3 class="toc-title">
+            文章目录
+        </h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建MyComponent，使用-Component"><span class="toc-number">1.</span> <span class="toc-text">创建MyComponent，使用@Component</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建MyController，使用-Controller"><span class="toc-number">2.</span> <span class="toc-text">创建MyController，使用@Controller</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建MyRepository，使用-Repository"><span class="toc-number">3.</span> <span class="toc-text">创建MyRepository，使用@Repository</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建MyService，MyServiceImpl，使用-Service"><span class="toc-number">4.</span> <span class="toc-text">创建MyService，MyServiceImpl，使用@Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单元测试"><span class="toc-number">5.</span> <span class="toc-text">单元测试</span></a></li></ol>
+    </nav>
+</div>
+
     
       
   <div class="widget">
@@ -228,6 +239,18 @@
                   </p>
                   <p class="item-title">
                     <a href="/2018/01/15/SpringBoot快速入门3-依赖注入/" class="title">SpringBoot快速入门3-依赖注入</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-01-15T12:49:41.000Z" itemprop="datePublished">2018-01-15</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/01/15/SpringBoot快速入门4-使用jpa进行数据库操作/" class="title">SpringBoot快速入门4-使用jpa进行数据库操作</a>
                   </p>
                 </div>
           </li>
@@ -324,7 +347,22 @@
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <p>SpringBoot快速入门3-依赖注入</p>
+        <p>spring boot使用依赖注入的方式很简单，只需要给添加相应的注解即可</p>
+<ul>
+<li>@Service用于标注业务层组件 </li>
+<li>@Controller用于标注控制层组件</li>
+<li>@Repository用于标注数据访问组件，即DAO组件 </li>
+<li>@Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。<br>然后在使用的地方使用@Autowired即可</li>
+</ul>
+<h2 id="创建MyComponent，使用-Component"><a href="#创建MyComponent，使用-Component" class="headerlink" title="创建MyComponent，使用@Component"></a>创建MyComponent，使用@Component</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span><span class="comment">//泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hi</span><span class="params">(String name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hi "</span> + name + <span class="string">",I am MyComponent"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="创建MyController，使用-Controller"><a href="#创建MyController，使用-Controller" class="headerlink" title="创建MyController，使用@Controller"></a>创建MyController，使用@Controller</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span><span class="comment">//用于标注控制层组件</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hi</span><span class="params">(String name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hi "</span> + name + <span class="string">",I am MyController"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="创建MyRepository，使用-Repository"><a href="#创建MyRepository，使用-Repository" class="headerlink" title="创建MyRepository，使用@Repository"></a>创建MyRepository，使用@Repository</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Repository</span><span class="comment">//用于标注数据访问组件，即DAO组件</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRepository</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hi</span><span class="params">(String name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hi "</span> + name + <span class="string">",I am MyRepository"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="创建MyService，MyServiceImpl，使用-Service"><a href="#创建MyService，MyServiceImpl，使用-Service" class="headerlink" title="创建MyService，MyServiceImpl，使用@Service"></a>创建MyService，MyServiceImpl，使用@Service</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyService</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doSomeThing</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span><span class="comment">//用于标注业务层组件</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyServiceImpl</span> <span class="keyword">implements</span> <span class="title">MyService</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomeThing</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"i am MyServiceImpl"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>在src/test/java/你的包名/你的项目名ApplicationTests编写对应的单元测试来验证是否可以成功注入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DiApplicationTests</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span><span class="comment">//自动注入</span></span><br><span class="line">    <span class="keyword">private</span> MyController myController;</span><br><span class="line">    <span class="meta">@Autowired</span><span class="comment">//自动注入</span></span><br><span class="line">    <span class="keyword">private</span> MyRepository myRepository;</span><br><span class="line">    <span class="meta">@Autowired</span><span class="comment">//自动注入</span></span><br><span class="line">    <span class="keyword">private</span> MyComponent myComponent;</span><br><span class="line">    <span class="meta">@Autowired</span><span class="comment">//自动注入实现了该接口的bean</span></span><br><span class="line">    <span class="keyword">private</span> MyService myService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        myController.hi(<span class="string">"lierabbit"</span>);</span><br><span class="line">        myRepository.hi(<span class="string">"lierabbit"</span>);</span><br><span class="line">        myComponent.hi(<span class="string">"lierabbit"</span>);</span><br><span class="line">        myService.doSomeThing();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行测试用例<br><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A83-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/1.jpg" alt="图片描述"><br>显示红圈的4句话证明成功注入</p>
+<p>源码地址：<a href="https://github.com/LieRabbit/SpringBoot-DI" target="_blank" rel="noopener">https://github.com/LieRabbit/SpringBoot-DI</a></p>
 
       
     </div>
@@ -391,7 +429,7 @@
     
     
     <li class="next">
-      <a href="/2018/01/14/SpringBoot快速入门2-Http请求/" title="SpringBoot快速入门2-Http请求"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2018/01/15/SpringBoot快速入门4-使用jpa进行数据库操作/" title="SpringBoot快速入门4-使用jpa进行数据库操作"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
   </ul>
