@@ -16,20 +16,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>谎话兔</title>
-  <meta name="description" content="生命不息，奋斗不止">
-<meta name="keywords" content="谎话兔博客 LieRabbit 禤阳洋">
-<meta property="og:type" content="website">
-<meta property="og:title" content="谎话兔博客">
-<meta property="og:url" content="https://lierabbit.cn/page/2/index.html">
+  <title>基数排序 | 谎话兔</title>
+  <meta name="description" content="对于一个int数组，请编写一个基数排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。保证元素均小于等于2000。测试样例： 12[1,2,3,5,2,3],6[1,2,2,3,3,5] 时间复杂度：O(n)空间复杂度：O(m) // m：桶的数量 思路：放置顺序的0-9号桶，将所有元素先按个位放入，按桶序倒出，再按十位放入，按桶序倒出，依次重复下去 12345678">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基数排序">
+<meta property="og:url" content="https://lierabbit.cn/2018/02/14/基数排序/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="生命不息，奋斗不止">
+<meta property="og:description" content="对于一个int数组，请编写一个基数排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。保证元素均小于等于2000。测试样例： 12[1,2,3,5,2,3],6[1,2,2,3,3,5] 时间复杂度：O(n)空间复杂度：O(m) // m：桶的数量 思路：放置顺序的0-9号桶，将所有元素先按个位放入，按桶序倒出，再按十位放入，按桶序倒出，依次重复下去 12345678">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-23T14:51:30.700Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="谎话兔博客">
-<meta name="twitter:description" content="生命不息，奋斗不止">
+<meta name="twitter:title" content="基数排序">
+<meta name="twitter:description" content="对于一个int数组，请编写一个基数排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。保证元素均小于等于2000。测试样例： 12[1,2,3,5,2,3],6[1,2,2,3,3,5] 时间复杂度：O(n)空间复杂度：O(m) // m：桶的数量 思路：放置顺序的0-9号桶，将所有元素先按个位放入，按桶序倒出，再按十位放入，按桶序倒出，依次重复下去 12345678">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://lierabbit.cn/page/2/index.html">
+  <link rel="canonical" href="https://lierabbit.cn/2018/02/14/基数排序/index.html">
   
     <link rel="alternate" href="/atom.xml" title="谎话兔博客" type="application/atom+xml">
   
@@ -360,334 +361,182 @@
 
   
   <main class="main" role="main">
-  
-  <div class="content article-list">
+  <div class="content">
+  <article id="post-基数排序" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
+    <div class="article-header">
+      
+        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/21/SpringBoot快速入门6-thymeleaf/">SpringBoot快速入门6-thymeleaf</a>
+    <h1 class="article-title" itemprop="name">
+      基数排序
     </h1>
   
 
-  </div>
-  
-  <p class="article-meta">
-    <span class="article-date">
+      
+      <div class="article-meta">
+        <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2018/01/21/SpringBoot快速入门6-thymeleaf/" class="article-date">
-	  <time datetime="2018-01-21T13:48:52.000Z" itemprop="datePublished">2018-01-21</time>
+	<a href="/2018/02/14/基数排序/" class="article-date">
+	  <time datetime="2018-02-13T16:26:46.000Z" itemprop="datePublished">2018-02-14 00:26:46</time>
 	</a>
 </span>
-    
+        
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/Spring-Boot快速入门/">Spring Boot快速入门</a>
+    <a class="article-category-link" href="/categories/直通BAT面试算法/">直通BAT面试算法</a>
   </span>
 
-    
+        
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Spring-Boot/">Spring Boot</a>
+	<a class="article-tag-link" href="/tags/算法/">算法</a>
   </span>
 
 
-    
+        
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/01/21/SpringBoot快速入门6-thymeleaf/" class="leancloud_visitors"  data-flag-title="SpringBoot快速入门6-thymeleaf">0</span>
+    	<span id="/2018/02/14/基数排序/" class="leancloud_visitors"  data-flag-title="基数排序">0</span>
     </span>
 
+        
+      </div>
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <p>对于一个int数组，请编写一个基数排序算法，对数组元素排序。<br>给定一个int数组A及数组的大小n，请返回排序后的数组。保证元素均小于等于2000。<br>测试样例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1,2,3,5,2,3],6</span><br><span class="line">[1,2,2,3,3,5]</span><br></pre></td></tr></table></figure>
+<p>时间复杂度：O(n)<br>空间复杂度：O(m) // m：桶的数量</p>
+<p>思路：放置顺序的0-9号桶，将所有元素先按个位放入，按桶序倒出，再按十位放入，按桶序倒出，依次重复下去</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] radixSort(<span class="keyword">int</span>[] A, <span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">int</span> max = A[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> a : A) &#123;</span><br><span class="line">        max = Math.max(max, a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; boxs = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        boxs.add(<span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> index;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (max &gt; <span class="number">0</span>) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> a : A) &#123;</span><br><span class="line">            boxs.get(a / k % <span class="number">10</span>).add(a);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        index = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            List&lt;Integer&gt; box = boxs.get(i);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; box.size(); j++) &#123;</span><br><span class="line">                A[index++] = box.get(j);</span><br><span class="line">            &#125;</span><br><span class="line">            box.clear();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        k *= <span class="number">10</span>;</span><br><span class="line">        max /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> A;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
     
-  </p>
-</article>
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://lierabbit.cn/2018/02/14/基数排序/" title="基数排序" target="_blank" rel="external">https://lierabbit.cn/2018/02/14/基数排序/</a>
+    </li>
+    
+    
+      <li class="post-copyright-license">
+        <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+      </li>
+    
+  </ul>
+</blockquote>
 
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/17/SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作/">SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作</a>
-    </h1>
-  
 
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/LieRabbit" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/LieRabbit.gif" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/LieRabbit" target="_blank"><span class="text-dark">谎话兔</span><small class="ml-1x">业余开发者</small></a></h3>
+        <div>走别人的路让别人无路可走</div>
+      </div>
+    </figure>
   </div>
+</div>
+
+
+    </div>
+  </article>
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2018/01/17/SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作/" class="article-date">
-	  <time datetime="2018-01-17T01:31:07.000Z" itemprop="datePublished">2018-01-17</time>
-	</a>
-</span>
     
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/Spring-Boot快速入门/">Spring Boot快速入门</a>
-  </span>
+  <section id="comments">
+  	
+       
+    <div id="vcomments"></div>
 
     
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Spring-Boot/">Spring Boot</a>
-  </span>
-
-
     
+  </section>
 
-	<span class="article-read hidden-xs">
-    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/01/17/SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作/" class="leancloud_visitors"  data-flag-title="SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作">0</span>
-    </span>
 
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/15/SpringBoot快速入门4-使用jpa进行数据库操作/">SpringBoot快速入门4-使用jpa进行数据库操作</a>
-    </h1>
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
   
-
-  </div>
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2018/02/14/计数排序/" title="计数排序"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2018/01/15/SpringBoot快速入门4-使用jpa进行数据库操作/" class="article-date">
-	  <time datetime="2018-01-15T15:49:41.000Z" itemprop="datePublished">2018-01-15</time>
-	</a>
-</span>
-    
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/Spring-Boot快速入门/">Spring Boot快速入门</a>
-  </span>
-
-    
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Spring-Boot/">Spring Boot</a>
-  </span>
-
-
-    
-
-	<span class="article-read hidden-xs">
-    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/01/15/SpringBoot快速入门4-使用jpa进行数据库操作/" class="leancloud_visitors"  data-flag-title="SpringBoot快速入门4-使用jpa进行数据库操作">0</span>
-    </span>
-
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/15/SpringBoot快速入门3-依赖注入/">SpringBoot快速入门3-依赖注入</a>
-    </h1>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
   
-
-  </div>
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2018/01/15/SpringBoot快速入门3-依赖注入/" class="article-date">
-	  <time datetime="2018-01-15T14:48:05.000Z" itemprop="datePublished">2018-01-15</time>
-	</a>
-</span>
+  <div class="bar-right">
     
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/Spring-Boot快速入门/">Spring Boot快速入门</a>
-  </span>
-
-    
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Spring-Boot/">Spring Boot</a>
-  </span>
-
-
-    
-
-	<span class="article-read hidden-xs">
-    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/01/15/SpringBoot快速入门3-依赖注入/" class="leancloud_visitors"  data-flag-title="SpringBoot快速入门3-依赖注入">0</span>
-    </span>
-
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/14/SpringBoot快速入门2-Http请求/">SpringBoot快速入门2-Http请求</a>
-    </h1>
-  
-
-  </div>
-  
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2018/01/14/SpringBoot快速入门2-Http请求/" class="article-date">
-	  <time datetime="2018-01-14T12:05:08.000Z" itemprop="datePublished">2018-01-14</time>
-	</a>
-</span>
-    
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/Spring-Boot快速入门/">Spring Boot快速入门</a>
-  </span>
-
-    
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Spring-Boot/">Spring Boot</a>
-  </span>
-
-
-    
-
-	<span class="article-read hidden-xs">
-    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/01/14/SpringBoot快速入门2-Http请求/" class="leancloud_visitors"  data-flag-title="SpringBoot快速入门2-Http请求">0</span>
-    </span>
-
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/14/升级node与npm/">升级node与npm</a>
-    </h1>
-  
-
-  </div>
-  
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2018/01/14/升级node与npm/" class="article-date">
-	  <time datetime="2018-01-14T09:48:54.000Z" itemprop="datePublished">2018-01-14</time>
-	</a>
-</span>
-    
-    
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/node-js/">node.js</a>
-  </span>
-
-
-    
-
-	<span class="article-read hidden-xs">
-    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/01/14/升级node与npm/" class="leancloud_visitors"  data-flag-title="升级node与npm">0</span>
-    </span>
-
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/12/SpringBoot快速入门1-HelloSpringBoot/">SpringBoot快速入门1-HelloSpringBoot</a>
-    </h1>
-  
-
-  </div>
-  
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2018/01/12/SpringBoot快速入门1-HelloSpringBoot/" class="article-date">
-	  <time datetime="2018-01-12T09:07:21.000Z" itemprop="datePublished">2018-01-12</time>
-	</a>
-</span>
-    
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/Spring-Boot快速入门/">Spring Boot快速入门</a>
-  </span>
-
-    
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Spring-Boot/">Spring Boot</a>
-  </span>
-
-
-    
-
-	<span class="article-read hidden-xs">
-    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/01/12/SpringBoot快速入门1-HelloSpringBoot/" class="leancloud_visitors"  data-flag-title="SpringBoot快速入门1-HelloSpringBoot">0</span>
-    </span>
-
-    
-  </p>
-</article>
-
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
     
   </div>
-
+  </div>
+</nav>
   
-    
-    <nav class="bar bar-footer clearfix" data-stick-bottom>
-        <div class="bar-inner">
-        <ul class="pager pull-left">
-            
-            <li class="prev">
-                <a href="/">
-                    <i class="icon icon-angle-left"></i>
-                    上一页
-                </a>
-            </li>
-            
-            
-            <li class="next disabled">
-                <a href="javascript:;">
-                    下一页
-                    <i class="icon icon-angle-right"></i>                    
-                </a>
-            </li>
-            
-        </ul>
-        <div class="total-article bar-right">Page 2 of 2</div>
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipay.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpay.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
         </div>
-    </nav>
-    
- 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -819,6 +668,33 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 			</script>
 			
     
+    
+        
+    
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+     var meta = 'nick,mail,link';
+     meta = meta.split(',').filter(function (item) {
+       return GUEST.indexOf(item)>-1;
+     });
+     new Valine({
+         el: '#vcomments' ,
+         verify: false,
+         notify: false,
+         appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+         appKey: '6FDWhh254T0GfhCBQsQ9OfWv',
+         placeholder: 'BB一下',
+         avatar:'mm',
+         meta:meta,
+         pageSize:'10' || 10,
+         visitor: false
+     });
+   </script>
+
+    
+
     
     
 
