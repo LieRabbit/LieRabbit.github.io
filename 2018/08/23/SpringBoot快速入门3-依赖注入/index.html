@@ -16,18 +16,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>404 Not Found：该页无法显示 | 谎话兔</title>
-  <meta name="keywords" content="谎话兔博客 LieRabbit 禤阳洋">
-<meta property="og:type" content="website">
-<meta property="og:title" content="404 Not Found：该页无法显示">
-<meta property="og:url" content="https://lierabbit.cn/404.html">
+  <title>SpringBoot快速入门3-依赖注入 | 谎话兔</title>
+  <meta name="description" content="生命不息，奋斗不止">
+<meta name="keywords" content="谎话兔博客 LieRabbit 禤阳洋">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot快速入门3-依赖注入">
+<meta property="og:url" content="https://lierabbit.cn/2018/08/23/SpringBoot快速入门3-依赖注入/index.html">
 <meta property="og:site_name" content="谎话兔博客">
+<meta property="og:description" content="生命不息，奋斗不止">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-23T09:49:56.657Z">
+<meta property="og:updated_time" content="2018-08-23T12:52:09.756Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="404 Not Found：该页无法显示">
+<meta name="twitter:title" content="SpringBoot快速入门3-依赖注入">
+<meta name="twitter:description" content="生命不息，奋斗不止">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://lierabbit.cn/404.html">
+  <link rel="canonical" href="https://lierabbit.cn/2018/08/23/SpringBoot快速入门3-依赖注入/index.html">
   
     <link rel="alternate" href="/atom.xml" title="谎话兔博客" type="application/atom+xml">
   
@@ -287,14 +290,14 @@
   
   <main class="main" role="main">
   <div class="content">
-  <article id="page-" class="article article-type-page" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-SpringBoot快速入门3-依赖注入" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      404 Not Found：该页无法显示
+      SpringBoot快速入门3-依赖注入
     </h1>
   
 
@@ -302,8 +305,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/404.html" class="article-date">
-	  <time datetime="2018-08-20T12:11:23.000Z" itemprop="datePublished">2018-08-20 20:11:23</time>
+	<a href="/2018/08/23/SpringBoot快速入门3-依赖注入/" class="article-date">
+	  <time datetime="2018-08-23T12:51:05.000Z" itemprop="datePublished">2018-08-23 20:51:05</time>
 	</a>
 </span>
         
@@ -313,7 +316,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/404.html" class="leancloud_visitors"  data-flag-title="404 Not Found：该页无法显示">0</span>
+    	<span id="/2018/08/23/SpringBoot快速入门3-依赖注入/" class="leancloud_visitors"  data-flag-title="SpringBoot快速入门3-依赖注入">0</span>
     </span>
 
         
@@ -321,7 +324,7 @@
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js" charset="utf-8" homepageurl="https://lierabbit.cn" homepagename="回到我的主页"></script>
+        
       
     </div>
     <div class="article-footer">
@@ -330,7 +333,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://lierabbit.cn//404.html" title="404 Not Found：该页无法显示" target="_blank" rel="external">https://lierabbit.cn//404.html</a>
+      <a href="https://lierabbit.cn/2018/08/23/SpringBoot快速入门3-依赖注入/" title="SpringBoot快速入门3-依赖注入" target="_blank" rel="external">https://lierabbit.cn/2018/08/23/SpringBoot快速入门3-依赖注入/</a>
     </li>
     
     
@@ -363,12 +366,30 @@
   </article>
   
     
+  <section id="comments">
+  	
+       
+    <div id="vcomments"></div>
+
+    
+    
+  </section>
+
 
   
 </div>
 
   <nav class="bar bar-footer clearfix" data-stick-bottom>
   <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2018/01/23/ArrayList实现原理/" title="ArrayList实现原理"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
   
   
   <!-- Button trigger modal -->
@@ -484,6 +505,110 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     
     
     
+        
+
+		
+			<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+			<script>
+				AV.init({
+					appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+					appKey: '6FDWhh254T0GfhCBQsQ9OfWv'
+				});
+				function showTime(Counter) {
+					var query = new AV.Query(Counter);
+					var visitors = $('.leancloud_visitors');
+					query.greaterThanOrEqualTo("time", 0);
+					query.find({
+						success: function (results) {
+							if (results.length == 0) {
+								return;
+							}
+							var data = results;
+							visitors.each(function () {
+								var url = $(this).attr('id').trim();
+								for (var i = 0; i < data.length; i++) {
+									var object = data[i];
+									var content = object.get('time');
+									var _url = object.get('url')
+									if (url == _url) {
+										$(this).text(content);
+									}
+								}
+							})
+
+						},
+						error: function (object, error) {
+							console.log("Error: " + error.code + " " + error.message);
+						}
+					});
+				}
+
+				function addCount(Counter) {
+					url = $(".leancloud_visitors").attr('id').trim();
+					title = $(".leancloud_visitors").attr('data-flag-title').trim();
+					var query = new AV.Query(Counter);
+					query.equalTo("url", url);
+					query.find().then(results => {
+						if (results.length > 0) {
+							let counter = results[0];
+							counter.increment("time");
+							counter.fetchWhenSave(true);
+							counter.save().then(counter => {
+								var content = counter.get('time');
+								$(document.getElementById(url)).text(content);
+							}, error => console.log('Failed to save Visitor num, with error message: ' + error.message));
+						} else {
+							var newcounter = new Counter();
+							newcounter.set("title", title);
+							newcounter.set("url", url);
+							newcounter.set("time", 1);
+							newcounter.save().then(newcounter => {
+								var content = newcounter.get('time');
+								$(document.getElementById(url)).text(content);
+							}, error => {
+								console.log('Failed to create');
+							})
+						}
+					}, errors => console.log('Error:' + error.code + " " + error.message));
+				}
+				$(function () {
+					var Counter = AV.Object.extend("Counter");
+					if ($('.leancloud_visitors').length == 1) {
+						addCount(Counter);
+					} else {
+						showTime(Counter);
+					}
+				}); 
+			</script>
+			
+    
+    
+        
+    
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+     var meta = 'nick,mail,link';
+     meta = meta.split(',').filter(function (item) {
+       return GUEST.indexOf(item)>-1;
+     });
+     new Valine({
+         el: '#vcomments' ,
+         verify: false,
+         notify: false,
+         appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+         appKey: '6FDWhh254T0GfhCBQsQ9OfWv',
+         placeholder: 'BB一下',
+         avatar:'mm',
+         meta:meta,
+         pageSize:'10' || 10,
+         visitor: false
+     });
+   </script>
+
+    
+
     
     
 

@@ -1,1 +1,1 @@
-https://lierabbit.cn/2018/01/23/ArrayList实现原理/
+https://lierabbit.cn/2018/08/23/SpringBoot快速入门3-依赖注入/
