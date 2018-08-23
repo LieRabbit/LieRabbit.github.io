@@ -18,14 +18,14 @@
   
   <title>冒泡排序 | 谎话兔</title>
   <meta name="description" content="对于一个int数组，请编写一个冒泡排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。测试样例：12[1,2,3,5,2,3],6[1,2,2,3,3,5] 时间复杂度：O(n2)空间复杂度：O(1) 思路：与下一个数进行判断交换，使最大值沉底 12345678910111213141516public int[] bubbleSort(int[] A, int n)">
-<meta name="keywords" content="谎话兔博客 LieRabbit 禤阳洋">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="冒泡排序">
 <meta property="og:url" content="https://lierabbit.cn/2018/02/13/冒泡排序/index.html">
 <meta property="og:site_name" content="谎话兔博客">
 <meta property="og:description" content="对于一个int数组，请编写一个冒泡排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。测试样例：12[1,2,3,5,2,3],6[1,2,2,3,3,5] 时间复杂度：O(n2)空间复杂度：O(1) 思路：与下一个数进行判断交换，使最大值沉底 12345678910111213141516public int[] bubbleSort(int[] A, int n)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-23T14:21:21.929Z">
+<meta property="og:updated_time" content="2018-08-23T14:27:32.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="冒泡排序">
 <meta name="twitter:description" content="对于一个int数组，请编写一个冒泡排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。测试样例：12[1,2,3,5,2,3],6[1,2,2,3,3,5] 时间复杂度：O(n2)空间复杂度：O(1) 思路：与下一个数进行判断交换，使最大值沉底 12345678910111213141516public int[] bubbleSort(int[] A, int n)">
@@ -212,6 +212,18 @@
             
                 <div class="item-inner">
                   <p class="item-date">
+                    <time datetime="2018-02-13T14:56:46.000Z" itemprop="datePublished">2018-02-13</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/13/选择排序/" class="title">选择排序</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
                     <time datetime="2018-02-13T14:50:35.000Z" itemprop="datePublished">2018-02-13</time>
                   </p>
                   <p class="item-title">
@@ -370,7 +382,17 @@
 	</a>
 </span>
         
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/直通BAT面试算法/">直通BAT面试算法</a>
+  </span>
+
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/算法/">算法</a>
+  </span>
+
 
         
 
@@ -387,7 +409,7 @@
         <p>对于一个int数组，请编写一个冒泡排序算法，对数组元素排序。<br>给定一个int数组A及数组的大小n，请返回排序后的数组。<br>测试样例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1,2,3,5,2,3],6</span><br><span class="line">[1,2,2,3,3,5]</span><br></pre></td></tr></table></figure></p>
 <p>时间复杂度：O(n2)<br>空间复杂度：O(1)</p>
 <p>思路：与下一个数进行判断交换，使最大值沉底</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public int[] bubbleSort(int[] A, int n) &#123;</span><br><span class="line">        // write code here</span><br><span class="line">        int temp;</span><br><span class="line"></span><br><span class="line">        for (int i = n - 1; i &gt; 0; i--) &#123;</span><br><span class="line">            for (int j = 0; j &lt; i; j++) &#123;</span><br><span class="line">                if (A[j] &gt; A[j + 1]) &#123;</span><br><span class="line">                    temp = A[j];</span><br><span class="line">                    A[j] = A[j + 1];</span><br><span class="line">                    A[j + 1] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return A;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] bubbleSort(<span class="keyword">int</span>[] A, <span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">int</span> temp;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (A[j] &gt; A[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                    temp = A[j];</span><br><span class="line">                    A[j] = A[j + <span class="number">1</span>];</span><br><span class="line">                    A[j + <span class="number">1</span>] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> A;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <div class="article-footer">
@@ -446,6 +468,10 @@
   <div class="bar-inner">
   
   <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2018/02/13/选择排序/" title="选择排序"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
     
     
     <li class="next">
