@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作 | 谎话兔</title>
+  <meta name="description" content="添加依赖新建项目选择web,MyBatis,MySQL三个依赖  对于已存在的项目可以在bulid.gradle加入，spring boot将会帮你自动配置好1234compile(&amp;apos;org.springframework.boot:spring-boot-starter-data-jpa&amp;apos;)compile(&amp;apos;org.springframework.boot:spri">
+<meta name="keywords" content="Spring Boot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作">
+<meta property="og:url" content="https://lierabbit.cn/2018/01/17/SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作/index.html">
+<meta property="og:site_name" content="谎话兔博客">
+<meta property="og:description" content="添加依赖新建项目选择web,MyBatis,MySQL三个依赖  对于已存在的项目可以在bulid.gradle加入，spring boot将会帮你自动配置好1234compile(&amp;apos;org.springframework.boot:spring-boot-starter-data-jpa&amp;apos;)compile(&amp;apos;org.springframework.boot:spri">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/01/17/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A85-%E4%BD%BF%E7%94%A8MyBatis%EF%BC%88%E6%B3%A8%E8%A7%A3%E5%BD%A2%E5%BC%8F%EF%BC%89%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/1.jpg">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/01/17/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A85-%E4%BD%BF%E7%94%A8MyBatis%EF%BC%88%E6%B3%A8%E8%A7%A3%E5%BD%A2%E5%BC%8F%EF%BC%89%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/2.jpg">
+<meta property="og:updated_time" content="2018-08-23T13:35:33.566Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作">
+<meta name="twitter:description" content="添加依赖新建项目选择web,MyBatis,MySQL三个依赖  对于已存在的项目可以在bulid.gradle加入，spring boot将会帮你自动配置好1234compile(&amp;apos;org.springframework.boot:spring-boot-starter-data-jpa&amp;apos;)compile(&amp;apos;org.springframework.boot:spri">
+<meta name="twitter:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/01/17/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A85-%E4%BD%BF%E7%94%A8MyBatis%EF%BC%88%E6%B3%A8%E8%A7%A3%E5%BD%A2%E5%BC%8F%EF%BC%89%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/1.jpg">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://lierabbit.cn/2018/01/17/SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="谎话兔博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.jpg" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/LieRabbit" target="_blank">
+          <img class="img-circle img-rotate" src="/images/LieRabbit.gif" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">谎话兔</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">业余开发者</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> 广州, 中国</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/LieRabbit" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://segmentfault.com/u/lierabbit" target="_blank" title="Segmentfault" data-toggle=tooltip data-placement=top><i class="icon icon-segmentfault"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      
+<div class="widget">
+    <nav class="article-toc">
+        <h3 class="toc-title">
+            文章目录
+        </h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#添加依赖"><span class="toc-number">1.</span> <span class="toc-text">添加依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置基本信息"><span class="toc-number">2.</span> <span class="toc-text">配置基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建实体"><span class="toc-number">3.</span> <span class="toc-text">创建实体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建数据访问接口"><span class="toc-number">4.</span> <span class="toc-text">创建数据访问接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单元测试"><span class="toc-number">5.</span> <span class="toc-text">单元测试</span></a></li></ol>
+    </nav>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">
+      最新文章
+    </h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-01-23T04:29:37.000Z" itemprop="datePublished">2018-01-23</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/01/23/ArrayList实现原理/" class="title">ArrayList实现原理</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-01-21T13:48:52.000Z" itemprop="datePublished">2018-01-21</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/01/21/SpringBoot快速入门6-thymeleaf/" class="title">SpringBoot快速入门6-thymeleaf</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-01-17T01:31:07.000Z" itemprop="datePublished">2018-01-17</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/01/17/SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作/" class="title">SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-01-15T15:49:41.000Z" itemprop="datePublished">2018-01-15</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/01/15/SpringBoot快速入门4-使用jpa进行数据库操作/" class="title">SpringBoot快速入门4-使用jpa进行数据库操作</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-01-15T14:48:05.000Z" itemprop="datePublished">2018-01-15</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/01/15/SpringBoot快速入门3-依赖注入/" class="title">SpringBoot快速入门3-依赖注入</a>
+                  </p>
+                </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      <div class="widget">
+    <h3 class="widget-title">
+        微信公众号
+    </h3>
+    <div class="widget-body">
+        <img src="/images/WXGongZhongHao.jpg" style="height:172px"/>
+        <br>
+        <span>关注公众号，同步最新博文</span>
+    </div>
+</div>
+    
+  </div>
+</aside>
+
+  
+  <main class="main" role="main">
+  <div class="content">
+  <article id="post-SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/01/17/SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作/" class="article-date">
+	  <time datetime="2018-01-17T01:31:07.000Z" itemprop="datePublished">2018-01-17 09:31:07</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Spring-Boot快速入门/">Spring Boot快速入门</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Spring-Boot/">Spring Boot</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2018/01/17/SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作/" class="leancloud_visitors"  data-flag-title="SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作">0</span>
+    </span>
+
+        
+      </div>
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <h2 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h2><p>新建项目选择web,MyBatis,MySQL三个依赖</p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/01/17/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A85-%E4%BD%BF%E7%94%A8MyBatis%EF%BC%88%E6%B3%A8%E8%A7%A3%E5%BD%A2%E5%BC%8F%EF%BC%89%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/1.jpg" alt="图片描述"></p>
+<p>对于已存在的项目可以在bulid.gradle加入，spring boot将会帮你自动配置好<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">compile(&apos;org.springframework.boot:spring-boot-starter-data-jpa&apos;)</span><br><span class="line">compile(&apos;org.springframework.boot:spring-boot-starter-web&apos;)</span><br><span class="line">runtime(&apos;mysql:mysql-connector-java&apos;)</span><br><span class="line">testCompile(&apos;org.springframework.boot:spring-boot-starter-test&apos;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置基本信息"><a href="#配置基本信息" class="headerlink" title="配置基本信息"></a>配置基本信息</h2><p>然后在src/main/resources/application.properties下添加基本配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#数据库连接地址</span><br><span class="line">spring.datasource.url=jdbc:mysql://localhost:3306/mybaits?useSSL=false</span><br><span class="line">#数据库账号</span><br><span class="line">spring.datasource.username=root</span><br><span class="line">#数据库密码</span><br><span class="line">spring.datasource.password=123456zxc</span><br><span class="line">#数据库驱动</span><br><span class="line">spring.datasource.driver-class-name=com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure></p>
+<h2 id="创建实体"><a href="#创建实体" class="headerlink" title="创建实体"></a>创建实体</h2><p>创建一个User实体，包含id、name（姓名）、age（年龄）属性<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String name, Integer age)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Long <span class="title">getId</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Long id)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="创建数据访问接口"><a href="#创建数据访问接口" class="headerlink" title="创建数据访问接口"></a>创建数据访问接口</h2><p>创建一个userMapper接口，进行数据库操作，添加@Mapper注解<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Mapper</span><span class="comment">//这是一个MyBatis的数据库操作接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"SELECT * FROM user WHERE name = #&#123;name&#125;"</span>)</span><br><span class="line">    <span class="function">User <span class="title">findByName</span><span class="params">(@Param(<span class="string">"name"</span>)</span> String name)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"SELECT * FROM user WHERE name LIKE #&#123;name&#125;"</span>)</span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">findByNameLike</span><span class="params">(@Param(<span class="string">"name"</span>)</span> String name)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Insert</span>(<span class="string">"INSERT INTO user(name, age) VALUES(#&#123;name&#125;, #&#123;age&#125;)"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">insert</span><span class="params">(@Param(<span class="string">"name"</span>)</span> String name, @<span class="title">Param</span><span class="params">(<span class="string">"age"</span>)</span> Integer age)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Update</span>(<span class="string">"UPDATE user SET age = #&#123;age&#125; WHERE name = #&#123;name&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">update</span><span class="params">(@Param(<span class="string">"name"</span>)</span> String name, @<span class="title">Param</span><span class="params">(<span class="string">"age"</span>)</span> Integer age)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Delete</span>(<span class="string">"DELETE FROM user WHERE name = #&#123;name&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">delete</span><span class="params">(@Param(<span class="string">"name"</span>)</span> String name)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"SELECT COUNT(*) FROM user"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countAll</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>在src/test/java/你的包名/你的项目名ApplicationTests编写对应的单元测试来验证编写的内容是否正确<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.annotation.Rollback;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="meta">@Transactional</span><span class="comment">//声明事务，配合Rollback</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisApplicationTests</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserMapper userMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Rollback</span><span class="comment">//测试结束回滚数据，保证测试单元每次运行的数据环境独立</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUser</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        userMapper.insert(<span class="string">"QQQ"</span>,<span class="number">1</span>);</span><br><span class="line">        userMapper.insert(<span class="string">"WWW"</span>,<span class="number">2</span>);</span><br><span class="line">        userMapper.insert(<span class="string">"EEE"</span>,<span class="number">3</span>);</span><br><span class="line">        userMapper.insert(<span class="string">"AAA"</span>,<span class="number">4</span>);</span><br><span class="line">        userMapper.insert(<span class="string">"SSS"</span>,<span class="number">5</span>);</span><br><span class="line">        userMapper.insert(<span class="string">"DDD"</span>,<span class="number">6</span>);</span><br><span class="line">        userMapper.insert(<span class="string">"ZZZ"</span>,<span class="number">7</span>);</span><br><span class="line">        userMapper.insert(<span class="string">"XXX"</span>,<span class="number">8</span>);</span><br><span class="line">        userMapper.insert(<span class="string">"CCC"</span>,<span class="number">9</span>);</span><br><span class="line">        userMapper.insert(<span class="string">"SSS213"</span>,<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 测试findAll, 查询所有记录</span></span><br><span class="line">        Assert.assertEquals(<span class="number">10</span>, userMapper.countAll());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 测试findByName, 查询姓名为AAA的User</span></span><br><span class="line">        Assert.assertEquals(<span class="number">4</span>, userMapper.findByName(<span class="string">"AAA"</span>).getAge().longValue());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 更新CCC用户的年龄为15</span></span><br><span class="line">        userMapper.update(<span class="string">"CCC"</span>,<span class="number">15</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 测试findByName, 查询姓名为CCC的User的年龄是否为15</span></span><br><span class="line">        Assert.assertEquals(<span class="number">15</span>, userMapper.findByName(<span class="string">"CCC"</span>).getAge().longValue());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 测试删除姓名为AAA的User</span></span><br><span class="line">        userMapper.delete(<span class="string">"AAA"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 测试findAll, 查询所有记录, 验证上面的删除是否成功</span></span><br><span class="line">        Assert.assertEquals(<span class="number">9</span>, userMapper.countAll());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 测试findAll, 查询名字有S的有几个</span></span><br><span class="line">        Assert.assertEquals(<span class="number">2</span>,userMapper.findByNameLike(<span class="string">"%S%"</span>).size());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试结果</p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/01/17/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A85-%E4%BD%BF%E7%94%A8MyBatis%EF%BC%88%E6%B3%A8%E8%A7%A3%E5%BD%A2%E5%BC%8F%EF%BC%89%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/2.jpg" alt="图片描述"></p>
+<p>源码地址：<a href="https://github.com/LieRabbit/SpringBoot-mybatis" target="_blank" rel="noopener">https://github.com/LieRabbit/SpringBoot-mybatis</a></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://lierabbit.cn/2018/01/17/SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作/" title="SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作" target="_blank" rel="external">https://lierabbit.cn/2018/01/17/SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作/</a>
+    </li>
+    
+    
+      <li class="post-copyright-license">
+        <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+      </li>
+    
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/LieRabbit" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/LieRabbit.gif" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/LieRabbit" target="_blank"><span class="text-dark">谎话兔</span><small class="ml-1x">业余开发者</small></a></h3>
+        <div>走别人的路让别人无路可走</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+    <div id="vcomments"></div>
+
+    
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2018/01/21/SpringBoot快速入门6-thymeleaf/" title="SpringBoot快速入门6-thymeleaf"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2018/01/15/SpringBoot快速入门4-使用jpa进行数据库操作/" title="SpringBoot快速入门4-使用jpa进行数据库操作"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipay.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpay.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/LieRabbit" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://segmentfault.com/u/lierabbit" target="_blank" title="Segmentfault" data-toggle=tooltip data-placement=top><i class="icon icon-segmentfault"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2018 谎话兔
+        
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+    
+        
+
+		
+			<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+			<script>
+				AV.init({
+					appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+					appKey: '6FDWhh254T0GfhCBQsQ9OfWv'
+				});
+				function showTime(Counter) {
+					var query = new AV.Query(Counter);
+					var visitors = $('.leancloud_visitors');
+					query.greaterThanOrEqualTo("time", 0);
+					query.find({
+						success: function (results) {
+							if (results.length == 0) {
+								return;
+							}
+							var data = results;
+							visitors.each(function () {
+								var url = $(this).attr('id').trim();
+								for (var i = 0; i < data.length; i++) {
+									var object = data[i];
+									var content = object.get('time');
+									var _url = object.get('url')
+									if (url == _url) {
+										$(this).text(content);
+									}
+								}
+							})
+
+						},
+						error: function (object, error) {
+							console.log("Error: " + error.code + " " + error.message);
+						}
+					});
+				}
+
+				function addCount(Counter) {
+					url = $(".leancloud_visitors").attr('id').trim();
+					title = $(".leancloud_visitors").attr('data-flag-title').trim();
+					var query = new AV.Query(Counter);
+					query.equalTo("url", url);
+					query.find().then(results => {
+						if (results.length > 0) {
+							let counter = results[0];
+							counter.increment("time");
+							counter.fetchWhenSave(true);
+							counter.save().then(counter => {
+								var content = counter.get('time');
+								$(document.getElementById(url)).text(content);
+							}, error => console.log('Failed to save Visitor num, with error message: ' + error.message));
+						} else {
+							var newcounter = new Counter();
+							newcounter.set("title", title);
+							newcounter.set("url", url);
+							newcounter.set("time", 1);
+							newcounter.save().then(newcounter => {
+								var content = newcounter.get('time');
+								$(document.getElementById(url)).text(content);
+							}, error => {
+								console.log('Failed to create');
+							})
+						}
+					}, errors => console.log('Error:' + error.code + " " + error.message));
+				}
+				$(function () {
+					var Counter = AV.Object.extend("Counter");
+					if ($('.leancloud_visitors').length == 1) {
+						addCount(Counter);
+					} else {
+						showTime(Counter);
+					}
+				}); 
+			</script>
+			
+    
+    
+        
+    
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+     var meta = 'nick,mail,link';
+     meta = meta.split(',').filter(function (item) {
+       return GUEST.indexOf(item)>-1;
+     });
+     new Valine({
+         el: '#vcomments' ,
+         verify: false,
+         notify: false,
+         appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+         appKey: '6FDWhh254T0GfhCBQsQ9OfWv',
+         placeholder: 'BB一下',
+         avatar:'mm',
+         meta:meta,
+         pageSize:'10' || 10,
+         visitor: false
+     });
+   </script>
+
+    
+
+    
+    
+
+    <script defer>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?316169812d1efd741be4d945728aecd2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+        console.info("百度统计开启");
+    })();
+</script>
+
+
+
+</body>
+</html>
