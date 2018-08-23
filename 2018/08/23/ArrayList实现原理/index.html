@@ -16,16 +16,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>谎话兔</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="谎话兔博客">
-<meta property="og:url" content="https://lierabbit.cn/index.html">
+  <title>ArrayList实现原理 | 谎话兔</title>
+  <meta name="description" content="概述ArrayList可以简单的看作是动态数组，相对于普通的数组它可以动态的增加容量或者减少容量。要注意的是ArrayList并不是线程安全的，因此一般建议在单线程中使用ArrayList。 实现原理继承关系1public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt; implements List&amp;lt;E&amp;gt;, RandomA">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArrayList实现原理">
+<meta property="og:url" content="https://lierabbit.cn/2018/08/23/ArrayList实现原理/index.html">
 <meta property="og:site_name" content="谎话兔博客">
+<meta property="og:description" content="概述ArrayList可以简单的看作是动态数组，相对于普通的数组它可以动态的增加容量或者减少容量。要注意的是ArrayList并不是线程安全的，因此一般建议在单线程中使用ArrayList。 实现原理继承关系1public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt; implements List&amp;lt;E&amp;gt;, RandomA">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-23T10:17:50.445Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="谎话兔博客">
+<meta name="twitter:title" content="ArrayList实现原理">
+<meta name="twitter:description" content="概述ArrayList可以简单的看作是动态数组，相对于普通的数组它可以动态的增加容量或者减少容量。要注意的是ArrayList并不是线程安全的，因此一般建议在单线程中使用ArrayList。 实现原理继承关系1public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt; implements List&amp;lt;E&amp;gt;, RandomA">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://lierabbit.cn/index.html">
+  <link rel="canonical" href="https://lierabbit.cn/2018/08/23/ArrayList实现原理/index.html">
   
     <link rel="alternate" href="/atom.xml" title="谎话兔博客" type="application/atom+xml">
   
@@ -194,6 +199,15 @@
   <div class="slimContent">
     
       
+<div class="widget">
+    <nav class="article-toc">
+        <h3 class="toc-title">
+            文章目录
+        </h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现原理"><span class="toc-number">2.</span> <span class="toc-text">实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#继承关系"><span class="toc-number">2.1.</span> <span class="toc-text">继承关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关键属性"><span class="toc-number">2.2.</span> <span class="toc-text">关键属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造方法"><span class="toc-number">2.3.</span> <span class="toc-text">构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#E-get-int-index-获取index位置的元素"><span class="toc-number">2.4.</span> <span class="toc-text">E get(int index)  获取index位置的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#E-set-int-index-E-element-设置（覆盖）index位置的元素"><span class="toc-number">2.5.</span> <span class="toc-text">E set(int index, E element)  设置（覆盖）index位置的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#boolean-add-E-e-添加一个元素到列表尾"><span class="toc-number">2.6.</span> <span class="toc-text">boolean add(E e)  添加一个元素到列表尾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#void-add-int-index-E-element-在index处放置元素"><span class="toc-number">2.7.</span> <span class="toc-text">void add(int index, E element)  在index处放置元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#boolean-addAll-Collection-lt-extends-E-gt-c-添加一个集合里的所有元素到列表尾"><span class="toc-number">2.8.</span> <span class="toc-text">boolean addAll(Collection&lt;? extends E&gt; c)  添加一个集合里的所有元素到列表尾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#boolean-addAll-int-index-Collection-lt-extends-E-gt-c-添加一个集合里的所有元素到index位置"><span class="toc-number">2.9.</span> <span class="toc-text">boolean addAll(int index, Collection&lt;? extends E&gt; c)  添加一个集合里的所有元素到index位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#void-trimToSize-改变列表内部数组容量至列表实际元素数量"><span class="toc-number">2.10.</span> <span class="toc-text">void trimToSize()  改变列表内部数组容量至列表实际元素数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#int-indexOf-Object-o-查找o元素在列表第一次出现的位置"><span class="toc-number">2.11.</span> <span class="toc-text">int indexOf(Object o)  查找o元素在列表第一次出现的位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#E-remove-int-index-删除index位置上的元素"><span class="toc-number">2.12.</span> <span class="toc-text">E remove(int index)  删除index位置上的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#boolean-remove-Object-o-删除o元素"><span class="toc-number">2.13.</span> <span class="toc-text">boolean remove(Object o)  删除o元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#forEach-Consumer-lt-super-E-gt-action-遍历列表"><span class="toc-number">2.14.</span> <span class="toc-text">forEach(Consumer&lt;? super E&gt; action)遍历列表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ArrayList小结"><span class="toc-number">3.</span> <span class="toc-text">ArrayList小结</span></a></li></ol>
+    </nav>
+</div>
+
     
       
   <div class="widget">
@@ -248,17 +262,15 @@
 
   
   <main class="main" role="main">
-  
-  
-    <div class="content">
+  <div class="content">
   <article id="post-ArrayList实现原理" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/23/ArrayList实现原理/">ArrayList实现原理</a>
+    <h1 class="article-title" itemprop="name">
+      ArrayList实现原理
     </h1>
   
 
@@ -560,11 +572,83 @@
     </div>
   </article>
   
-</div>
+    
+  <section id="comments">
+  	
+       
+    <div id="vcomments"></div>
+
+    
+    
+  </section>
+
 
   
+</div>
 
-   
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipay.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpay.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -696,6 +780,33 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 			</script>
 			
     
+    
+        
+    
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+     var meta = 'nick,mail,link';
+     meta = meta.split(',').filter(function (item) {
+       return GUEST.indexOf(item)>-1;
+     });
+     new Valine({
+         el: '#vcomments' ,
+         verify: false,
+         notify: false,
+         appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+         appKey: '6FDWhh254T0GfhCBQsQ9OfWv',
+         placeholder: 'BB一下',
+         avatar:'mm',
+         meta:meta,
+         pageSize:'10' || 10,
+         visitor: false
+     });
+   </script>
+
+    
+
     
     
 
