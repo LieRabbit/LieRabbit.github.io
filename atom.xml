@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lierabbit.cn/"/>
-  <updated>2018-08-23T10:17:50.445Z</updated>
+  <updated>2018-08-23T10:31:30.692Z</updated>
   <id>https://lierabbit.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot快速入门1--HelloSpringBoot</title>
+    <link href="https://lierabbit.cn/2018/08/23/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81-HelloSpringBoot/"/>
+    <id>https://lierabbit.cn/2018/08/23/SpringBoot快速入门1-HelloSpringBoot/</id>
+    <published>2018-08-23T10:22:46.000Z</published>
+    <updated>2018-08-23T10:31:30.692Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><p>java环境：jdk 1.8<br>开发工具：idea</p><h2 id="二、创建项目"><a href="#二、创建项目" class="headerlink" title="二、创建项目"></a>二、创建项目</h2><p>打开idea</p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81--HelloSpringBoot/1.png" alt="图片描述">  </p><p>点击Create New Project</p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81--HelloSpringBoot/2.png" alt="图片描述">  </p><p>选择Spring Initializr，Next</p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81--HelloSpringBoot/3.png" alt="图片描述">  </p><p>Group.Artifact = 你的包名<br>type：个人喜欢选择gradle，默认的maven也可以<br>Next</p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81--HelloSpringBoot/4.png" alt="图片描述">  </p><p>选择web<br>Next</p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81--HelloSpringBoot/5.png" alt="图片描述">  </p><p>选择工程目录<br>Finish</p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81--HelloSpringBoot/6.png" alt="图片描述">  </p><p>如果目录不存在，Idea将帮你创建，点击ok就行</p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81--HelloSpringBoot/7.png" alt="图片描述">  </p><p>如果没有下载过gradle，默认选择就行，点ok<br>如果想使用已存在的gradle选择Use local gradle distribution</p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81--HelloSpringBoot/8.png" alt="图片描述">  </p><p>等待右下角（红圈部分）下载完成</p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81--HelloSpringBoot/9.png" alt="图片描述">  </p><p>添加HelloCtrl类<br>添加如下代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span><span class="comment">//这是一个控制器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloCtrl</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/"</span>)<span class="comment">//将地址映射到 / 即访问http://localhost:8080 就可以进入这个方法</span></span><br><span class="line">    <span class="meta">@ResponseBody</span><span class="comment">//返回数据,如果不添加该注解将在resources/templates下寻找与之对应的html模版</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello spring boot"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="三、运行"><a href="#三、运行" class="headerlink" title="三、运行"></a>三、运行</h2><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81--HelloSpringBoot/10.png" alt="图片描述">  </p><p>点击右上角启动<br>如果没有启动可点<br>点击HelloSpringBootApplication左边的启动箭头即可启动</p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81--HelloSpringBoot/11.png" alt="图片描述">  </p><p>启动成功控制的打印如下图所示内容</p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81--HelloSpringBoot/12.jpg" alt="图片描述">  </p><p>打开浏览器，<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a>  </p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/articles/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A81--HelloSpringBoot/13.png" alt="图片描述">  </p><p>出现hello spring boot字样则成功<br>源码地址：<a href="https://github.com/LieRabbit/hello-spring-boot" target="_blank" rel="noopener">https://github.com/LieRabbit/hello-spring-boot</a>  </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;一、准备工作&quot;&gt;&lt;a href=&quot;#一、准备工作&quot; class=&quot;headerlink&quot; title=&quot;一、准备工作&quot;&gt;&lt;/a&gt;一、准备工作&lt;/h2&gt;&lt;p&gt;java环境：jdk 1.8&lt;br&gt;开发工具：idea&lt;/p&gt;
+&lt;h2 id=&quot;二、创建项目&quot;&gt;&lt;a hre
+      
+    
+    </summary>
+    
+      <category term="Spring Boot快速入门" scheme="https://lierabbit.cn/categories/Spring-Boot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"/>
+    
+    
+      <category term="Spring Boot" scheme="https://lierabbit.cn/tags/Spring-Boot/"/>
+    
+  </entry>
   
   <entry>
     <title>ArrayList实现原理</title>
