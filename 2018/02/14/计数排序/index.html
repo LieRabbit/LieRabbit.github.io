@@ -16,21 +16,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>冒泡排序 | 谎话兔</title>
-  <meta name="description" content="对于一个int数组，请编写一个冒泡排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。测试样例：12[1,2,3,5,2,3],6[1,2,2,3,3,5] 时间复杂度：O(n2)空间复杂度：O(1) 思路：与下一个数进行判断交换，使最大值沉底 12345678910111213141516public int[] bubbleSort(int[] A, int n)">
+  <title>计数排序 | 谎话兔</title>
+  <meta name="description" content="对于一个int数组，请编写一个计数排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。测试样例： 12[1,2,3,5,2,3],6[1,2,2,3,3,5] 时间复杂度：O(n)空间复杂度：O(m) // m：桶的数量 思路：预先设置一些排好序的桶（数组），然后遍历数组将元素放入对应桶，再倒出桶里的值 12345678910111213141516171819202">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="冒泡排序">
-<meta property="og:url" content="https://lierabbit.cn/2018/02/13/冒泡排序/index.html">
+<meta property="og:title" content="计数排序">
+<meta property="og:url" content="https://lierabbit.cn/2018/02/14/计数排序/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="对于一个int数组，请编写一个冒泡排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。测试样例：12[1,2,3,5,2,3],6[1,2,2,3,3,5] 时间复杂度：O(n2)空间复杂度：O(1) 思路：与下一个数进行判断交换，使最大值沉底 12345678910111213141516public int[] bubbleSort(int[] A, int n)">
+<meta property="og:description" content="对于一个int数组，请编写一个计数排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。测试样例： 12[1,2,3,5,2,3],6[1,2,2,3,3,5] 时间复杂度：O(n)空间复杂度：O(m) // m：桶的数量 思路：预先设置一些排好序的桶（数组），然后遍历数组将元素放入对应桶，再倒出桶里的值 12345678910111213141516171819202">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-23T14:27:32.967Z">
+<meta property="og:updated_time" content="2018-08-23T14:49:33.015Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="冒泡排序">
-<meta name="twitter:description" content="对于一个int数组，请编写一个冒泡排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。测试样例：12[1,2,3,5,2,3],6[1,2,2,3,3,5] 时间复杂度：O(n2)空间复杂度：O(1) 思路：与下一个数进行判断交换，使最大值沉底 12345678910111213141516public int[] bubbleSort(int[] A, int n)">
+<meta name="twitter:title" content="计数排序">
+<meta name="twitter:description" content="对于一个int数组，请编写一个计数排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。测试样例： 12[1,2,3,5,2,3],6[1,2,2,3,3,5] 时间复杂度：O(n)空间复杂度：O(m) // m：桶的数量 思路：预先设置一些排好序的桶（数组），然后遍历数组将元素放入对应桶，再倒出桶里的值 12345678910111213141516171819202">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://lierabbit.cn/2018/02/13/冒泡排序/index.html">
+  <link rel="canonical" href="https://lierabbit.cn/2018/02/14/计数排序/index.html">
   
     <link rel="alternate" href="/atom.xml" title="谎话兔博客" type="application/atom+xml">
   
@@ -362,14 +362,14 @@
   
   <main class="main" role="main">
   <div class="content">
-  <article id="post-冒泡排序" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-计数排序" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      冒泡排序
+      计数排序
     </h1>
   
 
@@ -377,8 +377,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2018/02/13/冒泡排序/" class="article-date">
-	  <time datetime="2018-02-13T14:50:35.000Z" itemprop="datePublished">2018-02-13 22:50:35</time>
+	<a href="/2018/02/14/计数排序/" class="article-date">
+	  <time datetime="2018-02-13T16:22:10.000Z" itemprop="datePublished">2018-02-14 00:22:10</time>
 	</a>
 </span>
         
@@ -398,7 +398,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/02/13/冒泡排序/" class="leancloud_visitors"  data-flag-title="冒泡排序">0</span>
+    	<span id="/2018/02/14/计数排序/" class="leancloud_visitors"  data-flag-title="计数排序">0</span>
     </span>
 
         
@@ -406,10 +406,11 @@
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <p>对于一个int数组，请编写一个冒泡排序算法，对数组元素排序。<br>给定一个int数组A及数组的大小n，请返回排序后的数组。<br>测试样例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1,2,3,5,2,3],6</span><br><span class="line">[1,2,2,3,3,5]</span><br></pre></td></tr></table></figure></p>
-<p>时间复杂度：O(n2)<br>空间复杂度：O(1)</p>
-<p>思路：与下一个数进行判断交换，使最大值沉底</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] bubbleSort(<span class="keyword">int</span>[] A, <span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">int</span> temp;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (A[j] &gt; A[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                    temp = A[j];</span><br><span class="line">                    A[j] = A[j + <span class="number">1</span>];</span><br><span class="line">                    A[j + <span class="number">1</span>] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> A;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+        <p>对于一个int数组，请编写一个计数排序算法，对数组元素排序。<br>给定一个int数组A及数组的大小n，请返回排序后的数组。<br>测试样例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1,2,3,5,2,3],6</span><br><span class="line">[1,2,2,3,3,5]</span><br></pre></td></tr></table></figure>
+<p>时间复杂度：O(n)<br>空间复杂度：O(m) // m：桶的数量</p>
+<p>思路：预先设置一些排好序的桶（数组），然后遍历数组将元素放入对应桶，再倒出桶里的值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] countingSort(<span class="keyword">int</span>[] A, <span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">int</span> min = A[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> max = A[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> a : A) &#123;</span><br><span class="line">        min = Math.min(min, a);</span><br><span class="line">        max = Math.max(max, a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[max - min + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> a : A) &#123;</span><br><span class="line">        arr[a - min]++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (arr[i]-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            A[index++] = i + min;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> A;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <div class="article-footer">
@@ -418,7 +419,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://lierabbit.cn/2018/02/13/冒泡排序/" title="冒泡排序" target="_blank" rel="external">https://lierabbit.cn/2018/02/13/冒泡排序/</a>
+      <a href="https://lierabbit.cn/2018/02/14/计数排序/" title="计数排序" target="_blank" rel="external">https://lierabbit.cn/2018/02/14/计数排序/</a>
     </li>
     
     
@@ -469,13 +470,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2018/02/13/选择排序/" title="选择排序"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2018/01/23/ArrayList实现原理/" title="ArrayList实现原理"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2018/02/14/希尔排序/" title="希尔排序"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
   </ul>

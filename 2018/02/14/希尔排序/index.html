@@ -17,18 +17,18 @@
   
   
   <title>希尔排序 | 谎话兔</title>
-  <meta name="description" content="对于一个int数组，请编写一个希尔排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。保证元素小于等于2000。测试样例：12[1,2,3,5,2,3],6[1,2,2,3,3,5] 思路：动态步长的插入排序，最终步长为1时间复杂度：O(nlogn)空间复杂度：O(1) 12345678910111213141516171819202122public int[] s">
+  <meta name="description" content="对于一个int数组，请编写一个希尔排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。保证元素小于等于2000。测试样例：12[1,2,3,5,2,3],6[1,2,2,3,3,5] 时间复杂度：O(nlogn)空间复杂度：O(1) 思路：动态步长的插入排序，最终步长为1 12345678910111213141516171819202122public int[]">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="希尔排序">
 <meta property="og:url" content="https://lierabbit.cn/2018/02/14/希尔排序/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="对于一个int数组，请编写一个希尔排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。保证元素小于等于2000。测试样例：12[1,2,3,5,2,3],6[1,2,2,3,3,5] 思路：动态步长的插入排序，最终步长为1时间复杂度：O(nlogn)空间复杂度：O(1) 12345678910111213141516171819202122public int[] s">
+<meta property="og:description" content="对于一个int数组，请编写一个希尔排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。保证元素小于等于2000。测试样例：12[1,2,3,5,2,3],6[1,2,2,3,3,5] 时间复杂度：O(nlogn)空间复杂度：O(1) 思路：动态步长的插入排序，最终步长为1 12345678910111213141516171819202122public int[]">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-23T14:46:40.614Z">
+<meta property="og:updated_time" content="2018-08-23T14:49:18.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="希尔排序">
-<meta name="twitter:description" content="对于一个int数组，请编写一个希尔排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。保证元素小于等于2000。测试样例：12[1,2,3,5,2,3],6[1,2,2,3,3,5] 思路：动态步长的插入排序，最终步长为1时间复杂度：O(nlogn)空间复杂度：O(1) 12345678910111213141516171819202122public int[] s">
+<meta name="twitter:description" content="对于一个int数组，请编写一个希尔排序算法，对数组元素排序。给定一个int数组A及数组的大小n，请返回排序后的数组。保证元素小于等于2000。测试样例：12[1,2,3,5,2,3],6[1,2,2,3,3,5] 时间复杂度：O(nlogn)空间复杂度：O(1) 思路：动态步长的插入排序，最终步长为1 12345678910111213141516171819202122public int[]">
   <!-- Canonical links -->
   <link rel="canonical" href="https://lierabbit.cn/2018/02/14/希尔排序/index.html">
   
@@ -212,6 +212,18 @@
             
                 <div class="item-inner">
                   <p class="item-date">
+                    <time datetime="2018-02-13T16:22:10.000Z" itemprop="datePublished">2018-02-14</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/14/计数排序/" class="title">计数排序</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
                     <time datetime="2018-02-13T16:18:50.000Z" itemprop="datePublished">2018-02-14</time>
                   </p>
                   <p class="item-title">
@@ -316,18 +328,6 @@
                 </div>
           </li>
           
-          <li>
-            
-                <div class="item-inner">
-                  <p class="item-date">
-                    <time datetime="2018-01-17T01:31:07.000Z" itemprop="datePublished">2018-01-17</time>
-                  </p>
-                  <p class="item-title">
-                    <a href="/2018/01/17/SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作/" class="title">SpringBoot快速入门5-使用MyBatis（注解形式）进行数据库操作</a>
-                  </p>
-                </div>
-          </li>
-          
       </ul>
     </div>
   </div>
@@ -407,7 +407,8 @@
     <div class="article-entry markdown-body" itemprop="articleBody">
       
         <p>对于一个int数组，请编写一个希尔排序算法，对数组元素排序。<br>给定一个int数组A及数组的大小n，请返回排序后的数组。保证元素小于等于2000。<br>测试样例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1,2,3,5,2,3],6</span><br><span class="line">[1,2,2,3,3,5]</span><br></pre></td></tr></table></figure></p>
-<p>思路：动态步长的插入排序，最终步长为1<br>时间复杂度：O(nlogn)<br>空间复杂度：O(1)</p>
+<p>时间复杂度：O(nlogn)<br>空间复杂度：O(1)</p>
+<p>思路：动态步长的插入排序，最终步长为1</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] shellSort(<span class="keyword">int</span>[] A, <span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">int</span> feet = A.length / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    <span class="keyword">int</span> index;</span><br><span class="line">    <span class="keyword">while</span> (feet &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = feet; i &lt; A.length; i++) &#123;</span><br><span class="line">            index = i;</span><br><span class="line">            <span class="keyword">while</span> (index &gt;= feet) &#123;</span><br><span class="line">                <span class="keyword">if</span> (A[index - feet] &gt; A[index]) &#123;</span><br><span class="line">                    temp = A[index];</span><br><span class="line">                    A[index] = A[index - feet];</span><br><span class="line">                    A[index - feet] = temp;</span><br><span class="line">                    index -= feet;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        feet /= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> A;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -467,6 +468,10 @@
   <div class="bar-inner">
   
   <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2018/02/14/计数排序/" title="计数排序"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
     
     
     <li class="next">
