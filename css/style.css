@@ -6491,6 +6491,10 @@ body.no-sidebar .sidebar {
   text-decoration: none;
 }
 
+.markdown-body p {
+  line-height: 1.8;
+}
+
 .markdown-body ul,
 .markdown-body ol {
   padding-left: 0;
