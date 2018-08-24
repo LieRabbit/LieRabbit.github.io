@@ -3088,6 +3088,10 @@ button.close {
   float: left !important;
 }
 
+.pull-left > .space{
+  margin: 0 10px;
+}
+
 .hide {
   display: none !important;
 }
@@ -5860,7 +5864,6 @@ body.no-sidebar .sidebar {
 .main .pager > a,
 .main .pager > .page-number {
   line-height: 32px;
-  float: left;
 }
 
 .main .pager a {
