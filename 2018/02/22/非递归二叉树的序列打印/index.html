@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>非递归二叉树的序列打印 | 谎话兔</title>
+  <meta name="description" content="非递归方式实现先序遍历1.首先申请一个新的栈，记为stack。2.然后将头节点head压入stack中。3.每次从stack中弹出栈顶节点，记为cur,然后打印cur节点的值。如果cur右孩子不为空的话，将cur的右孩子先压入stack中。最后如果cur的左孩子不为空的话，将cur的左孩子压入stack中。4.不断重复步骤3 ,直到stack为空，全部过程结束。 非递归方法实现中序遍历1.申请一个">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="非递归二叉树的序列打印">
+<meta property="og:url" content="https://lierabbit.cn/2018/02/22/非递归二叉树的序列打印/index.html">
+<meta property="og:site_name" content="谎话兔博客">
+<meta property="og:description" content="非递归方式实现先序遍历1.首先申请一个新的栈，记为stack。2.然后将头节点head压入stack中。3.每次从stack中弹出栈顶节点，记为cur,然后打印cur节点的值。如果cur右孩子不为空的话，将cur的右孩子先压入stack中。最后如果cur的左孩子不为空的话，将cur的左孩子压入stack中。4.不断重复步骤3 ,直到stack为空，全部过程结束。 非递归方法实现中序遍历1.申请一个">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-24T13:55:51.966Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="非递归二叉树的序列打印">
+<meta name="twitter:description" content="非递归方式实现先序遍历1.首先申请一个新的栈，记为stack。2.然后将头节点head压入stack中。3.每次从stack中弹出栈顶节点，记为cur,然后打印cur节点的值。如果cur右孩子不为空的话，将cur的右孩子先压入stack中。最后如果cur的左孩子不为空的话，将cur的左孩子压入stack中。4.不断重复步骤3 ,直到stack为空，全部过程结束。 非递归方法实现中序遍历1.申请一个">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://lierabbit.cn/2018/02/22/非递归二叉树的序列打印/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="谎话兔博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.jpg" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/LieRabbit" target="_blank">
+          <img class="img-circle img-rotate" src="/images/LieRabbit.gif" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">谎话兔</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">业余开发者</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> 广州, 中国</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/LieRabbit" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://segmentfault.com/u/lierabbit" target="_blank" title="Segmentfault" data-toggle=tooltip data-placement=top><i class="icon icon-segmentfault"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>网站手工同步中，大概需要2天时间</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">
+      最新文章
+    </h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-22T15:04:52.000Z" itemprop="datePublished">2018-02-22</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/22/树上最远距离/" class="title">树上最远距离</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-22T15:01:03.000Z" itemprop="datePublished">2018-02-22</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/22/寻找错误节点/" class="title">寻找错误节点</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-22T14:25:00.000Z" itemprop="datePublished">2018-02-22</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/22/折纸/" class="title">折纸</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-22T13:35:08.000Z" itemprop="datePublished">2018-02-22</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/22/完全二叉树判断/" class="title">完全二叉树判断</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-22T12:25:16.000Z" itemprop="datePublished">2018-02-22</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/22/平衡二叉树判断/" class="title">平衡二叉树判断</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-22T09:54:03.000Z" itemprop="datePublished">2018-02-22</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/22/二叉树的序列化/" class="title">二叉树的序列化</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-22T09:38:22.000Z" itemprop="datePublished">2018-02-22</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/22/二叉树的打印/" class="title">二叉树的打印</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-22T08:31:40.000Z" itemprop="datePublished">2018-02-22</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/22/非递归二叉树的序列打印/" class="title">非递归二叉树的序列打印</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-22T06:51:08.000Z" itemprop="datePublished">2018-02-22</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/22/递归二叉树的序列打印/" class="title">递归二叉树的序列打印</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-22T05:59:39.000Z" itemprop="datePublished">2018-02-22</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/22/快速N次方/" class="title">快速N次方</a>
+                  </p>
+                </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+    
+      <div class="widget">
+    <h3 class="widget-title">
+        微信公众号
+    </h3>
+    <div class="widget-body">
+        <img src="/images/WXGongZhongHao.jpg" style="height:172px"/>
+        <br>
+        <span>关注公众号，同步最新博文</span>
+    </div>
+</div>
+    
+  </div>
+</aside>
+
+  
+  <main class="main" role="main">
+  <div class="content">
+  <article id="post-非递归二叉树的序列打印" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      非递归二叉树的序列打印
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/02/22/非递归二叉树的序列打印/" class="article-date">
+	  <time datetime="2018-02-22T08:31:40.000Z" itemprop="datePublished">2018-02-22 16:31:40</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/直通BAT面试算法/">直通BAT面试算法</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/算法/">算法</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2018/02/22/非递归二叉树的序列打印/" class="leancloud_visitors"  data-flag-title="非递归二叉树的序列打印">0</span>
+    </span>
+
+        
+      </div>
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <h3 id="非递归方式实现先序遍历"><a href="#非递归方式实现先序遍历" class="headerlink" title="非递归方式实现先序遍历"></a>非递归方式实现先序遍历</h3><p>1.首先申请一个新的栈，记为stack。<br>2.然后将头节点head压入stack中。<br>3.每次从stack中弹出栈顶节点，记为cur,然后打印cur节点的值。如果cur右孩子不为空的话，将cur的右孩子先压入stack中。最后如果cur的左孩子不为空的话，将cur的左孩子压入stack中。<br>4.不断重复步骤3 ,直到stack为空，全部过程结束。</p>
+<h3 id="非递归方法实现中序遍历"><a href="#非递归方法实现中序遍历" class="headerlink" title="非递归方法实现中序遍历"></a>非递归方法实现中序遍历</h3><p>1.申请一个新的栈，记为stack,申请一个变量cur,初始时令cur等于头节点。<br>2.先把cur节点压入栈中，对以cur节点为头的整棵子树来说，依次把整棵树的左边界压入栈中，即不断令cur=cur.left,然后重复步骤2。<br>3.不断重复步骤2,直到发现cur为空，此时从stack中弹出一个节点，记为node。打印node的值，并让cur=node.right,然后继续重复步骤2。<br>4.当stack为空并且cur为空时，整个过程结束。</p>
+<h3 id="非递归方法实现后序遍历"><a href="#非递归方法实现后序遍历" class="headerlink" title="非递归方法实现后序遍历"></a>非递归方法实现后序遍历</h3><h4 id="使用两个栈实现"><a href="#使用两个栈实现" class="headerlink" title="使用两个栈实现"></a>使用两个栈实现</h4><p>1.申请一个栈，记为Si,然后将头节点压入si中。<br>2.从si中弹出的节点记为cur,然后先把cur的左孩子压入si中，然后把curl的右孩子压入si中。<br>3.在整个过程中，每一个从si中弹出的节点都放进第二个栈s2中。<br>4.不断重复步骤2和步骤3,直到si为空，过程停止。<br>5.从s2中依次弹出节点并打印，打印的顺序就是后序遍历的顺序了。</p>
+<h4 id="使用一个栈实现"><a href="#使用一个栈实现" class="headerlink" title="使用一个栈实现"></a>使用一个栈实现</h4><p>1.申请一个栈,记为stack,将头节点压入stack，同时设置两个变量h和C。在整个流程中,h代表最近一次弹出并打印的节点,c代表当前stack的栈顶节点,初始时令h为头节点,c为null.<br>2.每次令c等于当前stack的栈顶节点,但是不从stack中弹出节点,此时分以下三种情况。<br>  (1)如果c的左孩子不为空,并且h不等于c的左孩子，也不等于c的右孩子,则把c的左孩子压入stack中。<br>  (2)如果情况1不成立,并且c的右孩子不为空，并且h不等于c的右孩子,则把c的右孩子压入stack中。<br>  (3)如果情况1和情况2都不成立,那么从stack中弹出c并打印,然后令h等于C。<br>3.一直重复步骤2 ,直到stack为空,过程停止。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] convert(TreeNode root) &#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">int</span>[][] result = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">        List&lt;Integer&gt; tempList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span>)</span><br><span class="line">            preOrderWalk(root, tempList);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">1</span>)</span><br><span class="line">            midOrderWalk(root, tempList);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            backOrderWalk2(root, tempList);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> dataSize = tempList.size();</span><br><span class="line">        <span class="keyword">int</span> data[] = <span class="keyword">new</span> <span class="keyword">int</span>[dataSize];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; dataSize; index++)</span><br><span class="line">            data[index] = tempList.get(index);</span><br><span class="line">        result[i] = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 先序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preOrderWalk</span><span class="params">(TreeNode root, List result)</span> </span>&#123;</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    stack.add(root);</span><br><span class="line">    <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">        TreeNode node = stack.pop();</span><br><span class="line">        result.add(node.val);</span><br><span class="line">        <span class="keyword">if</span> (node.right != <span class="keyword">null</span>)</span><br><span class="line">            stack.add(node.right);</span><br><span class="line">        <span class="keyword">if</span> (node.left != <span class="keyword">null</span>)</span><br><span class="line">            stack.add(node.left);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">midOrderWalk</span><span class="params">(TreeNode root, List result)</span> </span>&#123;</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    TreeNode cur = root;</span><br><span class="line">    TreeNode node;</span><br><span class="line">    <span class="keyword">while</span> (cur != <span class="keyword">null</span> || !stack.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cur == <span class="keyword">null</span>) &#123;</span><br><span class="line">            node = stack.pop();</span><br><span class="line">            result.add(node.val);</span><br><span class="line">            cur = node.right;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            stack.add(cur);</span><br><span class="line">            cur = cur.left;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后序遍历1</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">backOrderWalk1</span><span class="params">(TreeNode root, List result)</span> </span>&#123;</span><br><span class="line">    Stack&lt;TreeNode&gt; s1 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    Stack&lt;TreeNode&gt; s2 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    s1.add(root);</span><br><span class="line">    TreeNode cur;</span><br><span class="line">    <span class="keyword">while</span> (!s1.isEmpty()) &#123;</span><br><span class="line">        cur = s1.pop();</span><br><span class="line">        s2.add(cur);</span><br><span class="line">        <span class="keyword">if</span> (cur.left != <span class="keyword">null</span>)</span><br><span class="line">            s1.add(cur.left);</span><br><span class="line">        <span class="keyword">if</span> (cur.right != <span class="keyword">null</span>)</span><br><span class="line">            s1.add(cur.right);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (!s2.isEmpty())</span><br><span class="line">        result.add(s2.pop().val);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后序遍历2</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">backOrderWalk2</span><span class="params">(TreeNode root, List result)</span> </span>&#123;</span><br><span class="line">    Stack&lt;TreeNode&gt; s1 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    s1.add(root);</span><br><span class="line">    TreeNode h = root;</span><br><span class="line">    TreeNode c;</span><br><span class="line">    <span class="keyword">while</span> (!s1.isEmpty()) &#123;</span><br><span class="line">        c = s1.peek();</span><br><span class="line">        <span class="keyword">if</span> (c.left != <span class="keyword">null</span> &amp;&amp; h != c.left &amp;&amp; h != c.right)</span><br><span class="line">            s1.add(c.left);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (c.right != <span class="keyword">null</span> &amp;&amp; h != c.right)</span><br><span class="line">            s1.add(c.right);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            h = s1.pop();</span><br><span class="line">            result.add(h.val);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://lierabbit.cn/2018/02/22/非递归二叉树的序列打印/" title="非递归二叉树的序列打印" target="_blank" rel="external">https://lierabbit.cn/2018/02/22/非递归二叉树的序列打印/</a>
+    </li>
+    
+    
+      <li class="post-copyright-license">
+        <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+      </li>
+    
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/LieRabbit" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/LieRabbit.gif" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/LieRabbit" target="_blank"><span class="text-dark">谎话兔</span><small class="ml-1x">业余开发者</small></a></h3>
+        <div>走别人的路让别人无路可走</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+    <div id="vcomments"></div>
+
+    
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2018/02/22/二叉树的打印/" title="二叉树的打印"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2018/02/22/递归二叉树的序列打印/" title="递归二叉树的序列打印"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipay.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpay.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/LieRabbit" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://segmentfault.com/u/lierabbit" target="_blank" title="Segmentfault" data-toggle=tooltip data-placement=top><i class="icon icon-segmentfault"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2018 谎话兔
+        
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+    
+        
+
+		
+			<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+			<script>
+				AV.init({
+					appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+					appKey: '6FDWhh254T0GfhCBQsQ9OfWv'
+				});
+				function showTime(Counter) {
+					var query = new AV.Query(Counter);
+					var visitors = $('.leancloud_visitors');
+					query.greaterThanOrEqualTo("time", 0);
+					query.find({
+						success: function (results) {
+							if (results.length == 0) {
+								return;
+							}
+							var data = results;
+							visitors.each(function () {
+								var url = $(this).attr('id').trim();
+								for (var i = 0; i < data.length; i++) {
+									var object = data[i];
+									var content = object.get('time');
+									var _url = object.get('url')
+									if (url == _url) {
+										$(this).text(content);
+									}
+								}
+							})
+
+						},
+						error: function (object, error) {
+							console.log("Error: " + error.code + " " + error.message);
+						}
+					});
+				}
+
+				function addCount(Counter) {
+					url = $(".leancloud_visitors").attr('id').trim();
+					title = $(".leancloud_visitors").attr('data-flag-title').trim();
+					var query = new AV.Query(Counter);
+					query.equalTo("url", url);
+					query.find().then(results => {
+						if (results.length > 0) {
+							let counter = results[0];
+							counter.increment("time");
+							counter.fetchWhenSave(true);
+							counter.save().then(counter => {
+								var content = counter.get('time');
+								$(document.getElementById(url)).text(content);
+							}, error => console.log('Failed to save Visitor num, with error message: ' + error.message));
+						} else {
+							var newcounter = new Counter();
+							newcounter.set("title", title);
+							newcounter.set("url", url);
+							newcounter.set("time", 1);
+							newcounter.save().then(newcounter => {
+								var content = newcounter.get('time');
+								$(document.getElementById(url)).text(content);
+							}, error => {
+								console.log('Failed to create');
+							})
+						}
+					}, errors => console.log('Error:' + error.code + " " + error.message));
+				}
+				$(function () {
+					var Counter = AV.Object.extend("Counter");
+					if ($('.leancloud_visitors').length == 1) {
+						addCount(Counter);
+					} else {
+						showTime(Counter);
+					}
+				}); 
+			</script>
+			
+    
+    
+        
+    
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+     var meta = 'nick,mail,link';
+     meta = meta.split(',').filter(function (item) {
+       return GUEST.indexOf(item)>-1;
+     });
+     new Valine({
+         el: '#vcomments' ,
+         verify: false,
+         notify: false,
+         appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+         appKey: '6FDWhh254T0GfhCBQsQ9OfWv',
+         placeholder: 'BB一下',
+         avatar:'mm',
+         meta:meta,
+         pageSize:'10' || 10,
+         visitor: false
+     });
+   </script>
+
+    
+
+    
+    
+
+    <script defer>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?316169812d1efd741be4d945728aecd2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+        console.info("百度统计开启");
+    })();
+</script>
+
+
+
+</body>
+</html>
