@@ -6495,6 +6495,10 @@ body.no-sidebar .sidebar {
   line-height: 1.8;
 }
 
+.markdown-body li {
+  line-height: 1.8;
+}
+
 .markdown-body ul,
 .markdown-body ol {
   padding-left: 0;
