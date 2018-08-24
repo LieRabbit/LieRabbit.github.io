@@ -16,21 +16,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>句子的逆序 | 谎话兔</title>
-  <meta name="description" content="对于一个字符串，请设计一个算法，只在字符串的单词间做逆序调整，也就是说，字符串由一些由空格分隔的部分组成，你需要将这些部分逆序。给定一个原字符串A和他的长度，请返回逆序后的字符串。测试样例： 12&amp;quot;dog loves pig&amp;quot;,13返回：&amp;quot;pig loves dog&amp;quot; 思路：首先反转整个字符串，接着一个一个的反转局部单词即可 1234567891011121">
+  <title>元素最左出现 | 谎话兔</title>
+  <meta name="description" content="对于一个有序数组arr，再给定一个整数num，请在arr中找到num这个数出现的最左边的位置。给定一个数组arr及它的大小n，同时给定num。请返回所求位置。若该元素在数组中未出现，请返回-1。测试样例： 12[1,2,3,3,4],5,3返回：2 思路：使用折半查找，当找到num后使用result记录当前找到的num位置，接着再对其左边进行搜索，直到搜索完毕，返回的result就是最左位置 12">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="句子的逆序">
-<meta property="og:url" content="https://lierabbit.cn/2018/02/18/句子的逆序/index.html">
+<meta property="og:title" content="元素最左出现">
+<meta property="og:url" content="https://lierabbit.cn/2018/02/21/元素最左出现/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="对于一个字符串，请设计一个算法，只在字符串的单词间做逆序调整，也就是说，字符串由一些由空格分隔的部分组成，你需要将这些部分逆序。给定一个原字符串A和他的长度，请返回逆序后的字符串。测试样例： 12&amp;quot;dog loves pig&amp;quot;,13返回：&amp;quot;pig loves dog&amp;quot; 思路：首先反转整个字符串，接着一个一个的反转局部单词即可 1234567891011121">
+<meta property="og:description" content="对于一个有序数组arr，再给定一个整数num，请在arr中找到num这个数出现的最左边的位置。给定一个数组arr及它的大小n，同时给定num。请返回所求位置。若该元素在数组中未出现，请返回-1。测试样例： 12[1,2,3,3,4],5,3返回：2 思路：使用折半查找，当找到num后使用result记录当前找到的num位置，接着再对其左边进行搜索，直到搜索完毕，返回的result就是最左位置 12">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-24T07:56:00.011Z">
+<meta property="og:updated_time" content="2018-08-24T13:03:52.902Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="句子的逆序">
-<meta name="twitter:description" content="对于一个字符串，请设计一个算法，只在字符串的单词间做逆序调整，也就是说，字符串由一些由空格分隔的部分组成，你需要将这些部分逆序。给定一个原字符串A和他的长度，请返回逆序后的字符串。测试样例： 12&amp;quot;dog loves pig&amp;quot;,13返回：&amp;quot;pig loves dog&amp;quot; 思路：首先反转整个字符串，接着一个一个的反转局部单词即可 1234567891011121">
+<meta name="twitter:title" content="元素最左出现">
+<meta name="twitter:description" content="对于一个有序数组arr，再给定一个整数num，请在arr中找到num这个数出现的最左边的位置。给定一个数组arr及它的大小n，同时给定num。请返回所求位置。若该元素在数组中未出现，请返回-1。测试样例： 12[1,2,3,3,4],5,3返回：2 思路：使用折半查找，当找到num后使用result记录当前找到的num位置，接着再对其左边进行搜索，直到搜索完毕，返回的result就是最左位置 12">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://lierabbit.cn/2018/02/18/句子的逆序/index.html">
+  <link rel="canonical" href="https://lierabbit.cn/2018/02/21/元素最左出现/index.html">
   
     <link rel="alternate" href="/atom.xml" title="谎话兔博客" type="application/atom+xml">
   
@@ -362,14 +362,14 @@
   
   <main class="main" role="main">
   <div class="content">
-  <article id="post-句子的逆序" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-元素最左出现" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      句子的逆序
+      元素最左出现
     </h1>
   
 
@@ -377,8 +377,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2018/02/18/句子的逆序/" class="article-date">
-	  <time datetime="2018-02-18T10:04:17.000Z" itemprop="datePublished">2018-02-18 18:04:17</time>
+	<a href="/2018/02/21/元素最左出现/" class="article-date">
+	  <time datetime="2018-02-21T05:20:15.000Z" itemprop="datePublished">2018-02-21 13:20:15</time>
 	</a>
 </span>
         
@@ -398,7 +398,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/02/18/句子的逆序/" class="leancloud_visitors"  data-flag-title="句子的逆序">0</span>
+    	<span id="/2018/02/21/元素最左出现/" class="leancloud_visitors"  data-flag-title="元素最左出现">0</span>
     </span>
 
         
@@ -406,10 +406,10 @@
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <p>对于一个字符串，请设计一个算法，只在字符串的单词间做逆序调整，也就是说，字符串由一些由空格分隔的部分组成，你需要将这些部分逆序。<br>给定一个原字符串A和他的长度，请返回逆序后的字符串。<br>测试样例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;dog loves pig&quot;,13</span><br><span class="line">返回：&quot;pig loves dog&quot;</span><br></pre></td></tr></table></figure>
-<p>思路：首先反转整个字符串，接着一个一个的反转局部单词即可</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">reverseSentence</span><span class="params">(String A, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">char</span>[] chars = A.toCharArray();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 反转整个字符串</span></span><br><span class="line">    reverse(chars, <span class="number">0</span>, chars.length - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> l = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> r = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; chars.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (chars[i] != <span class="string">' '</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">0</span> || chars[i - <span class="number">1</span>] == <span class="string">' '</span>)  <span class="comment">// 寻找需要局部反转的单词的起始下标</span></span><br><span class="line">                l = i;</span><br><span class="line">            <span class="keyword">if</span> (i == chars.length - <span class="number">1</span> || chars[i + <span class="number">1</span>] == <span class="string">' '</span>)  <span class="comment">// 寻找需要局部反转的单词的末尾下标</span></span><br><span class="line">                r = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l != -<span class="number">1</span> &amp;&amp; r != -<span class="number">1</span>) &#123;</span><br><span class="line">            reverse(chars, l, r);</span><br><span class="line">            l = -<span class="number">1</span>;</span><br><span class="line">            r = -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> String.valueOf(chars);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 反转字符串</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reverse</span><span class="params">(<span class="keyword">char</span>[] chars, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (start &lt; end) &#123;</span><br><span class="line">        swap(chars, start, end);</span><br><span class="line">        start++;</span><br><span class="line">        end--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 交换</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">char</span>[] chars, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> temp = chars[i];</span><br><span class="line">    chars[i] = chars[j];</span><br><span class="line">    chars[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>对于一个有序数组arr，再给定一个整数num，请在arr中找到num这个数出现的最左边的位置。<br>给定一个数组arr及它的大小n，同时给定num。请返回所求位置。若该元素在数组中未出现，请返回-1。<br>测试样例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1,2,3,3,4],5,3</span><br><span class="line">返回：2</span><br></pre></td></tr></table></figure>
+<p>思路：使用折半查找，当找到num后使用result记录当前找到的num位置，接着再对其左边进行搜索，直到搜索完毕，返回的result就是最左位置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPos</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> n, <span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">if</span> (arr == <span class="keyword">null</span> || n == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> right = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="keyword">int</span> result = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">        mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="comment">// 如果找到num，则对其左边继续搜索</span></span><br><span class="line">        <span class="keyword">if</span> (arr[mid] == num) &#123;</span><br><span class="line">            result = mid;</span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr[mid] &gt; num)</span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <div class="article-footer">
@@ -418,7 +418,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://lierabbit.cn/2018/02/18/句子的逆序/" title="句子的逆序" target="_blank" rel="external">https://lierabbit.cn/2018/02/18/句子的逆序/</a>
+      <a href="https://lierabbit.cn/2018/02/21/元素最左出现/" title="元素最左出现" target="_blank" rel="external">https://lierabbit.cn/2018/02/21/元素最左出现/</a>
     </li>
     
     
@@ -469,13 +469,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2018/02/18/字符串位移/" title="字符串位移"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2018/02/18/两串旋转/" title="两串旋转"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2018/02/21/局部最小值位置/" title="局部最小值位置"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
   </ul>
