@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lierabbit.cn/"/>
-  <updated>2018-08-24T14:30:34.072Z</updated>
+  <updated>2018-08-25T06:26:47.536Z</updated>
   <id>https://lierabbit.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最大二叉子树</title>
+    <link href="https://lierabbit.cn/2018/02/23/%E6%9C%80%E5%A4%A7%E4%BA%8C%E5%8F%89%E5%AD%90%E6%A0%91/"/>
+    <id>https://lierabbit.cn/2018/02/23/最大二叉子树/</id>
+    <published>2018-02-23T05:36:11.000Z</published>
+    <updated>2018-08-25T06:26:47.536Z</updated>
+    
+    <content type="html"><![CDATA[<p>有一棵二叉树，其中所有节点的值都不一样,找到含有节点最多 的搜索二叉子树,并返回这棵子树的头节点.<br>给定二叉树的头结点root，请返回所求的头结点,若出现多个节点最多的子树，返回头结点权值最大的。</p><p>思路：以节点node为头的树中，最大的搜索二叉子树只可能来自以下两种情况:<br>1.来自node左子树上的最大搜索二叉子树是以node左孩子为头的，并且来自node右子树上的最大搜索二叉子树是以node右孩子为头的，node左子树上的最大搜索二叉子树的最大值小于node的节点值，node右子树上的最大搜索二叉子树的最小值大于node的节点值，那么以节点node为头的整棵树都是搜索二叉树。<br>2.如果不满足第1种情况，说明以节点node为头的树整体不能连成搜索二叉树。这种情况下，以node为头的树上的最大搜索二叉子树是来自node的左子树上的最大搜索二叉子树和来自node的右子树上的最大搜索二叉子树之间，节点数较多的那个。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">getMax</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">return</span> getMax(root, <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">getMax</span><span class="params">(TreeNode node, <span class="keyword">int</span>[] temp)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node == <span class="keyword">null</span>) &#123;</span><br><span class="line">        temp[<span class="number">0</span>] = Integer.MAX_VALUE; <span class="comment">// 最小值取最大值，这样所有的数都能比它小</span></span><br><span class="line">        temp[<span class="number">1</span>] = Integer.MIN_VALUE; <span class="comment">// 最大值取最小值，这样所有的数都能比它大</span></span><br><span class="line">        temp[<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    TreeNode lMaxNode = getMax(node.left, temp);</span><br><span class="line">    <span class="keyword">int</span> lMin = temp[<span class="number">0</span>]; <span class="comment">// 最小值</span></span><br><span class="line">    <span class="keyword">int</span> lMax = temp[<span class="number">1</span>]; <span class="comment">// 最大值</span></span><br><span class="line">    <span class="keyword">int</span> lNum = temp[<span class="number">2</span>]; <span class="comment">// 节点数</span></span><br><span class="line"></span><br><span class="line">    TreeNode rMaxNode = getMax(node.right, temp);</span><br><span class="line">    <span class="keyword">int</span> rMin = temp[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> rMax = temp[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> rNum = temp[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    temp[<span class="number">0</span>] = Math.min(lMin, node.val); <span class="comment">// 更新最小值</span></span><br><span class="line">    temp[<span class="number">1</span>] = Math.max(rMax, node.val); <span class="comment">// 更新最大值</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (lMaxNode == node.left &amp;&amp; rMaxNode == node.right &amp;&amp; lMax &lt; node.val &amp;&amp; rMin &gt; node.val) &#123;</span><br><span class="line">        temp[<span class="number">2</span>] = lNum + rNum + <span class="number">1</span>; <span class="comment">// 更新节点数</span></span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        temp[<span class="number">2</span>] = Math.max(lNum, rNum);</span><br><span class="line">        <span class="keyword">return</span> lNum &gt; rNum ? lMaxNode : rMaxNode; <span class="comment">// 当相等的时候取右边的，因为右边的权值大</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;有一棵二叉树，其中所有节点的值都不一样,找到含有节点最多 的搜索二叉子树,并返回这棵子树的头节点.&lt;br&gt;给定二叉树的头结点root，请返回所求的头结点,若出现多个节点最多的子树，返回头结点权值最大的。&lt;/p&gt;
+&lt;p&gt;思路：以节点node为头的树中，最大的搜索二叉子树只可能
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>树上最远距离</title>
@@ -496,32 +522,6 @@
       
       
         &lt;p&gt;如何判断一个单链表是否有环？有环的话返回进入环的第一个节点的值，无环的话返回-1。如果链表的长度为N，请做到时间复杂度O(N)，额外空间复杂度O(1)。&lt;br&gt;给定一个单链表的头结点head（注意另一个参数adjust为加密后的数据调整参数，方便数据设置，与本题求解无关)，
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>复杂链表的复制</title>
-    <link href="https://lierabbit.cn/2018/02/19/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/"/>
-    <id>https://lierabbit.cn/2018/02/19/复杂链表的复制/</id>
-    <published>2018-02-19T04:44:30.000Z</published>
-    <updated>2018-08-24T09:51:18.438Z</updated>
-    
-    <content type="html"><![CDATA[<p>输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点）</p><p>思路：使用在原始元素后面插入克隆元素解决难以设置随机指针问题，第一次遍历在每个元素后面添加一个克隆元素，第二次遍历设置克隆元素的随机指针即原随机指针的下一个，第三次遍历分割出克隆链表</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RandomListNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> label;</span><br><span class="line">    RandomListNode next = <span class="keyword">null</span>;</span><br><span class="line">    RandomListNode random = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    RandomListNode(<span class="keyword">int</span> label) &#123;</span><br><span class="line">        <span class="keyword">this</span>.label = label;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RandomListNode <span class="title">Clone</span><span class="params">(RandomListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        RandomListNode cur = head;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="keyword">null</span>) &#123; <span class="comment">// 在链表每个元素后面添加一个克隆元素</span></span><br><span class="line">            RandomListNode newNode = <span class="keyword">new</span> RandomListNode(cur.label);</span><br><span class="line">            newNode.next = cur.next;</span><br><span class="line">            cur.next = newNode;</span><br><span class="line">            cur = newNode.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cur = head;</span><br><span class="line">        RandomListNode newNode;</span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="keyword">null</span>) &#123; <span class="comment">// 给每个克隆元素设置随机指针</span></span><br><span class="line">            newNode = cur.next;</span><br><span class="line">            newNode.random = cur.random == <span class="keyword">null</span> ? <span class="keyword">null</span> : cur.random.next;</span><br><span class="line">            cur = cur.next.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cur = head;</span><br><span class="line">        RandomListNode newHead = cur.next;</span><br><span class="line">        RandomListNode next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="keyword">null</span>) &#123; <span class="comment">// 分割出克隆链表，还原原链表</span></span><br><span class="line">            next = cur.next.next;</span><br><span class="line">            newNode = cur.next;</span><br><span class="line">            newNode.next = next == <span class="keyword">null</span> ? <span class="keyword">null</span> : next.next;</span><br><span class="line">            cur.next = next;</span><br><span class="line">            cur = next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点）&lt;/p&gt;
-&lt;p&gt;思路：使用在原始元素后面插入克隆元素解决难以设置随机指针问题，第一次遍历在每个元素后面添加一个克隆元素，第二次遍历设置克隆元素的随机指针即原随机指针的下一
       
     
     </summary>
