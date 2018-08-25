@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lierabbit.cn/"/>
-  <updated>2018-08-25T06:45:14.594Z</updated>
+  <updated>2018-08-25T08:16:40.812Z</updated>
   <id>https://lierabbit.cn/</id>
   
   <author>
@@ -15,6 +15,449 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>随机01</title>
+    <link href="https://lierabbit.cn/2018/02/25/%E9%9A%8F%E6%9C%BA01/"/>
+    <id>https://lierabbit.cn/2018/02/25/随机01/</id>
+    <published>2018-02-25T05:14:39.000Z</published>
+    <updated>2018-08-25T08:16:40.812Z</updated>
+    
+    <content type="html"><![CDATA[<p>给定一个以p概率产生0，以1-p概率产生1的随机函数RandomP::f()，p是固定的值，但你并不知道是多少。除此之外也不能使用任何额外的随机机制，请用RandomP::f()实现等概率随机产生0和1的随机函数。</p><p>思路：</p><ul><li>f()产生0的概率P，产生1的概率1-P</li><li>产生01和10序列的概率都为P * (1-P )</li><li>不断调用f(),直到能够产生01或10，序列终止。</li><li>如果产生了01，返回0。</li><li>如果产生了10，则返回1,即可。</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">double</span> p = <span class="keyword">new</span> Random().nextFloat();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 随机概率p</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Random().nextFloat() &lt; p ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">random01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 通过f函数实现01等概率返回</span></span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        a = f();</span><br><span class="line">        b = f();</span><br><span class="line">        <span class="keyword">if</span> (a != b)</span><br><span class="line">            <span class="keyword">return</span> a &gt; b ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;给定一个以p概率产生0，以1-p概率产生1的随机函数RandomP::f()，p是固定的值，但你并不知道是多少。除此之外也不能使用任何额外的随机机制，请用RandomP::f()实现等概率随机产生0和1的随机函数。&lt;/p&gt;
+&lt;p&gt;思路：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;f()产生
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>随机函数</title>
+    <link href="https://lierabbit.cn/2018/02/25/%E9%9A%8F%E6%9C%BA%E5%87%BD%E6%95%B0/"/>
+    <id>https://lierabbit.cn/2018/02/25/随机函数/</id>
+    <published>2018-02-25T05:02:24.000Z</published>
+    <updated>2018-08-25T08:11:21.765Z</updated>
+    
+    <content type="html"><![CDATA[<p>给定一个等概率随机产生1~5的随机函数，除此之外，不能使用任何额外的随机机制，请实现等概率随机产生1~7的随机函数。(给定一个可调用的Random5::random()方法,可以等概率地随机产生1～5的随机函数)</p><p>思路：得到一串均匀分布且长度大于7的连续序列即可（甚至都不需要连续，只要保证能产生7个以上等概率的数即可），在这个序列里选中7个（或7的倍数个），若得到的数不是这7个中的，重新产生，这样这7个数的概率肯定是相同的。<br>步骤：<br>1.已经有等概率随机产生1、2、3、4、5的随机函数。<br>2.根据步骤1得到的结果减1，将得到f( ) -&gt; 0、1、2、3、4<br>3.f( )x5 -&gt; 0、5、10、15、20<br>4.f( )x5+f () -&gt; 0、1、2、3、4…..24 <code>注意这两个f( )是分别调用的，不要化简。</code><br>5.如果步骤4产生的数大于20，则重复进行步骤4直到产生的结果在0~20之间。<br>6.步骤5的结果将等概率随机产生0~20，所以步骤5的结果%7之后等概率产生0~6。<br>7.步骤6的结果加1，将等概率产生1~7。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Random rand = <span class="keyword">new</span> Random(<span class="number">123456</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 随机产生[1,5]</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">rand5</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> + rand.nextInt(<span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过rand5实现rand7</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">randomNumber</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> value = (rand5() - <span class="number">1</span>) * <span class="number">5</span> + rand5() - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (value &gt; <span class="number">20</span>)</span><br><span class="line">        value = (rand5() - <span class="number">1</span>) * <span class="number">5</span> + rand5() - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> value % <span class="number">7</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;给定一个等概率随机产生1~5的随机函数，除此之外，不能使用任何额外的随机机制，请实现等概率随机产生1~7的随机函数。(给定一个可调用的Random5::random()方法,可以等概率地随机产生1～5的随机函数)&lt;/p&gt;
+&lt;p&gt;思路：得到一串均匀分布且长度大于7的连续序列即
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>蚂蚁</title>
+    <link href="https://lierabbit.cn/2018/02/25/%E8%9A%82%E8%9A%81/"/>
+    <id>https://lierabbit.cn/2018/02/25/蚂蚁/</id>
+    <published>2018-02-25T03:13:03.000Z</published>
+    <updated>2018-08-25T07:48:33.014Z</updated>
+    
+    <content type="html"><![CDATA[<p>n只蚂蚁从正n边形的n个定点沿着边移动，速度是相同的，问它们碰头的概率是多少？<br>给定一个正整数n，请返回一个数组，其中两个元素分别为结果的分子和分母，请化为最简分数。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">返回：[3,4]</span><br></pre></td></tr></table></figure><p>思路：如果蚂蚁移动方向不都相同，则必定碰头。只有全部顺时针或者逆时针方向移动才不会碰头</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] collision(<span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">int</span> all = (<span class="keyword">int</span>) Math.pow(<span class="number">2</span>, n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> g = gcd(all, all - <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">    res[<span class="number">0</span>] = (all - <span class="number">2</span>) / g;</span><br><span class="line">    res[<span class="number">1</span>] = all / g;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 最大公约数</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    <span class="keyword">while</span> (y != <span class="number">0</span>) &#123;</span><br><span class="line">        temp = y;</span><br><span class="line">        y = x % y;</span><br><span class="line">        x = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;n只蚂蚁从正n边形的n个定点沿着边移动，速度是相同的，问它们碰头的概率是多少？&lt;br&gt;给定一个正整数n，请返回一个数组，其中两个元素分别为结果的分子和分母，请化为最简分数。&lt;br&gt;测试样例：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;tabl
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>足球比赛</title>
+    <link href="https://lierabbit.cn/2018/02/24/%E8%B6%B3%E7%90%83%E6%AF%94%E8%B5%9B/"/>
+    <id>https://lierabbit.cn/2018/02/24/足球比赛/</id>
+    <published>2018-02-24T04:24:20.000Z</published>
+    <updated>2018-08-25T07:47:26.554Z</updated>
+    
+    <content type="html"><![CDATA[<p>有2k只球队，有k-1个强队，其余都是弱队，随机把它们分成k组比赛，每组两个队，问两强相遇的概率是多大？<br>给定一个数k，请返回一个数组，其中有两个元素，分别为最终结果的分子和分母，请化成最简分数<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">4</span><br><span class="line">返回：[3,7]</span><br></pre></td></tr></table></figure><p>思路：<br>1.求出全部分组情况<br>2.求出两强不相遇的情况<br>3.全部分组-两强不相遇=两强相遇</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] calc(<span class="keyword">int</span> k) &#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">int</span> all = <span class="number">1</span>; <span class="comment">// 分组全部情况</span></span><br><span class="line">    <span class="keyword">int</span> k2 = <span class="number">2</span> * k;</span><br><span class="line">    <span class="keyword">while</span> (k2 != <span class="number">0</span>) &#123;</span><br><span class="line">        all *= k2 - <span class="number">1</span>;</span><br><span class="line">        k2 -= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> noTowStrong = C(k + <span class="number">1</span>, k - <span class="number">1</span>) * A(k - <span class="number">1</span>, k - <span class="number">1</span>); <span class="comment">// 两强不相遇的情况</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">    res[<span class="number">0</span>] = all - noTowStrong;</span><br><span class="line">    res[<span class="number">1</span>] = all;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> g = gcd(res[<span class="number">0</span>], res[<span class="number">1</span>]);</span><br><span class="line">    res[<span class="number">0</span>] /= g;</span><br><span class="line">    res[<span class="number">1</span>] /= g;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 最大公约数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (y != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> t = y;</span><br><span class="line">        y = x % y;</span><br><span class="line">        x = t;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟C运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> A(down, up) / A(up, up);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟A运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">A</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; up; i++)</span><br><span class="line">        data *= down--;</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;有2k只球队，有k-1个强队，其余都是弱队，随机把它们分成k组比赛，每组两个队，问两强相遇的概率是多大？&lt;br&gt;给定一个数k，请返回一个数组，其中有两个元素，分别为最终结果的分子和分母，请化成最简分数&lt;br&gt;测试样例：&lt;/p&gt;
+&lt;figure class=&quot;highligh
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>错装信封</title>
+    <link href="https://lierabbit.cn/2018/02/24/%E9%94%99%E8%A3%85%E4%BF%A1%E5%B0%81/"/>
+    <id>https://lierabbit.cn/2018/02/24/错装信封/</id>
+    <published>2018-02-24T03:46:24.000Z</published>
+    <updated>2018-08-25T07:42:57.311Z</updated>
+    
+    <content type="html"><![CDATA[<p>有n个信封，包含n封信，现在把信拿出来，再装回去，要求每封信不能装回它原来的信封，问有多少种装法?<br>给定一个整数n，请返回装发个数，为了防止溢出，请返回结果Mod 1000000007的值。保证n的大小小于等于300。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">返回：1</span><br></pre></td></tr></table></figure><p>思路：<br>对于n封信按照题目要求的装法即为f(n)<br>假设第n封信放入了第i个信封<br>情况一:第i封信也放入了第n个信封中，后续为f(n-2)<br>情况二:第i封信没放入了第n个信封中，后续为f(n-1)<br>n封信放入i个信封，i的选择有(n-1)种<br>所以总数为f(n)= (n-1)*(f(n-1)+f(n-2))</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countWays</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> pre = <span class="number">0</span>, last = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = (<span class="keyword">int</span>) ((<span class="keyword">long</span>) (i - <span class="number">1</span>) * (<span class="keyword">long</span>) (pre + last) % <span class="number">1000000007</span>);</span><br><span class="line">            pre = last;</span><br><span class="line">            last = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> last;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;有n个信封，包含n封信，现在把信拿出来，再装回去，要求每封信不能装回它原来的信封，问有多少种装法?&lt;br&gt;给定一个整数n，请返回装发个数，为了防止溢出，请返回结果Mod 1000000007的值。保证n的大小小于等于300。&lt;br&gt;测试样例：&lt;/p&gt;
+&lt;figure cla
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高矮排列</title>
+    <link href="https://lierabbit.cn/2018/02/24/%E9%AB%98%E7%9F%AE%E6%8E%92%E5%88%97/"/>
+    <id>https://lierabbit.cn/2018/02/24/高矮排列/</id>
+    <published>2018-02-24T02:34:11.000Z</published>
+    <updated>2018-08-25T07:39:29.781Z</updated>
+    
+    <content type="html"><![CDATA[<p>12个高矮不同的人，排成两排，每排必须是从矮到高排列，而且第二排比对应的第一排的人高，问排列方式有多少种？</p><p>给定一个偶数n，请返回所求的排列方式个数。保证结果在int范围内。</p><p>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">返回：1</span><br></pre></td></tr></table></figure><p>思路：同<a href="https://lierabbit.cn/2018/08/25/进出栈/">进出栈</a><br><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/02/24/%E9%AB%98%E7%9F%AE%E6%8E%92%E5%88%97/1.jpg" alt=""></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countWays</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">return</span> C(n, n / <span class="number">2</span>) / (n / <span class="number">2</span> + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟C运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> A(down, up) / A(up, up);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟A运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">A</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; up; i++)</span><br><span class="line">        data *= down--;</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;12个高矮不同的人，排成两排，每排必须是从矮到高排列，而且第二排比对应的第一排的人高，问排列方式有多少种？&lt;/p&gt;
+&lt;p&gt;给定一个偶数n，请返回所求的排列方式个数。保证结果在int范围内。&lt;/p&gt;
+&lt;p&gt;测试样例：&lt;/p&gt;
+&lt;figure class=&quot;highlight 
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>二叉树统计</title>
+    <link href="https://lierabbit.cn/2018/02/24/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%BB%9F%E8%AE%A1/"/>
+    <id>https://lierabbit.cn/2018/02/24/二叉树统计/</id>
+    <published>2018-02-24T02:24:22.000Z</published>
+    <updated>2018-08-25T07:36:25.056Z</updated>
+    
+    <content type="html"><![CDATA[<p>求n个无差别的节点构成的二叉树有多少种不同的结构？<br>给定一个整数n，请返回不同结构的二叉树的个数。保证结果在int范围内。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">返回：1</span><br></pre></td></tr></table></figure><p>思路：<br>假设n个无差别的节点构成不同的结构数为f(n)<br>f(0)表示空树，所以规定种数为1种。<br>以1节点为头时，结构数为1<em>f(n-1).<br>以2节点为头时，结构数为1</em>f(n-2).<br>以3节点为头时，结构数为f(2)<em>f(n-3).<br>以4节点为头时，结构数为f(3)</em>f(n-4).<br>以5节点为头时，结构数为f(4)<em>f(n-5).<br>。。。。。。。。。。。。。。。。<br>假设n个无差别的节点构成不同的结构数为f(n)<br>f(0)=1,f(1)=1,f(2)=2,f(3)=5时<br>f(n)=f(0)</em>f(n-1)+f(1)<em>f(n-2)+f(3)</em>f(n-4)+……..+ ……..+f(n-1)*f(0)=C(2n,n)/n+1</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countWays</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> C(<span class="number">2</span> * n, n) / (n + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟C运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> A(down, up) / A(up, up);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟A运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">A</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; up; i++)</span><br><span class="line">        data *= down--;</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;求n个无差别的节点构成的二叉树有多少种不同的结构？&lt;br&gt;给定一个整数n，请返回不同结构的二叉树的个数。保证结果在int范围内。&lt;br&gt;测试样例：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutte
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>排队买票</title>
+    <link href="https://lierabbit.cn/2018/02/24/%E6%8E%92%E9%98%9F%E4%B9%B0%E7%A5%A8/"/>
+    <id>https://lierabbit.cn/2018/02/24/排队买票/</id>
+    <published>2018-02-24T02:00:11.000Z</published>
+    <updated>2018-08-25T07:33:26.515Z</updated>
+    
+    <content type="html"><![CDATA[<p>2n个人排队买票，n个人拿5块钱，n个人拿10块钱，票价是5块钱1张，每个人买一张票，售票员手里没有零钱，问有多少种排队方法让售票员可以顺利卖票。<br>给定一个整数n，请返回所求的排队方案个数。保证结果在int范围内。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">返回：1</span><br></pre></td></tr></table></figure><p>思路：同<a href="https://lierabbit.cn/2018/08/25/进出栈/">进出栈</a>，将持5元者到达视作将5元入栈，持10元者到达视作使栈中某5元出栈</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countWays</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> C(<span class="number">2</span> * n, n) / (n + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟C运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> A(down, up) / A(up, up);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟A运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">A</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; up; i++)</span><br><span class="line">        data *= down--;</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;2n个人排队买票，n个人拿5块钱，n个人拿10块钱，票价是5块钱1张，每个人买一张票，售票员手里没有零钱，问有多少种排队方法让售票员可以顺利卖票。&lt;br&gt;给定一个整数n，请返回所求的排队方案个数。保证结果在int范围内。&lt;br&gt;测试样例：&lt;/p&gt;
+&lt;figure class
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>括号序列</title>
+    <link href="https://lierabbit.cn/2018/02/24/%E6%8B%AC%E5%8F%B7%E5%BA%8F%E5%88%97/"/>
+    <id>https://lierabbit.cn/2018/02/24/括号序列/</id>
+    <published>2018-02-24T01:19:10.000Z</published>
+    <updated>2018-08-25T07:30:59.912Z</updated>
+    
+    <content type="html"><![CDATA[<p>假设有n对左右括号，请求出合法的排列有多少个？合法是指每一个括号都可以找到与之配对的括号，比如n=1时，()是合法的，但是)(为不合法。<br>给定一个整数n，请返回所求的合法排列数。保证结果在int范围内。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">返回：1</span><br></pre></td></tr></table></figure><p>思路：同<a href="https://lierabbit.cn/2018/08/25/进出栈/">进出栈</a>，只需将左括号看成进栈，右括号看成出栈</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countLegalWays</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> C(<span class="number">2</span> * n, n) / (n + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟C运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> A(down, up) / A(up, up);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟A运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">A</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; up; i++)</span><br><span class="line">        data *= down--;</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;假设有n对左右括号，请求出合法的排列有多少个？合法是指每一个括号都可以找到与之配对的括号，比如n=1时，()是合法的，但是)(为不合法。&lt;br&gt;给定一个整数n，请返回所求的合法排列数。保证结果在int范围内。&lt;br&gt;测试样例：&lt;/p&gt;
+&lt;figure class=&quot;high
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>进出栈</title>
+    <link href="https://lierabbit.cn/2018/02/24/%E8%BF%9B%E5%87%BA%E6%A0%88/"/>
+    <id>https://lierabbit.cn/2018/02/24/进出栈/</id>
+    <published>2018-02-24T00:35:15.000Z</published>
+    <updated>2018-08-25T07:34:53.710Z</updated>
+    
+    <content type="html"><![CDATA[<p>n个数进出栈的顺序有多少种？假设栈的容量无限大。<br>给定一个整数n，请返回所求的进出栈顺序个数。保证结果在int范围内。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">返回：1</span><br></pre></td></tr></table></figure><h3 id="常规分析："><a href="#常规分析：" class="headerlink" title="常规分析："></a>常规分析：</h3><p>首先，我们设f（n）=序列个数为n的出栈序列种数。（我们假定，最后出栈的元素为k，显然，k取不同值时的情况是相互独立的，也就是求出每种k最后出栈的情况数后可用加法原则，由于k最后出栈，因此，在k入栈之前，比k小的值均出栈，此处情况有f(k-1)种，而之后比k大的值入栈，且都在k之前出栈，因此有f(n-k)种方式，由于比k小和比k大的值入栈出栈情况是相互独立的，此处可用乘法原则，f(n-k)*f(k-1)种，求和便是Catalan递归式）<br>首次出空之前第一个出栈的序数k将1~n的序列分成两个序列，其中一个是1~k-1，序列个数为k-1，另外一个是k+1~n，序列个数是n-k。<br>此时，我们若把k视为确定一个序数，那么根据乘法原理，f（n）的问题就等价于——序列个数为k-1的出栈序列种数乘以序列个数为n - k的出栈序列种数，即选择k这个序数的f（n）=f（k-1）×f（n-k）。而k可以选1到n，所以再根据加法原理，将k取不同值的序列种数相加，得到的总序列种数为：f（n）=f（0）f（n-1）+f（1）f（n-2）+……+f（n-1）f（0）。<br>看到此处，再看看卡特兰数的递推式，答案不言而喻，即为f（n）=h（n）= C（2n,n）/（n+1）= c（2n,n）-c（2n,n-1）（n=0，1，2，……）。<br>最后，令f（0）=1，f（1）=1。</p><h3 id="非常规分析："><a href="#非常规分析：" class="headerlink" title="非常规分析："></a>非常规分析：</h3><p>对于每一个数来说，必须进栈一次、出栈一次。我们把进栈设为状态‘1’，出栈设为状态‘0’。n个数的所有状态对应n个1和n个0组成的2n位二进制数。由于等待入栈的操作数按照1‥n的顺序排列、入栈的操作数b大于等于出栈的操作数a(a≤b)，因此输出序列的总数目=由左而右扫描由n个1和n个0组成的2n位二进制数，1的累计数不小于0的累计数的方案种数。<br>在2n位二进制数中填入n个1的方案数为c(2n,n),不填1的其余n位自动填0。从中减去不符合要求（由左而右扫描，0的累计数大于1的累计数）的方案数即为所求。<br>不符合要求的数的特征是由左而右扫描时，必然在某一奇数位2m+1位上首先出现m+1个0的累计数和m个1的累计数，此后的2(n-m)-1位上有n-m个 1和n-m-1个0。如若把后面这2(n-m)-1位上的0和1互换，使之成为n-m个0和n-m-1个1，结果得1个由n+1个0和n-1个1组成的2n位数，即一个不合要求的数对应于一个由n+1个0和n-1个1组成的排列。<br>反过来，任何一个由n+1个0和n-1个1组成的2n位二进制数，由于0的个数多2个，2n为偶数，故必在某一个奇数位上出现0的累计数超过1的累计数。同样在后面部分0和1互换，使之成为由n个0和n个1组成的2n位数，即n+1个0和n-1个1组成的2n位数必对应一个不符合要求的数。<br>因而不合要求的2n位数与n+1个0，n－1个1组成的排列一一对应。<br>显然，不符合要求的方案数为c(2n,n+1)。由此得出输出序列的总数目=c(2n,n)-c(2n,n+1)=c(2n,n)/(n+1)=h(n)。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countWays</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">return</span> C(<span class="number">2</span> * n, n) / (n + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟C运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> A(down, up) / A(up, up);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟A运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">A</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; up; i++)</span><br><span class="line">        data *= down--;</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;n个数进出栈的顺序有多少种？假设栈的容量无限大。&lt;br&gt;给定一个整数n，请返回所求的进出栈顺序个数。保证结果在int范围内。&lt;br&gt;测试样例：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>分糖果</title>
+    <link href="https://lierabbit.cn/2018/02/23/%E5%88%86%E7%B3%96%E6%9E%9C/"/>
+    <id>https://lierabbit.cn/2018/02/23/分糖果/</id>
+    <published>2018-02-23T13:18:04.000Z</published>
+    <updated>2018-08-25T07:21:48.909Z</updated>
+    
+    <content type="html"><![CDATA[<p>n颗相同的糖果，分给m个人，每人至少一颗，问有多少种分法。<br>给定n和m，请返回方案数，保证n小于等于12，且m小于等于n。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">10,3</span><br><span class="line">返回：36</span><br></pre></td></tr></table></figure><p>思路：如果有10颗，要分给3个人，则相当于在10颗糖中插入两个挡板，分出三个部分，则C(9，2) = 36种</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getWays</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> C(n - <span class="number">1</span>, m - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟C运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> A(down, up) / A(up, up);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟A运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">A</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; up; i++)</span><br><span class="line">        data *= down--;</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;n颗相同的糖果，分给m个人，每人至少一颗，问有多少种分法。&lt;br&gt;给定n和m，请返回方案数，保证n小于等于12，且m小于等于n。&lt;br&gt;测试样例：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutte
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>孤傲的A</title>
+    <link href="https://lierabbit.cn/2018/02/23/%E5%AD%A4%E5%82%B2%E7%9A%84A/"/>
+    <id>https://lierabbit.cn/2018/02/23/孤傲的A/</id>
+    <published>2018-02-23T13:09:07.000Z</published>
+    <updated>2018-08-25T07:16:45.859Z</updated>
+    
+    <content type="html"><![CDATA[<p>A(A也是他的编号)是一个孤傲的人，在一个n个人(其中编号依次为1到n)的队列中，他于其中的标号为b和标号c的人都有矛盾，所以他不会和他们站在相邻的位置。现在问你满足A的要求的对列有多少种？<br>给定人数n和三个人的标号A,b和c，请返回所求答案，保证人数小于等于11且大于等于3。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">6,1,2,3</span><br><span class="line">288</span><br></pre></td></tr></table></figure><p>思路：<br>1.统计全排列情况<br>2.统计ab，ac相邻的情况<br>3.因为ab，ac相邻包含了bac，cab，所以要统计bac，cab的情况<br>4.全排列-ab-ac+bac+cab即为结果</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getWays</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">int</span> ab = A(n - <span class="number">1</span>, n - <span class="number">1</span>) * <span class="number">2</span>; <span class="comment">// ab相邻的情况分为ab,ba两种</span></span><br><span class="line">    <span class="keyword">int</span> bac = A(n - <span class="number">2</span>, n - <span class="number">2</span>) * <span class="number">2</span>; <span class="comment">// bac相邻的情况有bac,cab两种</span></span><br><span class="line">    <span class="keyword">int</span> all = A(n, n); <span class="comment">// 全排列</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> all - ab * <span class="number">2</span> + bac; <span class="comment">// ac与ab一致所以ab*2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟A运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">A</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; up; i++)</span><br><span class="line">        data *= down--;</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;A(A也是他的编号)是一个孤傲的人，在一个n个人(其中编号依次为1到n)的队列中，他于其中的标号为b和标号c的人都有矛盾，所以他不会和他们站在相邻的位置。现在问你满足A的要求的对列有多少种？&lt;br&gt;给定人数n和三个人的标号A,b和c，请返回所求答案，保证人数小于等于11且大
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>站队问题</title>
+    <link href="https://lierabbit.cn/2018/02/23/%E7%AB%99%E9%98%9F%E9%97%AE%E9%A2%98/"/>
+    <id>https://lierabbit.cn/2018/02/23/站队问题/</id>
+    <published>2018-02-23T12:26:32.000Z</published>
+    <updated>2018-08-25T07:13:27.388Z</updated>
+    
+    <content type="html"><![CDATA[<p>n个人站队，他们的编号依次从1到n，要求编号为a的人必须在编号为b的人的左边，但不要求一定相邻，请问共有多少种排法？第二问如果要求a必须在b的左边，并且一定要相邻，请问一共有多少种排法？<br>给定人数n及两个人的编号a和b，请返回一个两个元素的数组，其中两个元素依次为两个问题的答案。保证人数小于等于10。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">7,1,2</span><br><span class="line">返回：[2520,720]</span><br></pre></td></tr></table></figure><p>思路：<br><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/02/23/%E7%AB%99%E9%98%9F%E9%97%AE%E9%A2%98/1.jpg" alt=""><br><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/02/23/%E7%AB%99%E9%98%9F%E9%97%AE%E9%A2%98/2.jpg" alt=""></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] getWays(<span class="keyword">int</span> n, <span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">    res[<span class="number">0</span>] = A(n, n) / <span class="number">2</span>;</span><br><span class="line">    res[<span class="number">1</span>] = A(n - <span class="number">1</span>, n - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟A运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">A</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; up; i++)</span><br><span class="line">        data *= down--;</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;n个人站队，他们的编号依次从1到n，要求编号为a的人必须在编号为b的人的左边，但不要求一定相邻，请问共有多少种排法？第二问如果要求a必须在b的左边，并且一定要相邻，请问一共有多少种排法？&lt;br&gt;给定人数n及两个人的编号a和b，请返回一个两个元素的数组，其中两个元素依次为两个
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>方格移动</title>
+    <link href="https://lierabbit.cn/2018/02/23/%E6%96%B9%E6%A0%BC%E7%A7%BB%E5%8A%A8/"/>
+    <id>https://lierabbit.cn/2018/02/23/方格移动/</id>
+    <published>2018-02-23T11:00:06.000Z</published>
+    <updated>2018-08-25T07:09:42.730Z</updated>
+    
+    <content type="html"><![CDATA[<p>在XxY的方格中，以左上角格子为起点，右下角格子为终点，每次只能向下走或者向右走，请问一共有多少种不同的走法<br>给定两个正整数int x,int y，请返回走法数目。保证x＋y小于等于12。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2,2</span><br><span class="line">返回：2</span><br></pre></td></tr></table></figure><p>思路：一共走x-1+y-1步，其中必然有y-1步向下，则C(x-1+y-1,y-1)第一个为下标，第二个为上标</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countWays</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    --x;</span><br><span class="line">    --y;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> C(x + y, y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟C运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> A(down, up) / A(up, up);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟A运算</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> up   上标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">A</span><span class="params">(<span class="keyword">int</span> down, <span class="keyword">int</span> up)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; up; i++)</span><br><span class="line">        data *= down--;</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在XxY的方格中，以左上角格子为起点，右下角格子为终点，每次只能向下走或者向右走，请问一共有多少种不同的走法&lt;br&gt;给定两个正整数int x,int y，请返回走法数目。保证x＋y小于等于12。&lt;br&gt;测试样例：&lt;/p&gt;
+&lt;figure class=&quot;highlight p
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>寻找奇数出现II</title>
+    <link href="https://lierabbit.cn/2018/02/23/%E5%AF%BB%E6%89%BE%E5%A5%87%E6%95%B0%E5%87%BA%E7%8E%B0II/"/>
+    <id>https://lierabbit.cn/2018/02/23/寻找奇数出现II/</id>
+    <published>2018-02-23T07:20:24.000Z</published>
+    <updated>2018-08-25T07:08:34.798Z</updated>
+    
+    <content type="html"><![CDATA[<p>给定一个整型数组arr，其中有两个数出现了奇数次，其他的数都出现了偶数次，找到这两个数。要求时间复杂度为O(N)，额外空间复杂度为O(1)。<br>给定一个整形数组arr及它的大小n，请返回一个数组，其中两个元素为两个出现了奇数次的元素,请将他们按从小到大排列。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1,2,4,4,2,1,3,5],8</span><br><span class="line">返回：[3,5]</span><br></pre></td></tr></table></figure><p>思路：<br><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/02/23/%E5%AF%BB%E6%89%BE%E5%A5%87%E6%95%B0%E5%87%BA%E7%8E%B0II/1.jpg" alt=""></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] findOdds(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">int</span> k1 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> k2 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> a : arr) <span class="comment">// 假设出现奇数次的两个数为a,b则，k1 = a ^ b</span></span><br><span class="line">        k1 ^= a;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> rightOne = k1 &amp; (~k1 + <span class="number">1</span>); <span class="comment">// 获取k1的二进制最右边第一个1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> a : arr) <span class="comment">// 最后k2为a或者b</span></span><br><span class="line">        <span class="keyword">if</span> ((rightOne &amp; a) != <span class="number">0</span>) <span class="comment">// 只有和rightOne在相同位一致的数才有可能是a或b</span></span><br><span class="line">            k2 ^= a;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> small = Math.min(k2, k1 ^ k2);</span><br><span class="line">    <span class="keyword">int</span> big = Math.max(k2, k1 ^ k2);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">    res[<span class="number">0</span>] = small;</span><br><span class="line">    res[<span class="number">1</span>] = big;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;给定一个整型数组arr，其中有两个数出现了奇数次，其他的数都出现了偶数次，找到这两个数。要求时间复杂度为O(N)，额外空间复杂度为O(1)。&lt;br&gt;给定一个整形数组arr及它的大小n，请返回一个数组，其中两个元素为两个出现了奇数次的元素,请将他们按从小到大排列。&lt;br&gt;测试
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>寻找奇数出现</title>
+    <link href="https://lierabbit.cn/2018/02/23/%E5%AF%BB%E6%89%BE%E5%A5%87%E6%95%B0%E5%87%BA%E7%8E%B0/"/>
+    <id>https://lierabbit.cn/2018/02/23/寻找奇数出现/</id>
+    <published>2018-02-23T06:53:41.000Z</published>
+    <updated>2018-08-25T07:05:37.674Z</updated>
+    
+    <content type="html"><![CDATA[<p>有一个整型数组A，其中只有一个数出现了奇数次，其他的数都出现了偶数次，请打印这个数。要求时间复杂度为O(N)，额外空间复杂度为O(1)。<br>给定整形数组A及它的大小n，请返回题目所求数字。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1,2,3,2,1],5</span><br><span class="line">返回：3</span><br></pre></td></tr></table></figure><p>思路：由于<br>0 ^ n = n<br>n ^ n = 0<br>只要让0^数组里每个元素，最后得到的数就是只出现奇数次的数</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findOdd</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">int</span> temp = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> a : A)</span><br><span class="line">        temp ^= a;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;有一个整型数组A，其中只有一个数出现了奇数次，其他的数都出现了偶数次，请打印这个数。要求时间复杂度为O(N)，额外空间复杂度为O(1)。&lt;br&gt;给定整形数组A及它的大小n，请返回题目所求数字。&lt;br&gt;测试样例：&lt;/p&gt;
+&lt;figure class=&quot;highlight pl
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>比较</title>
+    <link href="https://lierabbit.cn/2018/02/23/%E6%AF%94%E8%BE%83/"/>
+    <id>https://lierabbit.cn/2018/02/23/比较/</id>
+    <published>2018-02-23T06:39:41.000Z</published>
+    <updated>2018-08-25T07:02:17.010Z</updated>
+    
+    <content type="html"><![CDATA[<p>对于两个32位整数a和b，请设计一个算法返回a和b中较大的。但是不能用任何比较判断。若两数相同，返回任意一个。<br>给定两个整数a和b，请返回较大的数。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1,2</span><br><span class="line">返回：2</span><br></pre></td></tr></table></figure><p>思路：本函数规定符号位：1非负，0负<br>若a，b符号不同，返回a<em>a符号位+b</em>b符号位，防止溢出<br>若a，b符号相同，使用a-b的符号位c，即返回a<em>c+b</em>(-c)</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMax</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">int</span> c = a - b;</span><br><span class="line">    <span class="keyword">int</span> as = sign(a); <span class="comment">// 1表示非负，0表示负数</span></span><br><span class="line">    <span class="keyword">int</span> bs = sign(b);</span><br><span class="line">    <span class="keyword">int</span> cs = sign(c);</span><br><span class="line">    <span class="keyword">int</span> disab = as ^ bs; <span class="comment">// ab符号不相同为1，相同为0</span></span><br><span class="line">    <span class="keyword">int</span> sameab = flip(disab); <span class="comment">// ab符号相同为1，不相同为0</span></span><br><span class="line">    <span class="keyword">int</span> returnA = disab * as + sameab * cs;</span><br><span class="line">    <span class="keyword">int</span> returnB = flip(returnA);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> returnA * a + returnB * b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取int符号位</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sign</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> flip((n &gt;&gt; <span class="number">31</span>) &amp; <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 反转位</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">flip</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n ^ <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;对于两个32位整数a和b，请设计一个算法返回a和b中较大的。但是不能用任何比较判断。若两数相同，返回任意一个。&lt;br&gt;给定两个整数a和b，请返回较大的数。&lt;br&gt;测试样例：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+      
+    
+    </summary>
+    
+      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>交换</title>
@@ -83,446 +526,6 @@
       
         &lt;p&gt;从二叉树的节点A出发，可以向上或者向下走，但沿途的节点只能经过一次，当到达节点B时，路径上的节点数叫作A到B的距离。对于给定的一棵二叉树，求整棵树上节点间的最大距离。&lt;br&gt;给定一个二叉树的头结点root，请返回最大距离。保证点数大于等于2小于等于500.&lt;/p&gt;
 &lt;p&gt;思
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>寻找错误节点</title>
-    <link href="https://lierabbit.cn/2018/02/22/%E5%AF%BB%E6%89%BE%E9%94%99%E8%AF%AF%E8%8A%82%E7%82%B9/"/>
-    <id>https://lierabbit.cn/2018/02/22/寻找错误节点/</id>
-    <published>2018-02-22T15:01:03.000Z</published>
-    <updated>2018-08-24T14:23:50.260Z</updated>
-    
-    <content type="html"><![CDATA[<p>一棵二叉树原本是搜索二叉树，但是其中有两个节点调换了位置，使得这棵二叉树不再是搜索二叉树，请找到这两个错误节点并返回他们的值。保证二叉树中结点的值各不相同。<br>给定一棵树的根结点，请返回两个调换了位置的值，其中小的值在前。</p><p>思路：</p><ul><li>对二叉树进行中序遍历，依次出现的节点值会一直升序，如果两个节点值错了，会出现降序。</li><li>如果在中序遍历时节点值出现了两次降序，第一个错误的节点为第一次降序时较大的节点，第二个错误的节点为第二次降序时较小的节点。</li><li>如果在中序遍历时节点值只出现了一次降序，第一个错误的节点为这次降序时较大的节点，第二个错误的节点为这次降序时较小的节点。</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] findError(TreeNode root) &#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    TreeNode cur = root;</span><br><span class="line">    TreeNode preNode = <span class="keyword">null</span>; <span class="comment">// 上一个打印节点</span></span><br><span class="line">    TreeNode curNode; <span class="comment">// 当前打印节点</span></span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (cur != <span class="keyword">null</span> || !stack.empty()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cur == <span class="keyword">null</span>) &#123;</span><br><span class="line">            curNode = stack.pop();</span><br><span class="line">            <span class="keyword">if</span> (preNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (preNode.val &gt; curNode.val) &#123;</span><br><span class="line">                    count++;</span><br><span class="line">                    <span class="keyword">if</span> (count == <span class="number">1</span>) &#123;</span><br><span class="line">                        result[<span class="number">0</span>] = curNode.val;</span><br><span class="line">                        result[<span class="number">1</span>] = preNode.val;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        result[<span class="number">0</span>] = curNode.val;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            preNode = curNode;</span><br><span class="line">            cur = curNode.right;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            stack.add(cur);</span><br><span class="line">            cur = cur.left;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;一棵二叉树原本是搜索二叉树，但是其中有两个节点调换了位置，使得这棵二叉树不再是搜索二叉树，请找到这两个错误节点并返回他们的值。保证二叉树中结点的值各不相同。&lt;br&gt;给定一棵树的根结点，请返回两个调换了位置的值，其中小的值在前。&lt;/p&gt;
-&lt;p&gt;思路：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>折纸</title>
-    <link href="https://lierabbit.cn/2018/02/22/%E6%8A%98%E7%BA%B8/"/>
-    <id>https://lierabbit.cn/2018/02/22/折纸/</id>
-    <published>2018-02-22T14:25:00.000Z</published>
-    <updated>2018-08-24T14:21:18.670Z</updated>
-    
-    <content type="html"><![CDATA[<p>请把纸条竖着放在桌⼦上，然后从纸条的下边向上⽅对折，压出折痕后再展 开。此时有1条折痕，突起的⽅向指向纸条的背⾯，这条折痕叫做“下”折痕 ；突起的⽅向指向纸条正⾯的折痕叫做“上”折痕。如果每次都从下边向上⽅ 对折，对折N次。请从上到下计算出所有折痕的⽅向。<br>给定折的次数n,请返回从上到下的折痕的数组，若为下折痕则对应元素为”down”,若为上折痕则为”up”.<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">返回：[&quot;down&quot;]</span><br></pre></td></tr></table></figure><p>思路：<br><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/02/22/%E6%8A%98%E7%BA%B8/1.jpg" alt=""></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String[] foldPaper(<span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    List&lt;String&gt; temp = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    fold(<span class="number">1</span>, n, <span class="keyword">true</span>, temp);</span><br><span class="line">    <span class="keyword">int</span> resultSize = temp.size();</span><br><span class="line">    String[] result = <span class="keyword">new</span> String[resultSize];</span><br><span class="line">    resultSize--;</span><br><span class="line">    <span class="keyword">while</span> (resultSize &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        result[resultSize] = temp.get(resultSize);</span><br><span class="line">        resultSize--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟右中左遍历</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> level 层数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> high 高度</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> down 是否是down</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> res 结果</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fold</span><span class="params">(<span class="keyword">int</span> level, <span class="keyword">int</span> high, <span class="keyword">boolean</span> down, List&lt;String&gt; res)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (level &gt; high)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    fold(level + <span class="number">1</span>, high, <span class="keyword">true</span>, res);</span><br><span class="line">    res.add(down ? <span class="string">"down"</span> : <span class="string">"up"</span>);</span><br><span class="line">    fold(level + <span class="number">1</span>, high, <span class="keyword">false</span>, res);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;请把纸条竖着放在桌⼦上，然后从纸条的下边向上⽅对折，压出折痕后再展 开。此时有1条折痕，突起的⽅向指向纸条的背⾯，这条折痕叫做“下”折痕 ；突起的⽅向指向纸条正⾯的折痕叫做“上”折痕。如果每次都从下边向上⽅ 对折，对折N次。请从上到下计算出所有折痕的⽅向。&lt;br&gt;给定折的次
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>完全二叉树判断</title>
-    <link href="https://lierabbit.cn/2018/02/22/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%A4%E6%96%AD/"/>
-    <id>https://lierabbit.cn/2018/02/22/完全二叉树判断/</id>
-    <published>2018-02-22T13:35:08.000Z</published>
-    <updated>2018-08-24T14:14:30.570Z</updated>
-    
-    <content type="html"><![CDATA[<p>有一棵二叉树,请设计一个算法判断它是否是完全二叉树。<br>给定二叉树的根结点root，请返回一个bool值代表它是否为完全二叉树。树的结点个数小于等于500。</p><p>思路：</p><ul><li>采用按层遍历二叉树的方式，从每层的左边向右边依次遍历所有的节点</li><li>如果当前节点有右孩子，但没有左孩子，直接返回false</li><li>如果当前节点并不是左右孩子全有，那之后的节点必须都为叶节点，否则返回false</li><li>遍历过程中如果不返回false，遍历结束后返回true即可</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">chk</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    queue.add(root);</span><br><span class="line">    TreeNode node;</span><br><span class="line">    <span class="keyword">boolean</span> isCheckLeaf = <span class="keyword">false</span>; <span class="comment">// 是否检查是叶子节点</span></span><br><span class="line">    <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">        node = queue.poll();</span><br><span class="line">        <span class="keyword">if</span> (node.left == <span class="keyword">null</span>) &#123; <span class="comment">// 有右孩子，必须有左孩子</span></span><br><span class="line">            <span class="keyword">if</span> (node.right != <span class="keyword">null</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (isCheckLeaf)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                queue.add(node.left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (node.right == <span class="keyword">null</span>) &#123; <span class="comment">// 当前节点右孩子为空则以后的节点都是叶子节点</span></span><br><span class="line">            isCheckLeaf = <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            queue.add(node.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;有一棵二叉树,请设计一个算法判断它是否是完全二叉树。&lt;br&gt;给定二叉树的根结点root，请返回一个bool值代表它是否为完全二叉树。树的结点个数小于等于500。&lt;/p&gt;
-&lt;p&gt;思路：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;采用按层遍历二叉树的方式，从每层的左边向右边依次遍历所有的节点&lt;
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>平衡二叉树判断</title>
-    <link href="https://lierabbit.cn/2018/02/22/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%A4%E6%96%AD/"/>
-    <id>https://lierabbit.cn/2018/02/22/平衡二叉树判断/</id>
-    <published>2018-02-22T12:25:16.000Z</published>
-    <updated>2018-08-24T14:14:32.485Z</updated>
-    
-    <content type="html"><![CDATA[<p>有一棵二叉树,请设计一个算法判断它是否是完全二叉树。<br>给定二叉树的根结点root，请返回一个bool值代表它是否为完全二叉树。树的结点个数小于等于500。</p><p>平衡二叉树（Self-balancing binary search tree）又被称为AVL树（有别于AVL算法），且具有以下性质：它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树</p><p>思路：递归分别获取左右子树深度，然后进行高度差判断</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">boolean</span>[] result = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">1</span>];</span><br><span class="line">    result[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">    getHeight(root, <span class="number">1</span>, result);</span><br><span class="line">    <span class="keyword">return</span> result[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getHeight</span><span class="params">(TreeNode node, <span class="keyword">int</span> level, <span class="keyword">boolean</span>[] res)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> level;</span><br><span class="line">    <span class="keyword">int</span> lh = getHeight(node.left, level + <span class="number">1</span>, res);</span><br><span class="line">    <span class="keyword">if</span> (!res[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">return</span> level;</span><br><span class="line">    <span class="keyword">int</span> rh = getHeight(node.right, level + <span class="number">1</span>, res);</span><br><span class="line">    <span class="keyword">if</span> (!res[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">return</span> level;</span><br><span class="line">    <span class="keyword">if</span> (Math.abs(lh - rh) &gt; <span class="number">1</span>)</span><br><span class="line">        res[<span class="number">0</span>] = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> Math.max(lh, rh);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;有一棵二叉树,请设计一个算法判断它是否是完全二叉树。&lt;br&gt;给定二叉树的根结点root，请返回一个bool值代表它是否为完全二叉树。树的结点个数小于等于500。&lt;/p&gt;
-&lt;p&gt;平衡二叉树（Self-balancing binary search tree）又被称为AVL树（
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>二叉树的序列化</title>
-    <link href="https://lierabbit.cn/2018/02/22/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/"/>
-    <id>https://lierabbit.cn/2018/02/22/二叉树的序列化/</id>
-    <published>2018-02-22T09:54:03.000Z</published>
-    <updated>2018-08-24T14:06:54.733Z</updated>
-    
-    <content type="html"><![CDATA[<p>首先我们介绍二叉树先序序列化的方式，假设序列化的结果字符串为str，初始时str等于空字符串。先序遍历二叉树，如果遇到空节点，就在str的末尾加上“#!”，“#”表示这个节点为空，节点值不存在，当然你也可以用其他的特殊字符，“!”表示一个值的结束。如果遇到不为空的节点，假设节点值为3，就在str的末尾加上“3!”。现在请你实现树的先序序列化。<br>给定树的根结点root，请返回二叉树序列化后的字符串。</p><p>思路：用先序遍历即可</p><p>为什么要用“#!”<br><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/02/22/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/1.jpg" alt=""></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    StringBuilder stringBuilder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    preOrderWalk(root, stringBuilder);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> stringBuilder.toString();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preOrderWalk</span><span class="params">(TreeNode node, StringBuilder builder)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node == <span class="keyword">null</span>)</span><br><span class="line">        builder.append(<span class="string">"#!"</span>);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        builder.append(node.val).append(<span class="string">"!"</span>);</span><br><span class="line">        preOrderWalk(node.left, builder);</span><br><span class="line">        preOrderWalk(node.right, builder);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;首先我们介绍二叉树先序序列化的方式，假设序列化的结果字符串为str，初始时str等于空字符串。先序遍历二叉树，如果遇到空节点，就在str的末尾加上“#!”，“#”表示这个节点为空，节点值不存在，当然你也可以用其他的特殊字符，“!”表示一个值的结束。如果遇到不为空的节点，假设
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>二叉树的打印</title>
-    <link href="https://lierabbit.cn/2018/02/22/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%89%93%E5%8D%B0/"/>
-    <id>https://lierabbit.cn/2018/02/22/二叉树的打印/</id>
-    <published>2018-02-22T09:38:22.000Z</published>
-    <updated>2018-08-24T14:00:01.365Z</updated>
-    
-    <content type="html"><![CDATA[<p>有一棵二叉树，请设计一个算法，按照层次打印这棵二叉树。<br>给定二叉树的根结点root，请返回打印结果，结果按照每一层一个数组进行储存，所有数组的顺序按照层数从上往下，且每一层的数组内元素按照从左往右排列。保证结点数小于等于500。</p><p>思路：使用队列保存按行从左往右的节点，使用last记录当前行的最右节点，使用nLast表示下一行的最右节点，当队列弹出的节点等于last表示当前行以打印完毕，进行换行</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] printTree(TreeNode root) &#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; datas = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    List&lt;Integer&gt; rowData = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    queue.add(root);</span><br><span class="line">    TreeNode last = root;</span><br><span class="line">    TreeNode nLast = <span class="keyword">null</span>;</span><br><span class="line">    TreeNode node;</span><br><span class="line">    TreeNode left;</span><br><span class="line">    TreeNode right;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">        node = queue.poll();</span><br><span class="line">        left = node.left;</span><br><span class="line">        <span class="keyword">if</span> (left != <span class="keyword">null</span>) &#123;</span><br><span class="line">            queue.add(left);</span><br><span class="line">            nLast = left;</span><br><span class="line">        &#125;</span><br><span class="line">        right = node.right;</span><br><span class="line">        <span class="keyword">if</span> (right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            queue.add(right);</span><br><span class="line">            nLast = right;</span><br><span class="line">        &#125;</span><br><span class="line">        rowData.add(node.val);</span><br><span class="line">        <span class="keyword">if</span> (last == node) &#123;</span><br><span class="line">            datas.add(rowData);</span><br><span class="line">            rowData = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            last = nLast;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> row = datas.size();</span><br><span class="line">    <span class="keyword">int</span>[][] result = <span class="keyword">new</span> <span class="keyword">int</span>[row][];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">        List&lt;Integer&gt; colDatas = datas.get(i);</span><br><span class="line">        <span class="keyword">int</span> col = colDatas.size();</span><br><span class="line">        <span class="keyword">int</span>[] colResult = <span class="keyword">new</span> <span class="keyword">int</span>[col];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</span><br><span class="line">            colResult[j] = colDatas.get(j);</span><br><span class="line">        &#125;</span><br><span class="line">        result[i] = colResult;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;有一棵二叉树，请设计一个算法，按照层次打印这棵二叉树。&lt;br&gt;给定二叉树的根结点root，请返回打印结果，结果按照每一层一个数组进行储存，所有数组的顺序按照层数从上往下，且每一层的数组内元素按照从左往右排列。保证结点数小于等于500。&lt;/p&gt;
-&lt;p&gt;思路：使用队列保存按行从
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>非递归二叉树的序列打印</title>
-    <link href="https://lierabbit.cn/2018/02/22/%E9%9D%9E%E9%80%92%E5%BD%92%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E6%89%93%E5%8D%B0/"/>
-    <id>https://lierabbit.cn/2018/02/22/非递归二叉树的序列打印/</id>
-    <published>2018-02-22T08:31:40.000Z</published>
-    <updated>2018-08-24T13:55:51.966Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="非递归方式实现先序遍历"><a href="#非递归方式实现先序遍历" class="headerlink" title="非递归方式实现先序遍历"></a>非递归方式实现先序遍历</h3><p>1.首先申请一个新的栈，记为stack。<br>2.然后将头节点head压入stack中。<br>3.每次从stack中弹出栈顶节点，记为cur,然后打印cur节点的值。如果cur右孩子不为空的话，将cur的右孩子先压入stack中。最后如果cur的左孩子不为空的话，将cur的左孩子压入stack中。<br>4.不断重复步骤3 ,直到stack为空，全部过程结束。</p><h3 id="非递归方法实现中序遍历"><a href="#非递归方法实现中序遍历" class="headerlink" title="非递归方法实现中序遍历"></a>非递归方法实现中序遍历</h3><p>1.申请一个新的栈，记为stack,申请一个变量cur,初始时令cur等于头节点。<br>2.先把cur节点压入栈中，对以cur节点为头的整棵子树来说，依次把整棵树的左边界压入栈中，即不断令cur=cur.left,然后重复步骤2。<br>3.不断重复步骤2,直到发现cur为空，此时从stack中弹出一个节点，记为node。打印node的值，并让cur=node.right,然后继续重复步骤2。<br>4.当stack为空并且cur为空时，整个过程结束。</p><h3 id="非递归方法实现后序遍历"><a href="#非递归方法实现后序遍历" class="headerlink" title="非递归方法实现后序遍历"></a>非递归方法实现后序遍历</h3><h4 id="使用两个栈实现"><a href="#使用两个栈实现" class="headerlink" title="使用两个栈实现"></a>使用两个栈实现</h4><p>1.申请一个栈，记为Si,然后将头节点压入si中。<br>2.从si中弹出的节点记为cur,然后先把cur的左孩子压入si中，然后把curl的右孩子压入si中。<br>3.在整个过程中，每一个从si中弹出的节点都放进第二个栈s2中。<br>4.不断重复步骤2和步骤3,直到si为空，过程停止。<br>5.从s2中依次弹出节点并打印，打印的顺序就是后序遍历的顺序了。</p><h4 id="使用一个栈实现"><a href="#使用一个栈实现" class="headerlink" title="使用一个栈实现"></a>使用一个栈实现</h4><p>1.申请一个栈,记为stack,将头节点压入stack，同时设置两个变量h和C。在整个流程中,h代表最近一次弹出并打印的节点,c代表当前stack的栈顶节点,初始时令h为头节点,c为null.<br>2.每次令c等于当前stack的栈顶节点,但是不从stack中弹出节点,此时分以下三种情况。<br>  (1)如果c的左孩子不为空,并且h不等于c的左孩子，也不等于c的右孩子,则把c的左孩子压入stack中。<br>  (2)如果情况1不成立,并且c的右孩子不为空，并且h不等于c的右孩子,则把c的右孩子压入stack中。<br>  (3)如果情况1和情况2都不成立,那么从stack中弹出c并打印,然后令h等于C。<br>3.一直重复步骤2 ,直到stack为空,过程停止。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] convert(TreeNode root) &#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">int</span>[][] result = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">        List&lt;Integer&gt; tempList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span>)</span><br><span class="line">            preOrderWalk(root, tempList);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">1</span>)</span><br><span class="line">            midOrderWalk(root, tempList);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            backOrderWalk2(root, tempList);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> dataSize = tempList.size();</span><br><span class="line">        <span class="keyword">int</span> data[] = <span class="keyword">new</span> <span class="keyword">int</span>[dataSize];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; dataSize; index++)</span><br><span class="line">            data[index] = tempList.get(index);</span><br><span class="line">        result[i] = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 先序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preOrderWalk</span><span class="params">(TreeNode root, List result)</span> </span>&#123;</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    stack.add(root);</span><br><span class="line">    <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">        TreeNode node = stack.pop();</span><br><span class="line">        result.add(node.val);</span><br><span class="line">        <span class="keyword">if</span> (node.right != <span class="keyword">null</span>)</span><br><span class="line">            stack.add(node.right);</span><br><span class="line">        <span class="keyword">if</span> (node.left != <span class="keyword">null</span>)</span><br><span class="line">            stack.add(node.left);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">midOrderWalk</span><span class="params">(TreeNode root, List result)</span> </span>&#123;</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    TreeNode cur = root;</span><br><span class="line">    TreeNode node;</span><br><span class="line">    <span class="keyword">while</span> (cur != <span class="keyword">null</span> || !stack.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cur == <span class="keyword">null</span>) &#123;</span><br><span class="line">            node = stack.pop();</span><br><span class="line">            result.add(node.val);</span><br><span class="line">            cur = node.right;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            stack.add(cur);</span><br><span class="line">            cur = cur.left;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后序遍历1</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">backOrderWalk1</span><span class="params">(TreeNode root, List result)</span> </span>&#123;</span><br><span class="line">    Stack&lt;TreeNode&gt; s1 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    Stack&lt;TreeNode&gt; s2 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    s1.add(root);</span><br><span class="line">    TreeNode cur;</span><br><span class="line">    <span class="keyword">while</span> (!s1.isEmpty()) &#123;</span><br><span class="line">        cur = s1.pop();</span><br><span class="line">        s2.add(cur);</span><br><span class="line">        <span class="keyword">if</span> (cur.left != <span class="keyword">null</span>)</span><br><span class="line">            s1.add(cur.left);</span><br><span class="line">        <span class="keyword">if</span> (cur.right != <span class="keyword">null</span>)</span><br><span class="line">            s1.add(cur.right);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (!s2.isEmpty())</span><br><span class="line">        result.add(s2.pop().val);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后序遍历2</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">backOrderWalk2</span><span class="params">(TreeNode root, List result)</span> </span>&#123;</span><br><span class="line">    Stack&lt;TreeNode&gt; s1 = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    s1.add(root);</span><br><span class="line">    TreeNode h = root;</span><br><span class="line">    TreeNode c;</span><br><span class="line">    <span class="keyword">while</span> (!s1.isEmpty()) &#123;</span><br><span class="line">        c = s1.peek();</span><br><span class="line">        <span class="keyword">if</span> (c.left != <span class="keyword">null</span> &amp;&amp; h != c.left &amp;&amp; h != c.right)</span><br><span class="line">            s1.add(c.left);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (c.right != <span class="keyword">null</span> &amp;&amp; h != c.right)</span><br><span class="line">            s1.add(c.right);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            h = s1.pop();</span><br><span class="line">            result.add(h.val);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;非递归方式实现先序遍历&quot;&gt;&lt;a href=&quot;#非递归方式实现先序遍历&quot; class=&quot;headerlink&quot; title=&quot;非递归方式实现先序遍历&quot;&gt;&lt;/a&gt;非递归方式实现先序遍历&lt;/h3&gt;&lt;p&gt;1.首先申请一个新的栈，记为stack。&lt;br&gt;2.然后将头节点he
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>递归二叉树的序列打印</title>
-    <link href="https://lierabbit.cn/2018/02/22/%E9%80%92%E5%BD%92%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E6%89%93%E5%8D%B0/"/>
-    <id>https://lierabbit.cn/2018/02/22/递归二叉树的序列打印/</id>
-    <published>2018-02-22T06:51:08.000Z</published>
-    <updated>2018-08-24T13:39:51.036Z</updated>
-    
-    <content type="html"><![CDATA[<p>请用非递归方式实现二叉树的先序、中序和后序的遍历打印。<br>给定一个二叉树的根结点root，请依次返回二叉树的先序，中序和后续遍历(二维数组的形式)。</p><p>思路：</p><ul><li>前序遍历：先访问根节点，再访问左子树，最后访问右子树，简称中左右</li><li>中序遍历：先访问左子树，再访问根节点，最后访问右子树，简称左中右</li><li>后序遍历：先访问左子树，再访问右子树，最后访问根节点，简称左右中</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] convert(TreeNode root) &#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">int</span>[][] result = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">        List&lt;Integer&gt; tempList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span>)</span><br><span class="line">            preOrderWalk(root, tempList);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">1</span>)</span><br><span class="line">            midOrderWalk(root, tempList);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            backOrderWalk(root, tempList);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> dataSize = tempList.size();</span><br><span class="line">        <span class="keyword">int</span> data[] = <span class="keyword">new</span> <span class="keyword">int</span>[dataSize];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; dataSize; index++)</span><br><span class="line">            data[index] = tempList.get(index);</span><br><span class="line">        result[i] = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 前序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preOrderWalk</span><span class="params">(TreeNode node, List&lt;Integer&gt; result)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    result.add(node.val);</span><br><span class="line">    preOrderWalk(node.left, result);</span><br><span class="line">    preOrderWalk(node.right, result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">midOrderWalk</span><span class="params">(TreeNode node, List&lt;Integer&gt; result)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    midOrderWalk(node.left, result);</span><br><span class="line">    result.add(node.val);</span><br><span class="line">    midOrderWalk(node.right, result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">backOrderWalk</span><span class="params">(TreeNode node, List&lt;Integer&gt; result)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    backOrderWalk(node.left, result);</span><br><span class="line">    backOrderWalk(node.right, result);</span><br><span class="line">    result.add(node.val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;请用非递归方式实现二叉树的先序、中序和后序的遍历打印。&lt;br&gt;给定一个二叉树的根结点root，请依次返回二叉树的先序，中序和后续遍历(二维数组的形式)。&lt;/p&gt;
-&lt;p&gt;思路：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;前序遍历：先访问根节点，再访问左子树，最后访问右子树，简称中左右&lt;/li
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>快速N次方</title>
-    <link href="https://lierabbit.cn/2018/02/22/%E5%BF%AB%E9%80%9FN%E6%AC%A1%E6%96%B9/"/>
-    <id>https://lierabbit.cn/2018/02/22/快速N次方/</id>
-    <published>2018-02-22T05:59:39.000Z</published>
-    <updated>2018-08-24T13:38:15.553Z</updated>
-    
-    <content type="html"><![CDATA[<p>如果更快的求一个整数k的n次方。如果两个整数相乘并得到结果的时间复杂度为O(1)，得到整数k的N次方的过程请实现时间复杂度为O(logN)的方法。<br>给定k和n，请返回k的n次方，为了防止溢出，请返回结果Mod 1000000007的值。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2,3</span><br><span class="line">返回：8</span><br></pre></td></tr></table></figure><p>思路：<br><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/02/22/%E5%BF%AB%E9%80%9FN%E6%AC%A1%E6%96%B9/1.jpg" alt="图片描述"></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPower</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    BigInteger res = BigInteger.valueOf(<span class="number">1</span>);</span><br><span class="line">    BigInteger temp = BigInteger.valueOf(a);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((n &amp; <span class="number">1</span>) == <span class="number">1</span>) &#123;</span><br><span class="line">            res = res.multiply(temp);</span><br><span class="line">        &#125;</span><br><span class="line">        temp = temp.multiply(temp);</span><br><span class="line">        res = res.mod(BigInteger.valueOf(<span class="number">1000000007</span>));</span><br><span class="line">        temp = temp.mod(BigInteger.valueOf(<span class="number">1000000007</span>));</span><br><span class="line">        n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res.intValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;如果更快的求一个整数k的n次方。如果两个整数相乘并得到结果的时间复杂度为O(1)，得到整数k的N次方的过程请实现时间复杂度为O(logN)的方法。&lt;br&gt;给定k和n，请返回k的n次方，为了防止溢出，请返回结果Mod 1000000007的值。&lt;br&gt;测试样例：&lt;/p&gt;
-&lt;f
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>完全二叉树计数</title>
-    <link href="https://lierabbit.cn/2018/02/21/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E8%AE%A1%E6%95%B0/"/>
-    <id>https://lierabbit.cn/2018/02/21/完全二叉树计数/</id>
-    <published>2018-02-21T06:56:40.000Z</published>
-    <updated>2018-08-24T13:21:13.573Z</updated>
-    
-    <content type="html"><![CDATA[<p>给定一棵完全二叉树的根节点root，返回这棵树的节点个数。如果完全二叉树的节点数为N，请实现时间复杂度低于O(N)的解法。<br>给定树的根结点root，请返回树的大小。</p><p>思路：与二分查找相似，如果右子树的高度等于左子树高度则表示左子树是一棵满二叉树，可用公示计算左子树大小，然后遍历右子树重复本操作。如果不相等表示右子树是一棵满二叉树且比左子树低一层，可用公式计算右子树大小，然后遍历左子树重复本操作</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">count</span><span class="params">(TreeNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> bs(head, <span class="number">1</span>, mostLeftLevel(head, <span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bs</span><span class="params">(TreeNode node, <span class="keyword">int</span> level, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (level == high)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 如果右子树的高度等于左子树高度则表示左子树是一棵满二叉树，可用公示计算左子树大小（带头节点），然后遍历右子树重复本操作</span></span><br><span class="line">    <span class="keyword">if</span> (mostLeftLevel(node.right, level + <span class="number">1</span>) == high)</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (Math.pow(<span class="number">2</span>, high - level) + bs(node.right, level + <span class="number">1</span>, high));</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (Math.pow(<span class="number">2</span>, high - level - <span class="number">1</span>) + bs(node.left, level + <span class="number">1</span>, high));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取高度</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mostLeftLevel</span><span class="params">(TreeNode node, <span class="keyword">int</span> level)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (node != <span class="keyword">null</span>) &#123;</span><br><span class="line">        level++;</span><br><span class="line">        node = node.left;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> level - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;给定一棵完全二叉树的根节点root，返回这棵树的节点个数。如果完全二叉树的节点数为N，请实现时间复杂度低于O(N)的解法。&lt;br&gt;给定树的根结点root，请返回树的大小。&lt;/p&gt;
-&lt;p&gt;思路：与二分查找相似，如果右子树的高度等于左子树高度则表示左子树是一棵满二叉树，可用公示
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>最左原位</title>
-    <link href="https://lierabbit.cn/2018/02/21/%E6%9C%80%E5%B7%A6%E5%8E%9F%E4%BD%8D/"/>
-    <id>https://lierabbit.cn/2018/02/21/最左原位/</id>
-    <published>2018-02-21T06:52:57.000Z</published>
-    <updated>2018-08-24T13:13:41.623Z</updated>
-    
-    <content type="html"><![CDATA[<p>有一个有序数组arr，其中不含有重复元素，请找到满足arr[i]==i条件的最左的位置。如果所有位置上的数都不满足条件，返回-1。<br>给定有序数组arr及它的大小n，请返回所求值。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[-1,0,2,3],4</span><br><span class="line">返回：2</span><br></pre></td></tr></table></figure><p>思路：使用二分查找</p><ul><li>当arr[mid] &gt; mid，由于数组有序，从左往右元素每次递增&gt;=1，下标每次递增1，所以右边不会出现arr[i]==i的情况</li><li>当arr[mid] &lt; mid，由于数组有序，从右往左元素每次递减&gt;=1，下标每次递减1，所以左边不会出现arr[i]==i的情况</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPos</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> right = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="keyword">int</span> result = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">        mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (arr[mid] == mid) &#123; <span class="comment">// 继续搜索左边</span></span><br><span class="line">            result = mid;</span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr[mid] &gt; mid) <span class="comment">// 由于数组有序，从左往右元素每次递增&gt;=1，下标每次递增1，所以右边不会出现arr[i]==i的情况</span></span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="comment">// 由于数组有序，从右往左元素每次递减&gt;=1，下标每次递减1，所以左边不会出现arr[i]==i的情况</span></span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;有一个有序数组arr，其中不含有重复元素，请找到满足arr[i]==i条件的最左的位置。如果所有位置上的数都不满足条件，返回-1。&lt;br&gt;给定有序数组arr及它的大小n，请返回所求值。&lt;br&gt;测试样例：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>循环有序数组最小值</title>
-    <link href="https://lierabbit.cn/2018/02/21/%E5%BE%AA%E7%8E%AF%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E6%9C%80%E5%B0%8F%E5%80%BC/"/>
-    <id>https://lierabbit.cn/2018/02/21/循环有序数组最小值/</id>
-    <published>2018-02-21T06:20:34.000Z</published>
-    <updated>2018-08-24T13:06:26.352Z</updated>
-    
-    <content type="html"><![CDATA[<p>对于一个有序循环数组arr，返回arr中的最小值。有序循环数组是指，有序数组左边任意长度的部分放到右边去，右边的部分拿到左边来。比如数组[1,2,3,3,4]，是有序循环数组，[4,1,2,3,3]也是。<br>给定数组arr及它的大小n，请返回最小值。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[4,1,2,3,3],5</span><br><span class="line">返回：1</span><br></pre></td></tr></table></figure><p>思路：</p><ul><li>使用二分查找，当局部列表有序返回头元素</li><li>当局部列表有序返回头元素</li><li>当局部列表头元素小于中间元素，这里有循环，也就是有最小值，搜索左边</li><li>当局部列表中间元素小于尾元素，这里有循环，也就是有最小值，搜索右边</li><li>当局部列表头元素等于中间元素等于尾元素，遍历寻找最小值</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMin</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = arr.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (left == right - <span class="number">1</span>) <span class="comment">// 只剩2个数时直接比较其大小</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (arr[left] &lt; arr[right]) <span class="comment">// 当局部列表有序返回头</span></span><br><span class="line">                <span class="keyword">return</span> arr[left];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (arr[left] &gt; arr[mid]) <span class="comment">// 当局部列表头元素大于中间元素，这里有循环，也就是有最小值，搜索左边</span></span><br><span class="line">                right = mid;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (arr[mid] &gt; arr[right]) <span class="comment">// 当局部列表中间元素大于尾元素，这里有循环，也就是有最小值，搜索右边</span></span><br><span class="line">                left = mid;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 当局部列表头元素等于中间元素等于尾元素，遍历寻找最小值</span></span><br><span class="line">                <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (arr[left] == arr[mid])</span><br><span class="line">                        left++;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (arr[left] &lt; arr[mid])</span><br><span class="line">                        <span class="keyword">return</span> arr[left];</span><br><span class="line">                    <span class="keyword">else</span> &#123;</span><br><span class="line">                        right = mid;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Math.min(arr[left], arr[right]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;对于一个有序循环数组arr，返回arr中的最小值。有序循环数组是指，有序数组左边任意长度的部分放到右边去，右边的部分拿到左边来。比如数组[1,2,3,3,4]，是有序循环数组，[4,1,2,3,3]也是。&lt;br&gt;给定数组arr及它的大小n，请返回最小值。&lt;br&gt;测试样例：&lt;
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>元素最左出现</title>
-    <link href="https://lierabbit.cn/2018/02/21/%E5%85%83%E7%B4%A0%E6%9C%80%E5%B7%A6%E5%87%BA%E7%8E%B0/"/>
-    <id>https://lierabbit.cn/2018/02/21/元素最左出现/</id>
-    <published>2018-02-21T05:20:15.000Z</published>
-    <updated>2018-08-24T13:03:52.902Z</updated>
-    
-    <content type="html"><![CDATA[<p>对于一个有序数组arr，再给定一个整数num，请在arr中找到num这个数出现的最左边的位置。<br>给定一个数组arr及它的大小n，同时给定num。请返回所求位置。若该元素在数组中未出现，请返回-1。<br>测试样例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1,2,3,3,4],5,3</span><br><span class="line">返回：2</span><br></pre></td></tr></table></figure><p>思路：使用折半查找，当找到num后使用result记录当前找到的num位置，接着再对其左边进行搜索，直到搜索完毕，返回的result就是最左位置</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPos</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> n, <span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">if</span> (arr == <span class="keyword">null</span> || n == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> right = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="keyword">int</span> result = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">        mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="comment">// 如果找到num，则对其左边继续搜索</span></span><br><span class="line">        <span class="keyword">if</span> (arr[mid] == num) &#123;</span><br><span class="line">            result = mid;</span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr[mid] &gt; num)</span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;对于一个有序数组arr，再给定一个整数num，请在arr中找到num这个数出现的最左边的位置。&lt;br&gt;给定一个数组arr及它的大小n，同时给定num。请返回所求位置。若该元素在数组中未出现，请返回-1。&lt;br&gt;测试样例：&lt;/p&gt;
-&lt;figure class=&quot;highlig
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>局部最小值位置</title>
-    <link href="https://lierabbit.cn/2018/02/21/%E5%B1%80%E9%83%A8%E6%9C%80%E5%B0%8F%E5%80%BC%E4%BD%8D%E7%BD%AE/"/>
-    <id>https://lierabbit.cn/2018/02/21/局部最小值位置/</id>
-    <published>2018-02-21T04:44:42.000Z</published>
-    <updated>2018-08-24T10:16:21.123Z</updated>
-    
-    <content type="html"><![CDATA[<p>定义局部最小的概念。arr长度为1时，arr[0]是局部最小。arr的长度为N(N&gt;1)时，如果arr[0]&lt;arr[1]，那么arr[0]是局部最小；如果arr[N-1]&lt;arr[N-2]，那么arr[N-1]是局部最小；如果0&lt;i&lt;N-1，既有arr[i]&lt;arr[i-1]又有arr[i]&lt;arr[i+1]，那么arr[i]是局部最小。 给定无序数组arr，已知arr中任意两个相邻的数都不相等，写一个函数，只需返回arr中任意一个局部最小出现的位置即可。</p><p>思路：由于相邻数不相等，所以必定能分出大小，先找两头，接着使用二分查找从中间开始找起。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getLessIndex</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (arr.length == <span class="number">1</span> || arr[<span class="number">0</span>] &lt; arr[<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (arr[arr.length - <span class="number">1</span>] &lt; arr[arr.length - <span class="number">2</span>])</span><br><span class="line">        <span class="keyword">return</span> arr.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> right = arr.length - <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">        mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="comment">// 如果mid大于左边的值，从中间往左边看是递减的，则局部最小值就在左边</span></span><br><span class="line">        <span class="keyword">if</span> (arr[mid] &gt; arr[mid - <span class="number">1</span>])</span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 如果mid大于右边的值，从中间往右边看是递减的，则局部最小值就在右边</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (arr[mid] &gt; arr[mid + <span class="number">1</span>])</span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 小于相邻值就是局部最小值</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;定义局部最小的概念。arr长度为1时，arr[0]是局部最小。arr的长度为N(N&amp;gt;1)时，如果arr[0]&amp;lt;arr[1]，那么arr[0]是局部最小；如果arr[N-1]&amp;lt;arr[N-2]，那么arr[N-1]是局部最小；如果0&amp;lt;i&amp;lt;N-1，
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>单链表相交判断</title>
-    <link href="https://lierabbit.cn/2018/02/19/%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4%E5%88%A4%E6%96%AD/"/>
-    <id>https://lierabbit.cn/2018/02/19/单链表相交判断/</id>
-    <published>2018-02-19T05:09:45.000Z</published>
-    <updated>2018-08-24T10:11:34.427Z</updated>
-    
-    <content type="html"><![CDATA[<p>给定两个单链表的头节点head1和head2，如何判断两个链表是否相交？相交的话返回true，不想交的话返回false。<br>给定两个链表的头结点head1和head2(注意，另外两个参数adjust0和adjust1用于调整数据,与本题求解无关)。请返回一个bool值代表它们是否相交。</p><p>思路：3种情况</p><ul><li>两链表都是无环链表，若相交则尾节点必定一致</li><li>两链表都是有环链表，转圈寻找相交点</li><li>一个链表有环一个链表无环，必定不相交</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> val = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> TreeNode left = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">public</span> TreeNode right = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TreeNode</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">chkInter</span><span class="params">(ListNode head1, ListNode head2, <span class="keyword">int</span> adjust0, <span class="keyword">int</span> adjust1)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">if</span> (head1 == <span class="keyword">null</span> || head2 == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">        ListNode entryNode1 = find(head1);</span><br><span class="line">        ListNode entryNode2 = find(head2);</span><br><span class="line">        <span class="keyword">if</span> (entryNode1 == <span class="keyword">null</span> &amp;&amp; entryNode2 == <span class="keyword">null</span>) &#123;  <span class="comment">// 两个链表都是无环链表，若相交尾节点必定一致</span></span><br><span class="line">            ListNode node1 = head1;</span><br><span class="line">            ListNode node2 = head2;</span><br><span class="line">            <span class="keyword">while</span> (node1.next != <span class="keyword">null</span>)</span><br><span class="line">                node1 = node1.next;</span><br><span class="line">            <span class="keyword">while</span> (node2.next != <span class="keyword">null</span>)</span><br><span class="line">                node2 = node2.next;</span><br><span class="line">            <span class="keyword">return</span> node1 == node2;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (entryNode1 != <span class="keyword">null</span> &amp;&amp; entryNode2 != <span class="keyword">null</span>) &#123;  <span class="comment">// 两个链表都是有环链表，转圈寻找相交点</span></span><br><span class="line">            <span class="keyword">if</span> (entryNode1 == entryNode2)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            ListNode cur = entryNode1.next;</span><br><span class="line">            <span class="keyword">while</span> (cur != entryNode1) &#123;</span><br><span class="line">                <span class="keyword">if</span> (cur == entryNode2)</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                cur = cur.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// 一个有环一个无环，必定不相交</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 寻找入环点</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">find</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode fast = head;</span><br><span class="line">        ListNode normal = head;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (fast.next != <span class="keyword">null</span> &amp;&amp; fast.next.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            normal = normal.next;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">            <span class="keyword">if</span> (normal == fast)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (normal == fast) &#123; <span class="comment">// 有环</span></span><br><span class="line">            fast = head;</span><br><span class="line">            <span class="keyword">while</span> (fast != normal) &#123;</span><br><span class="line">                fast = fast.next;</span><br><span class="line">                normal = normal.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> fast;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;给定两个单链表的头节点head1和head2，如何判断两个链表是否相交？相交的话返回true，不想交的话返回false。&lt;br&gt;给定两个链表的头结点head1和head2(注意，另外两个参数adjust0和adjust1用于调整数据,与本题求解无关)。请返回一个bool值代
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>有环单链表相交判断</title>
-    <link href="https://lierabbit.cn/2018/02/19/%E6%9C%89%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4%E5%88%A4%E6%96%AD/"/>
-    <id>https://lierabbit.cn/2018/02/19/有环单链表相交判断/</id>
-    <published>2018-02-19T05:06:14.000Z</published>
-    <updated>2018-08-24T10:11:47.446Z</updated>
-    
-    <content type="html"><![CDATA[<p>如何判断两个有环单链表是否相交？相交的话返回第一个相交的节点，不想交的话返回空。如果两个链表长度分别为N和M，请做到时间复杂度O(N+M)，额外空间复杂度O(1)。<br>给定两个链表的头结点head1和head2(注意，另外两个参数adjust0和adjust1用于调整数据,与本题求解无关)。请返回一个bool值代表它们是否相交。</p><p>思路：</p><ul><li>在入环前相交，则入环点一致</li><li>在环里相交，则绕环转一圈寻找一致点</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> val = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> TreeNode left = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">public</span> TreeNode right = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TreeNode</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">chkInter</span><span class="params">(ListNode head1, ListNode head2, <span class="keyword">int</span> adjust0, <span class="keyword">int</span> adjust1)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        ListNode node1 = find(head1);</span><br><span class="line">        ListNode node2 = find(head2);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(node1 == node2)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">        ListNode cur = node1.next;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 在环里寻找</span></span><br><span class="line">        <span class="keyword">while</span> (node1 != cur)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cur == node2)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            cur = cur.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">find</span><span class="params">(ListNode head)</span> </span>&#123; <span class="comment">// 找到入环点</span></span><br><span class="line">        ListNode fast = head;</span><br><span class="line">        ListNode normal = head;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (fast.next != <span class="keyword">null</span> &amp;&amp; fast.next.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            normal = normal.next;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">            <span class="keyword">if</span> (fast == normal)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        fast = head;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (fast != normal) &#123;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">            normal = normal.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> fast;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;如何判断两个有环单链表是否相交？相交的话返回第一个相交的节点，不想交的话返回空。如果两个链表长度分别为N和M，请做到时间复杂度O(N+M)，额外空间复杂度O(1)。&lt;br&gt;给定两个链表的头结点head1和head2(注意，另外两个参数adjust0和adjust1用于调整数
-      
-    
-    </summary>
-    
-      <category term="直通BAT面试算法" scheme="https://lierabbit.cn/categories/%E7%9B%B4%E9%80%9ABAT%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>无环单链表判相交</title>
-    <link href="https://lierabbit.cn/2018/02/19/%E6%97%A0%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8%E5%88%A4%E7%9B%B8%E4%BA%A4/"/>
-    <id>https://lierabbit.cn/2018/02/19/无环单链表判相交/</id>
-    <published>2018-02-19T05:02:04.000Z</published>
-    <updated>2018-08-24T09:57:08.603Z</updated>
-    
-    <content type="html"><![CDATA[<p>现在有两个无环单链表，若两个链表的长度分别为m和n，请设计一个时间复杂度为O(n + m)，额外空间复杂度为O(1)的算法，判断这两个链表是否相交。<br>给定两个链表的头结点headA和headB，请返回一个bool值，代表这两个链表是否相交。保证两个链表长度小于等于500。</p><p>思路：如果无环单链表相交则尾节点必定一致</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> val = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> TreeNode left = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">public</span> TreeNode right = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TreeNode</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">chkIntersect</span><span class="params">(ListNode headA, ListNode headB)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (headA == <span class="keyword">null</span> || headB == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        ListNode nodeA = headA;</span><br><span class="line">        ListNode nodeB = headB;</span><br><span class="line">        <span class="keyword">while</span> (nodeA.next != <span class="keyword">null</span>)</span><br><span class="line">            nodeA = nodeA.next;</span><br><span class="line">        <span class="keyword">while</span> (nodeB.next != <span class="keyword">null</span>)</span><br><span class="line">            nodeB = nodeB.next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> nodeA == nodeB;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;现在有两个无环单链表，若两个链表的长度分别为m和n，请设计一个时间复杂度为O(n + m)，额外空间复杂度为O(1)的算法，判断这两个链表是否相交。&lt;br&gt;给定两个链表的头结点headA和headB，请返回一个bool值，代表这两个链表是否相交。保证两个链表长度小于等于50
       
     
     </summary>
