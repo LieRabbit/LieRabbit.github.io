@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+    <meta name="baidu-site-verification" content="YlYjMlxgL7" />
+  
+  
+  <title>找零钱 | 谎话兔</title>
+  <meta name="description" content="有数组money，money中所有的值都为正数且不重复。每个值代表一种面值的货币，每种面值的货币可以使用任意张，再给定一个整数aim(小于等于1000)代表要找的钱数，求换钱有多少种方法。给定数组money及它的大小(小于等于50)，同时给定一个整数aim，请返回有多少种方法可以凑成aim。测试样例： 12[1,2,4],3,3返回：2 假设arr={5、10、25、1},aim=1000。 暴力">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="找零钱">
+<meta property="og:url" content="https://lierabbit.cn/2018/02/26/找零钱/index.html">
+<meta property="og:site_name" content="谎话兔博客">
+<meta property="og:description" content="有数组money，money中所有的值都为正数且不重复。每个值代表一种面值的货币，每种面值的货币可以使用任意张，再给定一个整数aim(小于等于1000)代表要找的钱数，求换钱有多少种方法。给定数组money及它的大小(小于等于50)，同时给定一个整数aim，请返回有多少种方法可以凑成aim。测试样例： 12[1,2,4],3,3返回：2 假设arr={5、10、25、1},aim=1000。 暴力">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/02/26/%E6%89%BE%E9%9B%B6%E9%92%B1/1.jpg">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/02/26/%E6%89%BE%E9%9B%B6%E9%92%B1/2.jpg">
+<meta property="og:updated_time" content="2018-08-25T08:48:12.496Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="找零钱">
+<meta name="twitter:description" content="有数组money，money中所有的值都为正数且不重复。每个值代表一种面值的货币，每种面值的货币可以使用任意张，再给定一个整数aim(小于等于1000)代表要找的钱数，求换钱有多少种方法。给定数组money及它的大小(小于等于50)，同时给定一个整数aim，请返回有多少种方法可以凑成aim。测试样例： 12[1,2,4],3,3返回：2 假设arr={5、10、25、1},aim=1000。 暴力">
+<meta name="twitter:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/02/26/%E6%89%BE%E9%9B%B6%E9%92%B1/1.jpg">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://lierabbit.cn/2018/02/26/找零钱/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="谎话兔博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.jpg" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/LieRabbit" target="_blank">
+          <img class="img-circle img-rotate" src="/images/LieRabbit.gif" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">谎话兔</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">业余开发者</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> 广州, 中国</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/LieRabbit" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://segmentfault.com/u/lierabbit" target="_blank" title="Segmentfault" data-toggle=tooltip data-placement=top><i class="icon icon-segmentfault"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      
+<div class="widget">
+    <nav class="article-toc">
+        <h3 class="toc-title">
+            文章目录
+        </h3>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#暴力搜索"><span class="toc-number">1.</span> <span class="toc-text">暴力搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#记忆搜索：由于暴力搜索由许多重复计算，改进而得"><span class="toc-number">2.</span> <span class="toc-text">记忆搜索：由于暴力搜索由许多重复计算，改进而得</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态规划：按序计算从简单到复杂的情况"><span class="toc-number">3.</span> <span class="toc-text">动态规划：按序计算从简单到复杂的情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化动态规划"><span class="toc-number">4.</span> <span class="toc-text">优化动态规划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4种方法的集合"><span class="toc-number">5.</span> <span class="toc-text">4种方法的集合</span></a></li></ol>
+    </nav>
+</div>
+
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>网站手工同步中，大概需要2天时间</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">
+      最新文章
+    </h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-27T12:19:44.000Z" itemprop="datePublished">2018-02-27</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/27/游戏/" class="title">游戏</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-27T12:08:20.000Z" itemprop="datePublished">2018-02-27</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/27/数组清空/" class="title">数组清空</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-27T08:54:47.000Z" itemprop="datePublished">2018-02-27</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/27/跳格子/" class="title">跳格子</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-27T08:43:49.000Z" itemprop="datePublished">2018-02-27</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/27/赛马/" class="title">赛马</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-27T08:26:06.000Z" itemprop="datePublished">2018-02-27</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/27/涂色/" class="title">涂色</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-27T08:03:25.000Z" itemprop="datePublished">2018-02-27</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/27/最优编辑/" class="title">最优编辑</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-27T05:56:21.000Z" itemprop="datePublished">2018-02-27</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/27/01背包/" class="title">01背包</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-27T05:14:01.000Z" itemprop="datePublished">2018-02-27</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/27/LCS（最长公共子序列）/" class="title">LCS（最长公共子序列）</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-27T05:06:20.000Z" itemprop="datePublished">2018-02-27</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/27/LIS（最长上升子序列）/" class="title">LIS（最长上升子序列）</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-02-26T15:34:42.000Z" itemprop="datePublished">2018-02-26</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/02/26/矩阵最小路径和/" class="title">矩阵最小路径和</a>
+                  </p>
+                </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+    
+      <div class="widget">
+    <h3 class="widget-title">
+        微信公众号
+    </h3>
+    <div class="widget-body">
+        <img src="/images/WXGongZhongHao.jpg" style="height:172px"/>
+        <br>
+        <span>关注公众号，同步最新博文</span>
+    </div>
+</div>
+    
+  </div>
+</aside>
+
+  
+  <main class="main" role="main">
+  <div class="content">
+  <article id="post-找零钱" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      找零钱
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/02/26/找零钱/" class="article-date">
+	  <time datetime="2018-02-26T07:01:49.000Z" itemprop="datePublished">2018-02-26 15:01:49</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/直通BAT面试算法/">直通BAT面试算法</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/算法/">算法</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2018/02/26/找零钱/" class="leancloud_visitors"  data-flag-title="找零钱">0</span>
+    </span>
+
+        
+      </div>
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <p>有数组money，money中所有的值都为正数且不重复。每个值代表一种面值的货币，每种面值的货币可以使用任意张，再给定一个整数aim(小于等于1000)代表要找的钱数，求换钱有多少种方法。<br>给定数组money及它的大小(小于等于50)，同时给定一个整数aim，请返回有多少种方法可以凑成aim。<br>测试样例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1,2,4],3,3</span><br><span class="line">返回：2</span><br></pre></td></tr></table></figure>
+<p>假设arr={5、10、25、1},aim=1000。</p>
+<h3 id="暴力搜索"><a href="#暴力搜索" class="headerlink" title="暴力搜索"></a>暴力搜索</h3><ol>
+<li>用0张5元的货币，让[10,25,1]组成剩下的1000 ，最终方法数记为—————- res1</li>
+<li>用1张5元的货币，让[10,25,1]组成剩下的995   ，最终方法数记为—————- res2</li>
+<li>用2张5元的货币，让[10,25,1]组成剩下的990   ，最终方法数记为—————- res3<br>····································································································································<br>····································································································································<br>····································································································································</li>
+<li>用200张5元的货币，让[10,25,1]组成剩下的0 ，最终方法数记为————— res201<br>res = res1 + res2 + res3 + ······+ res201</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">process1</span><span class="params">(<span class="keyword">int</span>[] money, <span class="keyword">int</span> index, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (index == money.length)</span><br><span class="line">        res = aim == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>; <span class="comment">// 是否成功组成aim</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; money[index] * i &lt;= aim; i++) &#123;</span><br><span class="line">            res += process1(money, index + <span class="number">1</span>, aim - money[index] * i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="记忆搜索：由于暴力搜索由许多重复计算，改进而得"><a href="#记忆搜索：由于暴力搜索由许多重复计算，改进而得" class="headerlink" title="记忆搜索：由于暴力搜索由许多重复计算，改进而得"></a>记忆搜索：由于暴力搜索由许多重复计算，改进而得</h3><p>例如：<br>如果已经使用0张5元和1张10元的情况下，后续将求:process1(money,2,990)<br>2 :表示money剩下的钱为money[2,3],即[25,1]<br>990 :表示要找的剩余钱数。<br>当已经使用2张5元和0张10元的情况下，后续还是要求process1(money,2,990)<br>改进方式：发现递归过程只与index与aim有关，将index与aim的结果保存起来，若已经出现，则直接返回之前计算的结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">process2</span><span class="params">(<span class="keyword">int</span>[] money, <span class="keyword">int</span> index, <span class="keyword">int</span> aim, <span class="keyword">int</span>[][] map)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (index == money.length)</span><br><span class="line">        res = aim == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> row = index + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> col;</span><br><span class="line">        <span class="keyword">int</span> cacheWays;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; money[index] * i &lt;= aim; i++) &#123;</span><br><span class="line">            col = aim - money[index] * i;</span><br><span class="line">            cacheWays = map[row][col];</span><br><span class="line">            <span class="keyword">if</span> (cacheWays != <span class="number">0</span>) &#123;</span><br><span class="line">                res += cacheWays == -<span class="number">1</span> ? <span class="number">0</span> : cacheWays;</span><br><span class="line">            &#125; <span class="keyword">else</span></span><br><span class="line">                res += process2(money, row, col, map);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    map[index][aim] = res == <span class="number">0</span> ? -<span class="number">1</span> : res;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="动态规划：按序计算从简单到复杂的情况"><a href="#动态规划：按序计算从简单到复杂的情况" class="headerlink" title="动态规划：按序计算从简单到复杂的情况"></a>动态规划：按序计算从简单到复杂的情况</h3><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/02/26/%E6%89%BE%E9%9B%B6%E9%92%B1/1.jpg" alt=""><br>记忆搜索方法与动态规划方法的联系</p>
+<ol>
+<li>记忆化搜索方法就是某种形态的动态规划方法，记忆化搜索方法不关心到达某一个递归过程的路径。</li>
+<li>只是单纯地对计算过的递归过程进行记录，避免重复的递归过程。</li>
+<li>动态规划的方法则是规定好每一个递归过程的计算顺序，依次进行计算，后面的计算过程严格依赖前面的计算过程。</li>
+<li>两者都是空间换时间的方法，也都有枚举的过程，区别就在于动态规划规定计算顺序，而记忆搜索不用规定。</li>
+</ol>
+<p>什么是动态规划方法</p>
+<ol>
+<li>其本质是利用申请的空间来记录每一个暴力搜索的计算结果，下次要用结果的时候直接使用，而不在进行重复的递归过程。</li>
+<li>动态规划规定每一种递归状态的计算顺序，依次进行计算。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">process3</span><span class="params">(<span class="keyword">int</span>[] money, <span class="keyword">int</span> index, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[money.length][aim + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; money.length; i++) &#123; <span class="comment">// 组成0的方法只有1种那就是不用</span></span><br><span class="line">        dp[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= aim; i++) &#123; <span class="comment">// 只使用money[0]货币的情况下组成i的方法有几种</span></span><br><span class="line">        <span class="keyword">if</span> (i % money[<span class="number">0</span>] == <span class="number">0</span>)</span><br><span class="line">            dp[<span class="number">0</span>][i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            dp[<span class="number">0</span>][i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; money.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= aim; j++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k * money[i] &lt;= j; k++)</span><br><span class="line">                dp[i][j] += dp[i - <span class="number">1</span>][j - money[i] * k];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dp[money.length - <span class="number">1</span>][aim];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="优化动态规划"><a href="#优化动态规划" class="headerlink" title="优化动态规划"></a>优化动态规划</h3><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/02/26/%E6%89%BE%E9%9B%B6%E9%92%B1/2.jpg" alt=""></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">process4</span><span class="params">(<span class="keyword">int</span>[] money, <span class="keyword">int</span> index, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[money.length][aim + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; money.length; i++) &#123; <span class="comment">// 组成0的方法只有1种那就是不用</span></span><br><span class="line">        dp[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= aim; i++) &#123; <span class="comment">// 只使用money[0]货币的情况下组成i的方法有几种</span></span><br><span class="line">        <span class="keyword">if</span> (i % money[<span class="number">0</span>] == <span class="number">0</span>)</span><br><span class="line">            dp[<span class="number">0</span>][i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            dp[<span class="number">0</span>][i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; money.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= aim; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j - money[i] &gt;= <span class="number">0</span>)</span><br><span class="line">                dp[i][j] = dp[i][j - money[i]] + dp[i - <span class="number">1</span>][j];</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                dp[i][j] = dp[i - <span class="number">1</span>][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dp[money.length - <span class="number">1</span>][aim];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4种方法的集合"><a href="#4种方法的集合" class="headerlink" title="4种方法的集合"></a>4种方法的集合</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Exchange</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countWays</span><span class="params">(<span class="keyword">int</span>[] money, <span class="keyword">int</span> n, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">if</span> (money == <span class="keyword">null</span> || money.length == <span class="number">0</span> || aim &lt;= <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 暴力搜索</span></span><br><span class="line"><span class="comment">//        return process1(money, 0, aim);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 记忆搜索</span></span><br><span class="line"><span class="comment">//        int[][] map = new int[n + 1][aim + 1];</span></span><br><span class="line"><span class="comment">//        return process2(money, 0, aim, map);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 由记忆搜索引出的动态规划</span></span><br><span class="line"><span class="comment">//        return process3(money, n, aim);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 动态规划</span></span><br><span class="line">        <span class="keyword">return</span> process4(money, n, aim);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 暴力搜索</span></span><br><span class="line"><span class="comment">     * 用money[index...money.length-1]这里的钱组成aim，有几种方法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> money</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> index</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> aim</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">process1</span><span class="params">(<span class="keyword">int</span>[] money, <span class="keyword">int</span> index, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (index == money.length)</span><br><span class="line">            res = aim == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>; <span class="comment">// 是否成功组成aim</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; money[index] * i &lt;= aim; i++) &#123;</span><br><span class="line">                res += process1(money, index + <span class="number">1</span>, aim - money[index] * i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 记忆搜索</span></span><br><span class="line"><span class="comment">     * 用money[index...money.length-1]这里的钱组成aim，有几种方法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> money</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> index</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> aim</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">process2</span><span class="params">(<span class="keyword">int</span>[] money, <span class="keyword">int</span> index, <span class="keyword">int</span> aim, <span class="keyword">int</span>[][] map)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (index == money.length)</span><br><span class="line">            res = aim == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> row = index + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> col;</span><br><span class="line">            <span class="keyword">int</span> cacheWays;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; money[index] * i &lt;= aim; i++) &#123;</span><br><span class="line">                col = aim - money[index] * i;</span><br><span class="line">                cacheWays = map[row][col];</span><br><span class="line">                <span class="keyword">if</span> (cacheWays != <span class="number">0</span>) &#123;</span><br><span class="line">                    res += cacheWays == -<span class="number">1</span> ? <span class="number">0</span> : cacheWays;</span><br><span class="line">                &#125; <span class="keyword">else</span></span><br><span class="line">                    res += process2(money, row, col, map);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        map[index][aim] = res == <span class="number">0</span> ? -<span class="number">1</span> : res;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 由记忆搜索引出的动态规划</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> money</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> index</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> aim</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">process3</span><span class="params">(<span class="keyword">int</span>[] money, <span class="keyword">int</span> index, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[money.length][aim + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; money.length; i++) &#123; <span class="comment">// 组成0的方法只有1种那就是不用</span></span><br><span class="line">            dp[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= aim; i++) &#123; <span class="comment">// 只使用money[0]货币的情况下组成i的方法有几种</span></span><br><span class="line">            <span class="keyword">if</span> (i % money[<span class="number">0</span>] == <span class="number">0</span>)</span><br><span class="line">                dp[<span class="number">0</span>][i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                dp[<span class="number">0</span>][i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; money.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= aim; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k * money[i] &lt;= j; k++)</span><br><span class="line">                    dp[i][j] += dp[i - <span class="number">1</span>][j - money[i] * k];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[money.length - <span class="number">1</span>][aim];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 优化后的动态规划</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> money</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> index</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> aim</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">process4</span><span class="params">(<span class="keyword">int</span>[] money, <span class="keyword">int</span> index, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[money.length][aim + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; money.length; i++) &#123; <span class="comment">// 组成0的方法只有1种那就是不用</span></span><br><span class="line">            dp[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= aim; i++) &#123; <span class="comment">// 只使用money[0]货币的情况下组成i的方法有几种</span></span><br><span class="line">            <span class="keyword">if</span> (i % money[<span class="number">0</span>] == <span class="number">0</span>)</span><br><span class="line">                dp[<span class="number">0</span>][i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                dp[<span class="number">0</span>][i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; money.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= aim; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j - money[i] &gt;= <span class="number">0</span>)</span><br><span class="line">                    dp[i][j] = dp[i][j - money[i]] + dp[i - <span class="number">1</span>][j];</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[money.length - <span class="number">1</span>][aim];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] money = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>&#125;;</span><br><span class="line">        Exchange exchange = <span class="keyword">new</span> Exchange();</span><br><span class="line">        <span class="keyword">int</span> ways = exchange.countWays(money, <span class="number">3</span>, <span class="number">100</span>);</span><br><span class="line">        System.out.println(ways);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://lierabbit.cn/2018/02/26/找零钱/" title="找零钱" target="_blank" rel="external">https://lierabbit.cn/2018/02/26/找零钱/</a>
+    </li>
+    
+    
+      <li class="post-copyright-license">
+        <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+      </li>
+    
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/LieRabbit" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/LieRabbit.gif" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/LieRabbit" target="_blank"><span class="text-dark">谎话兔</span><small class="ml-1x">业余开发者</small></a></h3>
+        <div>有些梦虽然遥不可及，但并不是不可能实现，只要我足够的强</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+    <div id="vcomments"></div>
+
+    
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2018/02/26/台阶问题/" title="台阶问题"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2018/02/25/机器吐球/" title="机器吐球"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipay.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpay.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/LieRabbit" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://segmentfault.com/u/lierabbit" target="_blank" title="Segmentfault" data-toggle=tooltip data-placement=top><i class="icon icon-segmentfault"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2018 谎话兔
+        
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+    
+        
+
+		
+			<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+			<script>
+				AV.init({
+					appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+					appKey: '6FDWhh254T0GfhCBQsQ9OfWv'
+				});
+				function showTime(Counter) {
+					var query = new AV.Query(Counter);
+					var visitors = $('.leancloud_visitors');
+					query.greaterThanOrEqualTo("time", 0);
+					query.find({
+						success: function (results) {
+							if (results.length == 0) {
+								return;
+							}
+							var data = results;
+							visitors.each(function () {
+								var url = $(this).attr('id').trim();
+								for (var i = 0; i < data.length; i++) {
+									var object = data[i];
+									var content = object.get('time');
+									var _url = object.get('url')
+									if (url == _url) {
+										$(this).text(content);
+									}
+								}
+							})
+
+						},
+						error: function (object, error) {
+							console.log("Error: " + error.code + " " + error.message);
+						}
+					});
+				}
+
+				function addCount(Counter) {
+					url = $(".leancloud_visitors").attr('id').trim();
+					title = $(".leancloud_visitors").attr('data-flag-title').trim();
+					var query = new AV.Query(Counter);
+					query.equalTo("url", url);
+					query.find().then(results => {
+						if (results.length > 0) {
+							let counter = results[0];
+							counter.increment("time");
+							counter.fetchWhenSave(true);
+							counter.save().then(counter => {
+								var content = counter.get('time');
+								$(document.getElementById(url)).text(content);
+							}, error => console.log('Failed to save Visitor num, with error message: ' + error.message));
+						} else {
+							var newcounter = new Counter();
+							newcounter.set("title", title);
+							newcounter.set("url", url);
+							newcounter.set("time", 1);
+							newcounter.save().then(newcounter => {
+								var content = newcounter.get('time');
+								$(document.getElementById(url)).text(content);
+							}, error => {
+								console.log('Failed to create');
+							})
+						}
+					}, errors => console.log('Error:' + error.code + " " + error.message));
+				}
+				$(function () {
+					var Counter = AV.Object.extend("Counter");
+					if ($('.leancloud_visitors').length == 1) {
+						addCount(Counter);
+					} else {
+						showTime(Counter);
+					}
+				}); 
+			</script>
+			
+    
+    
+        
+    
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+     var meta = 'nick,mail,link';
+     meta = meta.split(',').filter(function (item) {
+       return GUEST.indexOf(item)>-1;
+     });
+     new Valine({
+         el: '#vcomments' ,
+         verify: false,
+         notify: false,
+         appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+         appKey: '6FDWhh254T0GfhCBQsQ9OfWv',
+         placeholder: 'BB一下',
+         avatar:'mm',
+         meta:meta,
+         pageSize:'10' || 10,
+         visitor: false
+     });
+   </script>
+
+    
+
+    
+    
+
+    <script defer>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?316169812d1efd741be4d945728aecd2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+        console.info("百度统计开启");
+    })();
+</script>
+
+
+
+</body>
+</html>
