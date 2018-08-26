@@ -1,3 +1,6 @@
+https://lierabbit.cn/2018/03/04/链表中倒数第k个节点/
+https://lierabbit.cn/2018/03/04/调整数组顺序使奇数位于偶数前面/
+https://lierabbit.cn/2018/03/03/数组的整数次方/
 https://lierabbit.cn/2018/03/02/二进制中1的个数/
 https://lierabbit.cn/2018/03/02/矩形覆盖/
 https://lierabbit.cn/2018/03/02/变态跳台阶/
