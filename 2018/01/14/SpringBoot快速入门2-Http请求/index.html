@@ -659,8 +659,7 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 						if (results.length > 0) {
 							let counter = results[0];
 							counter.increment("time");
-							counter.fetchWhenSave(true);
-							counter.save().then(counter => {
+							counter.save({ fetchWhenSave: true }).then(counter => {
 								let content = counter.get('time');
 								$(document.getElementById(url)).text(content);
 							}, error => console.log('Failed to save Visitor num, with error message: ' + error.message));
