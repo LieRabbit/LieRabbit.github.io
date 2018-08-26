@@ -9041,6 +9041,10 @@ body.okayNav-loaded {
     display: none !important;
     visibility: hidden;
   }
+
+  .WXGongZhongHao{
+    display: none;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -9204,4 +9208,8 @@ body.okayNav-loaded {
   .navbar-fixed-bottom .navbar-collapse {
     max-height: 200px;
   }
+}
+
+.WXGongZhongHao{
+  margin: 6px 0;
 }
