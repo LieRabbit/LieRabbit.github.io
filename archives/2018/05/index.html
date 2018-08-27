@@ -495,7 +495,10 @@
 
     <div class="copyright">
     	
-        &copy; 2018 谎话兔
+        &copy; 2018 <a href="https://lierabbit.cn" target="_blank">谎话兔</a>
+        
+        
+            总浏览量：<span id="all_leancloud_visitors">0</span>
         
         <div class="publishby">
         	Theme by <a href="https://github.com/LieRabbit" target="_blank"> LieRabbit </a>base on <a target="_blank">easy</a>.
@@ -532,6 +535,115 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     
     
     
+
+		
+			<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+			<script>
+				AV.init({
+					appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+					appKey: '6FDWhh254T0GfhCBQsQ9OfWv'
+				});
+				function showTime(Counter) {
+					let visitors = $('.leancloud_visitors');
+					let months = [];
+					visitors.each(function () {
+						let url = $(this).attr('id').trim();
+						month = url.slice(0, 8);
+						if (!months.includes(month))
+							months.push(month);
+					});
+					for (let i = 0, len = months.length; i < len; i++) {
+						let query = new AV.Query(Counter);
+						query.startsWith("url", months[i]);
+						query.find({
+							success: function (results) {
+								if (results.length == 0) {
+									return;
+								}
+								let data = results;
+								visitors.each(function () {
+									let url = $(this).attr('id').trim();
+									for (let i = 0; i < data.length; i++) {
+										let object = data[i];
+										let content = object.get('time');
+										let _url = object.get('url')
+										if (url == _url) {
+											$(this).text(content);
+										}
+									}
+								})
+
+							},
+							error: function (object, error) {
+								console.log("Error: " + error.code + " " + error.message);
+							}
+						});
+					}
+				}
+
+				function addCount(Counter) {
+					url = $(".leancloud_visitors").attr('id').trim();
+					title = $(".leancloud_visitors").attr('data-flag-title').trim();
+					let query = new AV.Query(Counter);
+					query.equalTo("url", url);
+					query.find().then(results => {
+						if (results.length > 0) {
+							let counter = results[0];
+							counter.increment("time");
+							counter.save({ fetchWhenSave: true }).then(counter => {
+								let content = counter.get('time');
+								$(document.getElementById(url)).text(content);
+							}, error => console.log('Failed to save Visitor num, with error message: ' + error.message));
+						} else {
+							let newcounter = new Counter();
+							newcounter.set("title", title);
+							newcounter.set("url", url);
+							newcounter.set("time", 1);
+							newcounter.save().then(newcounter => {
+								let content = newcounter.get('time');
+								$(document.getElementById(url)).text(content);
+							}, error => {
+								console.log('Failed to create');
+							})
+						}
+					}, errors => console.log('Error:' + error.code + " " + error.message));
+				}
+
+				// 全站浏览量计数
+				function addAllCount(Counter) {
+					let query = new AV.Query(Counter);
+					query.equalTo("url", "/");
+					query.find().then(results => {
+						if (results.length > 0) {
+							let counter = results[0];
+							counter.increment("time");
+							counter.save({ fetchWhenSave: true }).then(counter => {
+								let content = counter.get('time');
+								$('#all_leancloud_visitors').text(content);
+							}, error => console.log('Failed to save Visitor num, with error message: ' + error.message));
+						} else {
+							let newcounter = new Counter();
+							newcounter.set("title", "全站浏览量");
+							newcounter.set("url", "/");
+							newcounter.set("time", 1);
+							newcounter.save().then(newcounter => {
+								let content = newcounter.get('time');
+								$('#all_leancloud_visitors').text(content);
+							}, error => {
+								console.log('Failed to create');
+							})
+						}
+					});
+				}
+
+				
+					$(function () {
+						let Counter = AV.Object.extend("Counter");
+						addAllCount(Counter);
+					});
+				
+			</script>
+			
     
     
 

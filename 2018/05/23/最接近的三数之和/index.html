@@ -509,7 +509,10 @@
 
     <div class="copyright">
     	
-        &copy; 2018 谎话兔
+        &copy; 2018 <a href="https://lierabbit.cn" target="_blank">谎话兔</a>
+        
+        
+            总浏览量：<span id="all_leancloud_visitors">0</span>
         
         <div class="publishby">
         	Theme by <a href="https://github.com/LieRabbit" target="_blank"> LieRabbit </a>base on <a target="_blank">easy</a>.
@@ -546,7 +549,6 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     
     
     
-        
 
 		
 			<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
@@ -620,17 +622,43 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 						}
 					}, errors => console.log('Error:' + error.code + " " + error.message));
 				}
-				$(function () {
-					let Counter = AV.Object.extend("Counter");
-					if ($('.leancloud_visitors').length == 1) {
+
+				// 全站浏览量计数
+				function addAllCount(Counter) {
+					let query = new AV.Query(Counter);
+					query.equalTo("url", "/");
+					query.find().then(results => {
+						if (results.length > 0) {
+							let counter = results[0];
+							counter.increment("time");
+							counter.save({ fetchWhenSave: true }).then(counter => {
+								let content = counter.get('time');
+								$('#all_leancloud_visitors').text(content);
+							}, error => console.log('Failed to save Visitor num, with error message: ' + error.message));
+						} else {
+							let newcounter = new Counter();
+							newcounter.set("title", "全站浏览量");
+							newcounter.set("url", "/");
+							newcounter.set("time", 1);
+							newcounter.save().then(newcounter => {
+								let content = newcounter.get('time');
+								$('#all_leancloud_visitors').text(content);
+							}, error => {
+								console.log('Failed to create');
+							})
+						}
+					});
+				}
+
+				
+					$(function () {
+						let Counter = AV.Object.extend("Counter");
 						addCount(Counter);
-					} else {
-						showTime(Counter);
-					}
-				}); 
+						addAllCount(Counter);
+					});
+				
 			</script>
 			
-    
     
         
     
