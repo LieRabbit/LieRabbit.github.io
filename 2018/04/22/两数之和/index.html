@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="谎话兔博客">
 <meta property="og:description" content="给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。  示例:给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]  思路：若a + b = c，则 c - a = b。所以只需记录所有遍历过的数，然后利用预期值-当前值得出">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-28T07:28:34.245Z">
+<meta property="og:updated_time" content="2018-08-28T14:14:16.261Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="两数之和（Two Sum）">
 <meta name="twitter:description" content="给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。  示例:给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]  思路：若a + b = c，则 c - a = b。所以只需记录所有遍历过的数，然后利用预期值-当前值得出">
@@ -218,7 +218,7 @@
                     <time datetime="2018-05-23T07:52:05.000Z" itemprop="datePublished">2018-05-23</time>
                   </p>
                   <p class="item-title">
-                    <a href="/2018/05/23/最接近的三数之和/" class="title">最接近的三数之和</a>
+                    <a href="/2018/05/23/最接近的三数之和/" class="title">最接近的三数之和（3Sum Closest）</a>
                   </p>
                 </div>
           </li>
@@ -230,7 +230,7 @@
                     <time datetime="2018-05-23T07:21:13.000Z" itemprop="datePublished">2018-05-23</time>
                   </p>
                   <p class="item-title">
-                    <a href="/2018/05/23/三数之和/" class="title">三数之和</a>
+                    <a href="/2018/05/23/三数之和/" class="title">三数之和（3Sum）</a>
                   </p>
                 </div>
           </li>
@@ -242,7 +242,7 @@
                     <time datetime="2018-05-21T06:48:08.000Z" itemprop="datePublished">2018-05-21</time>
                   </p>
                   <p class="item-title">
-                    <a href="/2018/05/21/最长公共前缀/" class="title">最长公共前缀</a>
+                    <a href="/2018/05/21/最长公共前缀/" class="title">最长公共前缀（Longest Common Prefix）</a>
                   </p>
                 </div>
           </li>
@@ -254,7 +254,7 @@
                     <time datetime="2018-05-14T13:44:33.000Z" itemprop="datePublished">2018-05-14</time>
                   </p>
                   <p class="item-title">
-                    <a href="/2018/05/14/罗马数字转整数/" class="title">罗马数字转整数</a>
+                    <a href="/2018/05/14/罗马数字转整数/" class="title">罗马数字转整数（Roman to Integer）</a>
                   </p>
                 </div>
           </li>
@@ -266,7 +266,7 @@
                     <time datetime="2018-05-14T08:39:40.000Z" itemprop="datePublished">2018-05-14</time>
                   </p>
                   <p class="item-title">
-                    <a href="/2018/05/14/整数转罗马数字/" class="title">整数转罗马数字</a>
+                    <a href="/2018/05/14/整数转罗马数字/" class="title">整数转罗马数字（Integer to Roman）</a>
                   </p>
                 </div>
           </li>
@@ -362,6 +362,8 @@
 </blockquote>
 <p>思路：若a + b = c，则 c - a = b。所以只需记录所有遍历过的数，然后利用预期值-当前值得出的值查询是否已有记录，如果有则退出循环。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">    <span class="comment">// 记录遍历过的数和索引</span></span><br><span class="line">    Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="comment">// 获取target-nums[i]，看是否存在，存在则表明可以相加为target</span></span><br><span class="line">        Integer value = map.get(target - nums[i]);</span><br><span class="line">        <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</span><br><span class="line">            res[<span class="number">0</span>] = value;</span><br><span class="line">            res[<span class="number">1</span>] = i;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 用键保存遍历过的数，用值保存遍历过的索引</span></span><br><span class="line">        map.put(nums[i], i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度：O(n)<br>空间复杂度：O(n)</p>
+
       
     </div>
     <div class="article-footer">

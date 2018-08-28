@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="谎话兔博客">
 <meta property="og:description" content="给定两个非空链表来表示两个非负整数。位数按照逆序方式存储，它们的每个节点只存储单个数字。将两数相加返回一个新的链表。你可以假设除了数字 0 之外，这两个数字都不会以零开头。  示例：输入：(2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4)输出：7 -&amp;gt; 0 -&amp;gt; 8原因：342 + 465 = 807  思路：遍历链表对应相加即可，注意进位 方法一：12">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-28T07:29:30.311Z">
+<meta property="og:updated_time" content="2018-08-28T14:12:28.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="两数相加（Add Two Numbers）">
 <meta name="twitter:description" content="给定两个非空链表来表示两个非负整数。位数按照逆序方式存储，它们的每个节点只存储单个数字。将两数相加返回一个新的链表。你可以假设除了数字 0 之外，这两个数字都不会以零开头。  示例：输入：(2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4)输出：7 -&amp;gt; 0 -&amp;gt; 8原因：342 + 465 = 807  思路：遍历链表对应相加即可，注意进位 方法一：12">
@@ -218,7 +218,7 @@
                     <time datetime="2018-05-23T07:52:05.000Z" itemprop="datePublished">2018-05-23</time>
                   </p>
                   <p class="item-title">
-                    <a href="/2018/05/23/最接近的三数之和/" class="title">最接近的三数之和</a>
+                    <a href="/2018/05/23/最接近的三数之和/" class="title">最接近的三数之和（3Sum Closest）</a>
                   </p>
                 </div>
           </li>
@@ -230,7 +230,7 @@
                     <time datetime="2018-05-23T07:21:13.000Z" itemprop="datePublished">2018-05-23</time>
                   </p>
                   <p class="item-title">
-                    <a href="/2018/05/23/三数之和/" class="title">三数之和</a>
+                    <a href="/2018/05/23/三数之和/" class="title">三数之和（3Sum）</a>
                   </p>
                 </div>
           </li>
@@ -242,7 +242,7 @@
                     <time datetime="2018-05-21T06:48:08.000Z" itemprop="datePublished">2018-05-21</time>
                   </p>
                   <p class="item-title">
-                    <a href="/2018/05/21/最长公共前缀/" class="title">最长公共前缀</a>
+                    <a href="/2018/05/21/最长公共前缀/" class="title">最长公共前缀（Longest Common Prefix）</a>
                   </p>
                 </div>
           </li>
@@ -254,7 +254,7 @@
                     <time datetime="2018-05-14T13:44:33.000Z" itemprop="datePublished">2018-05-14</time>
                   </p>
                   <p class="item-title">
-                    <a href="/2018/05/14/罗马数字转整数/" class="title">罗马数字转整数</a>
+                    <a href="/2018/05/14/罗马数字转整数/" class="title">罗马数字转整数（Roman to Integer）</a>
                   </p>
                 </div>
           </li>
@@ -266,7 +266,7 @@
                     <time datetime="2018-05-14T08:39:40.000Z" itemprop="datePublished">2018-05-14</time>
                   </p>
                   <p class="item-title">
-                    <a href="/2018/05/14/整数转罗马数字/" class="title">整数转罗马数字</a>
+                    <a href="/2018/05/14/整数转罗马数字/" class="title">整数转罗马数字（Integer to Roman）</a>
                   </p>
                 </div>
           </li>
@@ -362,7 +362,10 @@
 </blockquote>
 <p>思路：遍历链表对应相加即可，注意进位</p>
 <h2 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 为方便操作加入的头结点</span></span><br><span class="line">    ListNode res = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 当前结点</span></span><br><span class="line">    ListNode cur = res;</span><br><span class="line">    <span class="comment">// 进位标志</span></span><br><span class="line">    <span class="keyword">boolean</span>[] flag = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 两链表对应位置相加</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span> &amp;&amp; l2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ListNode node = add(l1.val, l2.val, flag);</span><br><span class="line">        cur.next = node;</span><br><span class="line">        cur = node;</span><br><span class="line"></span><br><span class="line">        l1 = l1.next;</span><br><span class="line">        l2 = l2.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果l1链表有剩余，则剩下的与0相加</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ListNode node = add(l1.val, <span class="number">0</span>, flag);</span><br><span class="line">        cur.next = node;</span><br><span class="line">        cur = node;</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果l2链表有剩余，则剩下的与0相加</span></span><br><span class="line">    <span class="keyword">while</span> (l2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        ListNode node = add(<span class="number">0</span>, l2.val, flag);</span><br><span class="line">        cur.next = node;</span><br><span class="line">        cur = node;</span><br><span class="line">        l2 = l2.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果链表末尾相加有进位则添加一个进位节点作为尾节点</span></span><br><span class="line">    <span class="keyword">if</span> (flag[<span class="number">0</span>])</span><br><span class="line">        cur.next = <span class="keyword">new</span> ListNode(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res.next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">add</span><span class="params">(<span class="keyword">int</span> v1, <span class="keyword">int</span> v2, <span class="keyword">boolean</span>[] flag)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = v1 + v2;</span><br><span class="line">    <span class="comment">// 如果有进位则和+1</span></span><br><span class="line">    <span class="keyword">if</span> (flag[<span class="number">0</span>]) &#123;</span><br><span class="line">        sum++;</span><br><span class="line">        flag[<span class="number">0</span>] = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 产生进位</span></span><br><span class="line">    <span class="keyword">if</span> (sum &gt; <span class="number">9</span>)</span><br><span class="line">        flag[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="comment">// 获取个位上的数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ListNode(sum % <span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度：O(max(M,N))。M，N分别为l1，l2的链表长度</p>
 <h3 id="方法二：基于方法一的改进"><a href="#方法二：基于方法一的改进" class="headerlink" title="方法二：基于方法一的改进"></a>方法二：基于方法一的改进</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers2</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 为方便操作加入的头节点</span></span><br><span class="line">    ListNode res = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 当前节点</span></span><br><span class="line">    ListNode cur = res;</span><br><span class="line">    <span class="comment">// 进位</span></span><br><span class="line">    <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 两链表对应相加</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span> || l2 != <span class="keyword">null</span> || carry != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = (l1 != <span class="keyword">null</span> ? l1.val : <span class="number">0</span>) + (l2 != <span class="keyword">null</span> ? l2.val : <span class="number">0</span>) + carry;</span><br><span class="line">        <span class="comment">// 获取进位</span></span><br><span class="line">        carry = sum / <span class="number">10</span>;</span><br><span class="line">        <span class="comment">// 获取个位上的数</span></span><br><span class="line">        ListNode node = <span class="keyword">new</span> ListNode(sum % <span class="number">10</span>);</span><br><span class="line">        cur.next = node;</span><br><span class="line">        cur = node;</span><br><span class="line">        l1 = l1 != <span class="keyword">null</span> ? l1.next : <span class="keyword">null</span>;</span><br><span class="line">        l2 = l2 != <span class="keyword">null</span> ? l2.next : <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度：O(max(M,N))。M，N分别为l1，l2的链表长度</p>
+
       
     </div>
     <div class="article-footer">

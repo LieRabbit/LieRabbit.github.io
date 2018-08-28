@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="谎话兔博客">
 <meta property="og:description" content="给定一个字符串，找出不含有重复字符的最长子串的长度。  示例：给定 “abcabcbb” ，没有重复字符的最长子串是 “abc” ，那么长度就是3。给定 “bbbbb” ，最长的子串就是 “b” ，长度是1。给定 “pwwkew” ，最长子串是 “wke” ，长度是3。请注意答案必须是一个子串，”pwke” 是 子序列  而不是子串。  思路：使用HashMap记录字符上次出现的位置，用pre记录">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-28T07:30:59.001Z">
+<meta property="og:updated_time" content="2018-08-28T14:09:24.058Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="无重复字符的最长子串（Longest Substring Without Repeating Characters）">
 <meta name="twitter:description" content="给定一个字符串，找出不含有重复字符的最长子串的长度。  示例：给定 “abcabcbb” ，没有重复字符的最长子串是 “abc” ，那么长度就是3。给定 “bbbbb” ，最长的子串就是 “b” ，长度是1。给定 “pwwkew” ，最长子串是 “wke” ，长度是3。请注意答案必须是一个子串，”pwke” 是 子序列  而不是子串。  思路：使用HashMap记录字符上次出现的位置，用pre记录">
@@ -218,7 +218,7 @@
                     <time datetime="2018-05-23T07:52:05.000Z" itemprop="datePublished">2018-05-23</time>
                   </p>
                   <p class="item-title">
-                    <a href="/2018/05/23/最接近的三数之和/" class="title">最接近的三数之和</a>
+                    <a href="/2018/05/23/最接近的三数之和/" class="title">最接近的三数之和（3Sum Closest）</a>
                   </p>
                 </div>
           </li>
@@ -230,7 +230,7 @@
                     <time datetime="2018-05-23T07:21:13.000Z" itemprop="datePublished">2018-05-23</time>
                   </p>
                   <p class="item-title">
-                    <a href="/2018/05/23/三数之和/" class="title">三数之和</a>
+                    <a href="/2018/05/23/三数之和/" class="title">三数之和（3Sum）</a>
                   </p>
                 </div>
           </li>
@@ -242,7 +242,7 @@
                     <time datetime="2018-05-21T06:48:08.000Z" itemprop="datePublished">2018-05-21</time>
                   </p>
                   <p class="item-title">
-                    <a href="/2018/05/21/最长公共前缀/" class="title">最长公共前缀</a>
+                    <a href="/2018/05/21/最长公共前缀/" class="title">最长公共前缀（Longest Common Prefix）</a>
                   </p>
                 </div>
           </li>
@@ -254,7 +254,7 @@
                     <time datetime="2018-05-14T13:44:33.000Z" itemprop="datePublished">2018-05-14</time>
                   </p>
                   <p class="item-title">
-                    <a href="/2018/05/14/罗马数字转整数/" class="title">罗马数字转整数</a>
+                    <a href="/2018/05/14/罗马数字转整数/" class="title">罗马数字转整数（Roman to Integer）</a>
                   </p>
                 </div>
           </li>
@@ -266,7 +266,7 @@
                     <time datetime="2018-05-14T08:39:40.000Z" itemprop="datePublished">2018-05-14</time>
                   </p>
                   <p class="item-title">
-                    <a href="/2018/05/14/整数转罗马数字/" class="title">整数转罗马数字</a>
+                    <a href="/2018/05/14/整数转罗马数字/" class="title">整数转罗马数字（Integer to Roman）</a>
                   </p>
                 </div>
           </li>
@@ -362,6 +362,8 @@
 </blockquote>
 <p>思路：使用HashMap记录字符上次出现的位置，用pre记录最近重复字符出现的位置，则i(当前位置)-pre就是当前字符最长无重复字符的长度，取最大的就是字符串的最长无重复字符的长度</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (str == <span class="keyword">null</span> || str.length() &lt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 记录字符上次出现的位置</span></span><br><span class="line">    HashMap&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 最近出现重复字符的位置</span></span><br><span class="line">    <span class="keyword">int</span> pre = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, strLen = str.length(); i &lt; strLen; i++) &#123;</span><br><span class="line">        Character ch = str.charAt(i);</span><br><span class="line">        Integer index = map.get(ch);</span><br><span class="line">        <span class="keyword">if</span> (index != <span class="keyword">null</span>)</span><br><span class="line">            pre = Math.max(pre, index);</span><br><span class="line">        max = Math.max(max, i - pre);</span><br><span class="line">        map.put(ch, i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度：O(n)</p>
+
       
     </div>
     <div class="article-footer">
