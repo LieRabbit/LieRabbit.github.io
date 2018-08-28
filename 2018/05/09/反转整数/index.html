@@ -19,19 +19,19 @@
     <meta name="baidu-site-verification" content="YlYjMlxgL7" />
   
   
-  <title>反转整数 | 谎话兔</title>
-  <meta name="description" content="给定一个 32 位有符号整数，将整数中的数字进行反转。  示例 1:输入: 123输出: 321示例 2:输入: -123输出: -321示例 3:输入: 120输出: 21注意:假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 − 1]。根据这个假设，如果反转后的整数溢出，则返回 0。  解决方案：如果有溢出则无法回退到之前的结果！ 123456789101112">
+  <title>反转整数（Reverse Integer） | 谎话兔</title>
+  <meta name="description" content="给定一个 32 位有符号整数，将整数中的数字进行反转。  示例 1:输入: 123输出: 321   示例 2:输入: -123输出: -321   示例 3:输入: 120输出: 21   注意：假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 − 1]。根据这个假设，如果反转后的整数溢出，则返回 0。  思路：123 -&amp;gt; 321的过程  res = 0">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="反转整数">
+<meta property="og:title" content="反转整数（Reverse Integer）">
 <meta property="og:url" content="https://lierabbit.cn/2018/05/09/反转整数/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="给定一个 32 位有符号整数，将整数中的数字进行反转。  示例 1:输入: 123输出: 321示例 2:输入: -123输出: -321示例 3:输入: 120输出: 21注意:假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 − 1]。根据这个假设，如果反转后的整数溢出，则返回 0。  解决方案：如果有溢出则无法回退到之前的结果！ 123456789101112">
+<meta property="og:description" content="给定一个 32 位有符号整数，将整数中的数字进行反转。  示例 1:输入: 123输出: 321   示例 2:输入: -123输出: -321   示例 3:输入: 120输出: 21   注意：假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 − 1]。根据这个假设，如果反转后的整数溢出，则返回 0。  思路：123 -&amp;gt; 321的过程  res = 0">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-26T14:31:13.300Z">
+<meta property="og:updated_time" content="2018-08-28T10:20:49.182Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="反转整数">
-<meta name="twitter:description" content="给定一个 32 位有符号整数，将整数中的数字进行反转。  示例 1:输入: 123输出: 321示例 2:输入: -123输出: -321示例 3:输入: 120输出: 21注意:假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 − 1]。根据这个假设，如果反转后的整数溢出，则返回 0。  解决方案：如果有溢出则无法回退到之前的结果！ 123456789101112">
+<meta name="twitter:title" content="反转整数（Reverse Integer）">
+<meta name="twitter:description" content="给定一个 32 位有符号整数，将整数中的数字进行反转。  示例 1:输入: 123输出: 321   示例 2:输入: -123输出: -321   示例 3:输入: 120输出: 21   注意：假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 − 1]。根据这个假设，如果反转后的整数溢出，则返回 0。  思路：123 -&amp;gt; 321的过程  res = 0">
   <!-- Canonical links -->
   <link rel="canonical" href="https://lierabbit.cn/2018/05/09/反转整数/index.html">
   
@@ -319,7 +319,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      反转整数
+      反转整数（Reverse Integer）
     </h1>
   
 
@@ -348,7 +348,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/05/09/反转整数/" class="leancloud_visitors"  data-flag-title="反转整数">0</span>
+    	<span id="/2018/05/09/反转整数/" class="leancloud_visitors"  data-flag-title="反转整数（Reverse Integer）">0</span>
     </span>
 
         
@@ -358,9 +358,26 @@
       
         <p>给定一个 32 位有符号整数，将整数中的数字进行反转。</p>
 <blockquote>
-<p>示例 1:<br>输入: 123<br>输出: 321<br>示例 2:<br>输入: -123<br>输出: -321<br>示例 3:<br>输入: 120<br>输出: 21<br>注意:假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−2<sup>31</sup>,  2<sup>31 − 1</sup>]。根据这个假设，如果反转后的整数溢出，则返回 0。</p>
+<p>示例 1:<br>输入: 123<br>输出: 321</p>
 </blockquote>
-<p>解决方案：如果有溢出则无法回退到之前的结果！</p>
+<blockquote>
+<p>示例 2:<br>输入: -123<br>输出: -321</p>
+</blockquote>
+<blockquote>
+<p>示例 3:<br>输入: 120<br>输出: 21</p>
+</blockquote>
+<blockquote>
+<p>注意：假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−2<sup>31</sup>,  2<sup>31 − 1</sup>]。根据这个假设，如果反转后的整数溢出，则返回 0。</p>
+</blockquote>
+<p>思路：123 -&gt; 321的过程</p>
+<ol>
+<li>res = 0</li>
+<li>获取个位g</li>
+<li>res = res * 10 + g </li>
+<li>原值 /= 10</li>
+<li>重复2 3步骤直到原值为0</li>
+</ol>
+<p>反转的算法有了，还差个溢出判断。<br>a为原值，d为新值，c为个位，如果不溢出的话可以通过<code>a*10+c=d，a=(d-c)/10</code>来换转换<br>根据上述可得以下代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (x != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> remainder = x % <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">int</span> newRes = res * <span class="number">10</span> + remainder;</span><br><span class="line">        <span class="keyword">if</span> ((newRes - remainder) / <span class="number">10</span> != res) <span class="comment">// 如果有溢出则无法回退到原来的结果</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        res = newRes;</span><br><span class="line">        x /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -370,7 +387,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://lierabbit.cn/2018/05/09/反转整数/" title="反转整数" target="_blank" rel="external">https://lierabbit.cn/2018/05/09/反转整数/</a>
+      <a href="https://lierabbit.cn/2018/05/09/反转整数/" title="反转整数（Reverse Integer）" target="_blank" rel="external">https://lierabbit.cn/2018/05/09/反转整数/</a>
     </li>
     
     
@@ -422,12 +439,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2018/05/09/字符串转整数/" title="字符串转整数"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/2018/05/09/字符串转整数/" title="字符串转整数（String to Integer (atoi)）"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/2018/05/09/Z字形变换/" title="Z字形变换"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2018/05/09/Z字形变换/" title="Z字形变换（ZigZag Conversion）"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
   </ul>
