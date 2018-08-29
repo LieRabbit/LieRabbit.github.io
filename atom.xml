@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lierabbit.cn/"/>
-  <updated>2018-08-28T13:38:46.192Z</updated>
+  <updated>2018-08-29T03:38:56.975Z</updated>
   <id>https://lierabbit.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>电话号码的字母组合（Letter Combinations of a Phone Number）</title>
+    <link href="https://lierabbit.cn/2018/08/29/%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/"/>
+    <id>https://lierabbit.cn/2018/08/29/电话号码的字母组合/</id>
+    <published>2018-08-29T03:01:19.000Z</published>
+    <updated>2018-08-29T03:38:56.975Z</updated>
+    
+    <content type="html"><![CDATA[<p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。<br>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。<br><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/08/29/%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/1.png" alt=""></p><p><strong>示例:</strong></p><blockquote><p>输入：”23”<br>输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].</p></blockquote><p><strong>说明:</strong><br>尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。</p><p>思路：利用队列先进先出的性质进行横向组合。<br>例如输入“23”</p><ol><li>首先取出输入中的第一个数2，它所代表的字母为a,b,c，依次放入队列，</li><li>接着取出输入中的下一个数3，它所代表的字母为d,e,f。</li><li>队列依次出队与d,e,f进行组合</li></ol><p>过程如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot; + a = a</span><br><span class="line">&quot;&quot; + b = b</span><br><span class="line">&quot;&quot; + c = c</span><br><span class="line">a + d = ad</span><br><span class="line">a + e = ae</span><br><span class="line">a + f = af</span><br><span class="line">b + d = bd</span><br><span class="line">b + e = be</span><br><span class="line">b + f = bf</span><br><span class="line">c + d = cd</span><br><span class="line">c + e = ce</span><br><span class="line">c + f = cf</span><br></pre></td></tr></table></figure></p><p>如果输入的是“234”，重复2，3步骤即可</p><p>现在还剩2个问题：<br>何时退出这个循环？<br>通过观察可知，<code>输入字符串的长度 == 组合后子项的长度</code><br>也就是说<code>队列里的所有字符串长度 == 输入的字符串长度</code>时组合完成<br>如何取得输入中的下一个数？<br>既然<code>输入字符串的长度 == 组合后子项的长度</code>，那么通过队列里的字符长度获取输入中的下一个数即可</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">letterCombinations</span><span class="params">(String digits)</span> </span>&#123;</span><br><span class="line">    LinkedList&lt;String&gt; res = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="comment">// 使用数组模拟按键映射，这里可以换成HashMap</span></span><br><span class="line">    String[] map = <span class="keyword">new</span> String[]&#123;<span class="string">""</span>, <span class="string">""</span>, <span class="string">"abc"</span>, <span class="string">"def"</span>, <span class="string">"ghi"</span>, <span class="string">"jkl"</span>, <span class="string">"mno"</span>, <span class="string">"pqrs"</span>, <span class="string">"tuv"</span>, <span class="string">"wxyz"</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (digits.isEmpty())</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    res.add(<span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (res.peek().length() != digits.length()) &#123;</span><br><span class="line">        String temp = res.pop();</span><br><span class="line">        String value = map[digits.charAt(temp.length()) - <span class="string">'0'</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : value.toCharArray())</span><br><span class="line">            res.add(temp + c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。&lt;br&gt;给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。&lt;br&gt;&lt;img src=&quot;https://blog-1252204470.cos.ap-guangzhou.myqcloud.c
+      
+    
+    </summary>
+    
+      <category term="LeetCode算法之旅" scheme="https://lierabbit.cn/categories/LeetCode%E7%AE%97%E6%B3%95%E4%B9%8B%E6%97%85/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>最接近的三数之和（3Sum Closest）</title>
@@ -510,32 +535,6 @@
       
       
         &lt;p&gt;给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。例如，如果输入数组{2,3,4,2,6,2,5,1}及滑动窗口的大小3，那么一共存在6个滑动窗口，他们的最大值分别为{4,4,6,6,6,5}； 针对数组{2,3,4,2,6,2,5,1}的滑动窗口有以下6个： 
-      
-    
-    </summary>
-    
-      <category term="剑指Offer" scheme="https://lierabbit.cn/categories/%E5%89%91%E6%8C%87Offer/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据流中的中位数</title>
-    <link href="https://lierabbit.cn/2018/04/18/%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/"/>
-    <id>https://lierabbit.cn/2018/04/18/数据流中的中位数/</id>
-    <published>2018-04-18T03:21:29.000Z</published>
-    <updated>2018-08-26T13:37:03.238Z</updated>
-    
-    <content type="html"><![CDATA[<p>如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。</p><p>思路：使用2个堆，一个小根堆放大的数，一个大根堆放小的数，当数据流中数据个数为偶数加入大根堆，奇数加入小根堆。若当前数据量为奇数则中位数为大根堆的堆顶，若当前数据量为偶数则为小根堆与大根堆的堆顶和再➗2</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 数据流中的中位数 </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> PriorityQueue&lt;Integer&gt; minHeap = <span class="keyword">new</span> PriorityQueue&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> PriorityQueue&lt;Integer&gt; maxHeap = <span class="keyword">new</span> PriorityQueue&lt;&gt;((v1, v2) -&gt; v2 - v1);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Insert</span><span class="params">(Integer num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ((count++ &amp; <span class="number">1</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">            minHeap.add(num);</span><br><span class="line">            maxHeap.add(minHeap.poll());</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            maxHeap.add(num);</span><br><span class="line">            minHeap.add(maxHeap.poll());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Double <span class="title">GetMedian</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ((count &amp; <span class="number">1</span>) == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> (minHeap.peek() + maxHeap.peek()) / <span class="number">2.0</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> Double.valueOf(maxHeap.peek());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。&lt;/p&gt;
-&lt;p&gt;思路：使用2个堆，一个小根堆放大的数，一个大根堆放小的数，当数据流中数据
       
     
     </summary>
