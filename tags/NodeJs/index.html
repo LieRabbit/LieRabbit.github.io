@@ -313,18 +313,17 @@
   <article class="content article article-tags post-type-list" itemscope="">
     <header class="article-header">
       <h1 itemprop="name" class="hidden-xs">标签: NodeJs</h1>
-      <p class="text-muted hidden-xs">共 1 篇文章</p>
       <nav role="navigation" id="nav-main" class="okayNav">
         <ul>
-          <li><a href="/tags">All</a></li>
+          <li><a href="/tags">全部</a></li>
           
           <li><a href="/tags/算法/">算法</a></li>
           
           <li><a href="/tags/Java/">Java</a></li>
           
-          <li><a href="/tags/Spring/">Spring</a></li>
-          
           <li><a href="/tags/SpringBoot/">SpringBoot</a></li>
+          
+          <li><a href="/tags/Spring/">Spring</a></li>
           
           <li><a href="/tags/NodeJs/">NodeJs</a></li>
           
@@ -333,32 +332,44 @@
     </header>
     <!-- /header -->
     <div class="article-body">
-      <div class="row">
+      <div class="content article-list">
         
-<div class="col-md-6">
+            <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
     
-<article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="panel-body">
-     <div class="article-meta">
-       <time datetime="2018-01-14T09:48:54.000Z" itemprop="datePublished">2018-01-14</time>
-     </div>
-     <h3 class="article-title" itemprop="name">
-       <a class="article-link" href="/2018/01/14/升级node与npm/">升级node与npm</a>
-     </h3>
-   </div>
-   
-   <div class="panel-footer">
-     
-      <a href="/tags/NodeJs/" class="label label-default mb">NodeJs</a>
-     
-     
-   </div>
-   
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/14/升级node与npm/">升级node与npm</a>
+    </h1>
+
+  </div>
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/01/14/升级node与npm/" class="article-date">
+	  <time datetime="2018-01-14T09:48:54.000Z" itemprop="datePublished">2018-01-14</time>
+	</a>
+</span>
+    
+    
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/NodeJs/">NodeJs</a>
+  </span>
+
+
+    
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2018/01/14/升级node与npm/" class="leancloud_visitors"  data-flag-title="升级node与npm">0</span>
+    </span>
+
+    
+  </p>
+  
 </article>
 
-
-</div>
-
+        
       </div>
     </div>
   </article>
@@ -539,6 +550,7 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 				
 					$(function () {
 						let Counter = AV.Object.extend("Counter");
+						showTime(Counter);
 						addAllCount(Counter);
 					});
 				

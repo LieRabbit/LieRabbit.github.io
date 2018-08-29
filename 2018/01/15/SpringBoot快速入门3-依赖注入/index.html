@@ -20,19 +20,19 @@
   
   
   <title>SpringBoot快速入门3-依赖注入 | 谎话兔</title>
-  <meta name="description" content="spring boot使用依赖注入的方式很简单，只需要给添加相应的注解即可  @Service用于标注业务层组件  @Controller用于标注控制层组件 @Repository用于标注数据访问组件，即DAO组件  @Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。然后在使用的地方使用@Autowired即可  创建MyComponent，使用@Component">
+  <meta name="description" content="spring boot使用依赖注入的方式很简单，只需要给添加相应的注解即可  @Service用于标注业务层组件  @Controller用于标注控制层组件 @Repository用于标注数据访问组件，即DAO组件  @Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。然后在使用的地方使用@Autowired即可">
 <meta name="keywords" content="SpringBoot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot快速入门3-依赖注入">
 <meta property="og:url" content="https://lierabbit.cn/2018/01/15/SpringBoot快速入门3-依赖注入/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="spring boot使用依赖注入的方式很简单，只需要给添加相应的注解即可  @Service用于标注业务层组件  @Controller用于标注控制层组件 @Repository用于标注数据访问组件，即DAO组件  @Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。然后在使用的地方使用@Autowired即可  创建MyComponent，使用@Component">
+<meta property="og:description" content="spring boot使用依赖注入的方式很简单，只需要给添加相应的注解即可  @Service用于标注业务层组件  @Controller用于标注控制层组件 @Repository用于标注数据访问组件，即DAO组件  @Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。然后在使用的地方使用@Autowired即可">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/01/15/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A83-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/1.jpg">
-<meta property="og:updated_time" content="2018-08-25T10:15:10.016Z">
+<meta property="og:updated_time" content="2018-08-29T14:12:56.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot快速入门3-依赖注入">
-<meta name="twitter:description" content="spring boot使用依赖注入的方式很简单，只需要给添加相应的注解即可  @Service用于标注业务层组件  @Controller用于标注控制层组件 @Repository用于标注数据访问组件，即DAO组件  @Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。然后在使用的地方使用@Autowired即可  创建MyComponent，使用@Component">
+<meta name="twitter:description" content="spring boot使用依赖注入的方式很简单，只需要给添加相应的注解即可  @Service用于标注业务层组件  @Controller用于标注控制层组件 @Repository用于标注数据访问组件，即DAO组件  @Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。然后在使用的地方使用@Autowired即可">
 <meta name="twitter:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/01/15/SpringBoot%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A83-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/1.jpg">
   <!-- Canonical links -->
   <link rel="canonical" href="https://lierabbit.cn/2018/01/15/SpringBoot快速入门3-依赖注入/index.html">
@@ -328,11 +328,9 @@
     <div class="article-header">
       
         
-  
-    <h1 class="article-title" itemprop="name">
-      SpringBoot快速入门3-依赖注入
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/15/SpringBoot快速入门3-依赖注入/">SpringBoot快速入门3-依赖注入</a>
     </h1>
-  
 
       
       <div class="article-meta">
@@ -372,7 +370,8 @@
 <li>@Service用于标注业务层组件 </li>
 <li>@Controller用于标注控制层组件</li>
 <li>@Repository用于标注数据访问组件，即DAO组件 </li>
-<li>@Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。<br>然后在使用的地方使用@Autowired即可</li>
+<li>@Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。<br>然后在使用的地方使用@Autowired即可<a id="more"></a>
+</li>
 </ul>
 <h2 id="创建MyComponent，使用-Component"><a href="#创建MyComponent，使用-Component" class="headerlink" title="创建MyComponent，使用@Component"></a>创建MyComponent，使用@Component</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span><span class="comment">//泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hi</span><span class="params">(String name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hi "</span> + name + <span class="string">",I am MyComponent"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="创建MyController，使用-Controller"><a href="#创建MyController，使用-Controller" class="headerlink" title="创建MyController，使用@Controller"></a>创建MyController，使用@Controller</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span><span class="comment">//用于标注控制层组件</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyController</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hi</span><span class="params">(String name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hi "</span> + name + <span class="string">",I am MyController"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

@@ -4749,7 +4749,7 @@ a.label:focus {
 }
 
 .panel-body {
-  padding: 15px;
+  padding: 0 15px 15px;
 }
 
 .panel-body:before,
@@ -9242,8 +9242,15 @@ body.okayNav-loaded {
   text-align: center;
 }
 
+.category-more-article,
+.tag-more-article{
+  text-align: left;
+}
+
+.category-more-article a,
+.tag-more-article a,
 .article-more-link a{
-  padding: 5px;
+  padding: 5px 10px;
   border: none;
   color: #fff;
   background-color: #51cc87;

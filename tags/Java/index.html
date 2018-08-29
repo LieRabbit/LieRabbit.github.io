@@ -313,18 +313,17 @@
   <article class="content article article-tags post-type-list" itemscope="">
     <header class="article-header">
       <h1 itemprop="name" class="hidden-xs">标签: Java</h1>
-      <p class="text-muted hidden-xs">共 1 篇文章</p>
       <nav role="navigation" id="nav-main" class="okayNav">
         <ul>
-          <li><a href="/tags">All</a></li>
+          <li><a href="/tags">全部</a></li>
           
           <li><a href="/tags/算法/">算法</a></li>
           
           <li><a href="/tags/Java/">Java</a></li>
           
-          <li><a href="/tags/Spring/">Spring</a></li>
-          
           <li><a href="/tags/SpringBoot/">SpringBoot</a></li>
+          
+          <li><a href="/tags/Spring/">Spring</a></li>
           
           <li><a href="/tags/NodeJs/">NodeJs</a></li>
           
@@ -333,32 +332,58 @@
     </header>
     <!-- /header -->
     <div class="article-body">
-      <div class="row">
+      <div class="content article-list">
         
-<div class="col-md-6">
+            <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
     
-<article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="panel-body">
-     <div class="article-meta">
-       <time datetime="2018-01-23T04:29:37.000Z" itemprop="datePublished">2018-01-23</time>
-     </div>
-     <h3 class="article-title" itemprop="name">
-       <a class="article-link" href="/2018/01/23/ArrayList实现原理/">ArrayList实现原理</a>
-     </h3>
-   </div>
-   
-   <div class="panel-footer">
-     
-      <a href="/tags/Java/" class="label label-default mb">Java</a>
-     
-     
-   </div>
-   
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/23/ArrayList实现原理/">ArrayList实现原理</a>
+    </h1>
+
+  </div>
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/01/23/ArrayList实现原理/" class="article-date">
+	  <time datetime="2018-01-23T04:29:37.000Z" itemprop="datePublished">2018-01-23</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Java从深入到放弃/">Java从深入到放弃</a>
+  </span>
+
+    
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Java/">Java</a>
+  </span>
+
+
+    
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2018/01/23/ArrayList实现原理/" class="leancloud_visitors"  data-flag-title="ArrayList实现原理">0</span>
+    </span>
+
+    
+  </p>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>ArrayList可以简单的看作是动态数组，相对于普通的数组它可以动态的增加容量或者减少容量。要注意的是ArrayList并不是线程安全的，因此一般建议在单线程中使用ArrayList。<br>
+    
+      <p class="article-more-link">
+        <a href="/2018/01/23/ArrayList实现原理/#more">阅读更多</a>
+      </p>
+    
+  </div>
+  
 </article>
 
-
-</div>
-
+        
       </div>
     </div>
   </article>
@@ -539,6 +564,7 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 				
 					$(function () {
 						let Counter = AV.Object.extend("Counter");
+						showTime(Counter);
 						addAllCount(Counter);
 					});
 				
