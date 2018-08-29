@@ -20,18 +20,18 @@
   
   
   <title>ArrayList实现原理 | 谎话兔</title>
-  <meta name="description" content="概述ArrayList可以简单的看作是动态数组，相对于普通的数组它可以动态的增加容量或者减少容量。要注意的是ArrayList并不是线程安全的，因此一般建议在单线程中使用ArrayList。 实现原理继承关系1public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt; implements List&amp;lt;E&amp;gt;, RandomA">
+  <meta name="description" content="概述ArrayList可以简单的看作是动态数组，相对于普通的数组它可以动态的增加容量或者减少容量。要注意的是ArrayList并不是线程安全的，因此一般建议在单线程中使用ArrayList。">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ArrayList实现原理">
 <meta property="og:url" content="https://lierabbit.cn/2018/01/23/ArrayList实现原理/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="概述ArrayList可以简单的看作是动态数组，相对于普通的数组它可以动态的增加容量或者减少容量。要注意的是ArrayList并不是线程安全的，因此一般建议在单线程中使用ArrayList。 实现原理继承关系1public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt; implements List&amp;lt;E&amp;gt;, RandomA">
+<meta property="og:description" content="概述ArrayList可以简单的看作是动态数组，相对于普通的数组它可以动态的增加容量或者减少容量。要注意的是ArrayList并不是线程安全的，因此一般建议在单线程中使用ArrayList。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-23T11:45:28.275Z">
+<meta property="og:updated_time" content="2018-08-29T13:45:00.306Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ArrayList实现原理">
-<meta name="twitter:description" content="概述ArrayList可以简单的看作是动态数组，相对于普通的数组它可以动态的增加容量或者减少容量。要注意的是ArrayList并不是线程安全的，因此一般建议在单线程中使用ArrayList。 实现原理继承关系1public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt; implements List&amp;lt;E&amp;gt;, RandomA">
+<meta name="twitter:description" content="概述ArrayList可以简单的看作是动态数组，相对于普通的数组它可以动态的增加容量或者减少容量。要注意的是ArrayList并不是线程安全的，因此一般建议在单线程中使用ArrayList。">
   <!-- Canonical links -->
   <link rel="canonical" href="https://lierabbit.cn/2018/01/23/ArrayList实现原理/index.html">
   
@@ -365,7 +365,7 @@
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>ArrayList可以简单的看作是动态数组，相对于普通的数组它可以动态的增加容量或者减少容量。要注意的是ArrayList并不是线程安全的，因此一般建议在单线程中使用ArrayList。</p>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>ArrayList可以简单的看作是动态数组，相对于普通的数组它可以动态的增加容量或者减少容量。要注意的是ArrayList并不是线程安全的，因此一般建议在单线程中使用ArrayList。<br><a id="more"></a></p>
 <h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><h3 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
 <p>ArrayList继承AbstractList实现List, RandomAccess, Cloneable, java.io.Serializable接口</p>
 <h3 id="关键属性"><a href="#关键属性" class="headerlink" title="关键属性"></a>关键属性</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The array buffer into which the elements of the ArrayList are stored.</span></span><br><span class="line"><span class="comment"> * The capacity of the ArrayList is the length of this array buffer. Any</span></span><br><span class="line"><span class="comment"> * empty ArrayList with elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA</span></span><br><span class="line"><span class="comment"> * will be expanded to DEFAULT_CAPACITY when the first element is added.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 数据的数组</span></span><br><span class="line"><span class="keyword">transient</span> Object[] elementData; <span class="comment">// non-private to simplify nested class access</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The size of the ArrayList (the number of elements it contains).</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@serial</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 实际数据的数量</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> size;</span><br></pre></td></tr></table></figure>
