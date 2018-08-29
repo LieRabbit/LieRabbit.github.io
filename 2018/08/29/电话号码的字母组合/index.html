@@ -20,19 +20,19 @@
   
   
   <title>电话号码的字母组合（Letter Combinations of a Phone Number） | 谎话兔</title>
-  <meta name="description" content="给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。 示例:  输入：”23”输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].  说明:尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。 思路：利用队列先进先出的性质进行横向组合。例">
+  <meta name="description" content="题目描述给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。 示例:  输入：”23”输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].  说明:尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。 解决方法利用队列先进先出的性质进行横">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="电话号码的字母组合（Letter Combinations of a Phone Number）">
 <meta property="og:url" content="https://lierabbit.cn/2018/08/29/电话号码的字母组合/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。 示例:  输入：”23”输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].  说明:尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。 思路：利用队列先进先出的性质进行横向组合。例">
+<meta property="og:description" content="题目描述给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。 示例:  输入：”23”输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].  说明:尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。 解决方法利用队列先进先出的性质进行横">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/08/29/%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/1.png">
-<meta property="og:updated_time" content="2018-08-29T03:38:56.975Z">
+<meta property="og:updated_time" content="2018-08-29T07:45:07.503Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="电话号码的字母组合（Letter Combinations of a Phone Number）">
-<meta name="twitter:description" content="给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。 示例:  输入：”23”输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].  说明:尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。 思路：利用队列先进先出的性质进行横向组合。例">
+<meta name="twitter:description" content="题目描述给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。 示例:  输入：”23”输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].  说明:尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。 解决方法利用队列先进先出的性质进行横">
 <meta name="twitter:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/08/29/%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/1.png">
   <!-- Canonical links -->
   <link rel="canonical" href="https://lierabbit.cn/2018/08/29/电话号码的字母组合/index.html">
@@ -192,6 +192,15 @@
   <div class="slimContent">
     
       
+<div class="widget">
+    <nav class="article-toc">
+        <h3 class="toc-title">
+            文章目录
+        </h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a></li></ol>
+    </nav>
+</div>
+
     
       <div class="widget">
     <h3 class="widget-title">公告</h3>
@@ -358,13 +367,13 @@
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。<br>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。<br><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/08/29/%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/1.png" alt=""></p>
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。<br>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。<br><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/08/29/%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/1.png" alt=""></p>
 <p><strong>示例:</strong></p>
 <blockquote>
 <p>输入：”23”<br>输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].</p>
 </blockquote>
 <p><strong>说明:</strong><br>尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。</p>
-<p>思路：利用队列先进先出的性质进行横向组合。<br>例如输入“23”</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>利用队列先进先出的性质进行横向组合。<br>例如输入“23”</p>
 <ol>
 <li>首先取出输入中的第一个数2，它所代表的字母为a,b,c，依次放入队列，</li>
 <li>接着取出输入中的下一个数3，它所代表的字母为d,e,f。</li>

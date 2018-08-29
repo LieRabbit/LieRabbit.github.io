@@ -6439,13 +6439,13 @@ body.no-sidebar .sidebar {
 }
 
 .article-toc .toc {
-  list-style: none;
+  list-style: disc;
   padding-left: 0;
   line-height: 2.0;
 }
 
 .article-toc .toc ol {
-  list-style: none;
+  list-style: disc;
   padding-left: 10px;
 }
 

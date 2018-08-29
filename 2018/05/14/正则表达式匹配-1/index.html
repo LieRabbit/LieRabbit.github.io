@@ -20,18 +20,18 @@
   
   
   <title>正则表达式匹配（Regular Expression Matching） | 谎话兔</title>
-  <meta name="description" content="给定一个字符串 (s) 和一个字符模式 (p)。实现支持 ‘.’ 和 ‘*‘ 的正则表达式匹配。‘.’ 匹配任意单个字符。‘*‘ 匹配零个或多个前面的元素。匹配应该覆盖整个字符串 (s) ，而不是部分字符串。  说明:s 可能为空，且只包含从 a-z 的小写字母。p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。   示例 1:输入:s = “aa”p = “a”输出: fals">
+  <meta name="description" content="题目描述给定一个字符串 (s) 和一个字符模式 (p)。实现支持 ‘.’ 和 ‘*‘ 的正则表达式匹配。‘.’ 匹配任意单个字符。‘*‘ 匹配零个或多个前面的元素。匹配应该覆盖整个字符串 (s) ，而不是部分字符串。  说明:s 可能为空，且只包含从 a-z 的小写字母。p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。   示例 1:输入:s = “aa”p = “a”输出:">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式匹配（Regular Expression Matching）">
 <meta property="og:url" content="https://lierabbit.cn/2018/05/14/正则表达式匹配-1/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="给定一个字符串 (s) 和一个字符模式 (p)。实现支持 ‘.’ 和 ‘*‘ 的正则表达式匹配。‘.’ 匹配任意单个字符。‘*‘ 匹配零个或多个前面的元素。匹配应该覆盖整个字符串 (s) ，而不是部分字符串。  说明:s 可能为空，且只包含从 a-z 的小写字母。p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。   示例 1:输入:s = “aa”p = “a”输出: fals">
+<meta property="og:description" content="题目描述给定一个字符串 (s) 和一个字符模式 (p)。实现支持 ‘.’ 和 ‘*‘ 的正则表达式匹配。‘.’ 匹配任意单个字符。‘*‘ 匹配零个或多个前面的元素。匹配应该覆盖整个字符串 (s) ，而不是部分字符串。  说明:s 可能为空，且只包含从 a-z 的小写字母。p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。   示例 1:输入:s = “aa”p = “a”输出:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-28T12:39:23.502Z">
+<meta property="og:updated_time" content="2018-08-29T07:36:20.811Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式匹配（Regular Expression Matching）">
-<meta name="twitter:description" content="给定一个字符串 (s) 和一个字符模式 (p)。实现支持 ‘.’ 和 ‘*‘ 的正则表达式匹配。‘.’ 匹配任意单个字符。‘*‘ 匹配零个或多个前面的元素。匹配应该覆盖整个字符串 (s) ，而不是部分字符串。  说明:s 可能为空，且只包含从 a-z 的小写字母。p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。   示例 1:输入:s = “aa”p = “a”输出: fals">
+<meta name="twitter:description" content="题目描述给定一个字符串 (s) 和一个字符模式 (p)。实现支持 ‘.’ 和 ‘*‘ 的正则表达式匹配。‘.’ 匹配任意单个字符。‘*‘ 匹配零个或多个前面的元素。匹配应该覆盖整个字符串 (s) ，而不是部分字符串。  说明:s 可能为空，且只包含从 a-z 的小写字母。p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。   示例 1:输入:s = “aa”p = “a”输出:">
   <!-- Canonical links -->
   <link rel="canonical" href="https://lierabbit.cn/2018/05/14/正则表达式匹配-1/index.html">
   
@@ -195,7 +195,7 @@
         <h3 class="toc-title">
             文章目录
         </h3>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法一"><span class="toc-number">1.</span> <span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法二"><span class="toc-number">2.</span> <span class="toc-text">方法二</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法一"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法二"><span class="toc-text">方法二</span></a></li></ol></li></ol>
     </nav>
 </div>
 
@@ -365,7 +365,7 @@
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <p>给定一个字符串 (s) 和一个字符模式 (p)。实现支持 ‘.’ 和 ‘*‘ 的正则表达式匹配。<br>‘.’ 匹配任意单个字符。<br>‘*‘ 匹配零个或多个前面的元素。<br>匹配应该覆盖整个字符串 (s) ，而不是部分字符串。</p>
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个字符串 (s) 和一个字符模式 (p)。实现支持 ‘.’ 和 ‘*‘ 的正则表达式匹配。<br>‘.’ 匹配任意单个字符。<br>‘*‘ 匹配零个或多个前面的元素。<br>匹配应该覆盖整个字符串 (s) ，而不是部分字符串。</p>
 <blockquote>
 <p>说明:<br>s 可能为空，且只包含从 a-z 的小写字母。<br>p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。</p>
 </blockquote>
@@ -384,7 +384,7 @@
 <blockquote>
 <p>示例 5:<br>输入:<br>s = “mississippi”<br>p = “mis*is*p*.”<br>输出: false</p>
 </blockquote>
-<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>当模式中的第二个字符是“*”时：<br>如果字符串第一个字符跟模式第一个字符不匹配，则模式后移2个字符，继续匹配。如果字符串第一个字符跟模式第一个字符匹配，可以有2种匹配方式： </p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>当模式中的第二个字符是“*”时：<br>如果字符串第一个字符跟模式第一个字符不匹配，则模式后移2个字符，继续匹配。如果字符串第一个字符跟模式第一个字符匹配，可以有2种匹配方式： </p>
 <ul>
 <li>模式后移2字符，相当于x*被忽略</li>
 <li>字符串后移1字符，模式不变，即继续匹配字符下一位，因为*可以匹配多位<br>当模式中的第二个字符不是“*”时：</li>

@@ -20,18 +20,18 @@
   
   
   <title>两数之和（Two Sum） | 谎话兔</title>
-  <meta name="description" content="题目描述给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。  示例:给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]  解决方案若a + b = c，则 c - a = b。所以只需记录所有遍历过的数，然后利用预期值-">
+  <meta name="description" content="题目描述给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。  示例:给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]  解决方法若a + b = c，则 c - a = b。所以只需记录所有遍历过的数，然后利用预期值-">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="两数之和（Two Sum）">
 <meta property="og:url" content="https://lierabbit.cn/2018/04/22/两数之和/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="题目描述给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。  示例:给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]  解决方案若a + b = c，则 c - a = b。所以只需记录所有遍历过的数，然后利用预期值-">
+<meta property="og:description" content="题目描述给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。  示例:给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]  解决方法若a + b = c，则 c - a = b。所以只需记录所有遍历过的数，然后利用预期值-">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-29T06:54:19.153Z">
+<meta property="og:updated_time" content="2018-08-29T07:37:19.532Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="两数之和（Two Sum）">
-<meta name="twitter:description" content="题目描述给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。  示例:给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]  解决方案若a + b = c，则 c - a = b。所以只需记录所有遍历过的数，然后利用预期值-">
+<meta name="twitter:description" content="题目描述给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。  示例:给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1]  解决方法若a + b = c，则 c - a = b。所以只需记录所有遍历过的数，然后利用预期值-">
   <!-- Canonical links -->
   <link rel="canonical" href="https://lierabbit.cn/2018/04/22/两数之和/index.html">
   
@@ -195,7 +195,7 @@
         <h3 class="toc-title">
             文章目录
         </h3>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-number">1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a></li></ol>
     </nav>
 </div>
 
@@ -369,7 +369,7 @@
 <blockquote>
 <p>示例:<br>给定 nums = [2, 7, 11, 15], target = 9<br>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]</p>
 </blockquote>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>若a + b = c，则 c - a = b。所以只需记录所有遍历过的数，然后利用预期值-当前值得出的值查询是否已有记录，如果有则退出循环。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>若a + b = c，则 c - a = b。所以只需记录所有遍历过的数，然后利用预期值-当前值得出的值查询是否已有记录，如果有则退出循环。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">    <span class="comment">// 记录遍历过的数和索引</span></span><br><span class="line">    Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="comment">// 获取target-nums[i]，看是否存在，存在则表明可以相加为target</span></span><br><span class="line">        Integer value = map.get(target - nums[i]);</span><br><span class="line">        <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</span><br><span class="line">            res[<span class="number">0</span>] = value;</span><br><span class="line">            res[<span class="number">1</span>] = i;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 用键保存遍历过的数，用值保存遍历过的索引</span></span><br><span class="line">        map.put(nums[i], i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>时间复杂度：O(n)<br>空间复杂度：O(n)</p>
 
