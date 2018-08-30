@@ -19,21 +19,21 @@
     <meta name="baidu-site-verification" content="YlYjMlxgL7" />
   
   
-  <title>随机区间函数 | 谎话兔</title>
-  <meta name="description" content="假设函数f()等概率随机返回一个在[0,1)范围上的浮点数，那么我们知道，在[0,x)区间上的数出现的概率为x(0&amp;lt;x≤1)。给定一个大于0的整数k，并且可以使用f()函数，请实现一个函数依然返回在[0,1)范围上的数，但是在[0,x)区间上的数出现的概率为x的k次方。 思路：先来看看如何把[0，X )范围上的数，从概率X调整为概率X^2作法:调用两次f( )，返回较大的数即可。所以本题只用">
+  <title>删除链表的倒数第N个节点 | 谎话兔</title>
+  <meta name="description" content="题目描述给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。 示例：  给定一个链表: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5, 和 n = 2.当删除了倒数第二个节点后，链表变为 1-&amp;gt;2-&amp;gt;3-&amp;gt;5.说明：给定的 n 保证是有效的。  进阶：你能尝试使用一趟扫描实现吗 解决方法如何一趟遍历获取倒数第n个节点？使用2个指针first,second，fi">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="随机区间函数">
-<meta property="og:url" content="https://lierabbit.cn/2018/02/25/随机区间函数/index.html">
+<meta property="og:title" content="删除链表的倒数第N个节点">
+<meta property="og:url" content="https://lierabbit.cn/2018/08/31/删除链表的倒数第N个节点/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="假设函数f()等概率随机返回一个在[0,1)范围上的浮点数，那么我们知道，在[0,x)区间上的数出现的概率为x(0&amp;lt;x≤1)。给定一个大于0的整数k，并且可以使用f()函数，请实现一个函数依然返回在[0,1)范围上的数，但是在[0,x)区间上的数出现的概率为x的k次方。 思路：先来看看如何把[0，X )范围上的数，从概率X调整为概率X^2作法:调用两次f( )，返回较大的数即可。所以本题只用">
+<meta property="og:description" content="题目描述给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。 示例：  给定一个链表: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5, 和 n = 2.当删除了倒数第二个节点后，链表变为 1-&amp;gt;2-&amp;gt;3-&amp;gt;5.说明：给定的 n 保证是有效的。  进阶：你能尝试使用一趟扫描实现吗 解决方法如何一趟遍历获取倒数第n个节点？使用2个指针first,second，fi">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-25T08:30:17.577Z">
+<meta property="og:updated_time" content="2018-08-30T15:25:25.919Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="随机区间函数">
-<meta name="twitter:description" content="假设函数f()等概率随机返回一个在[0,1)范围上的浮点数，那么我们知道，在[0,x)区间上的数出现的概率为x(0&amp;lt;x≤1)。给定一个大于0的整数k，并且可以使用f()函数，请实现一个函数依然返回在[0,1)范围上的数，但是在[0,x)区间上的数出现的概率为x的k次方。 思路：先来看看如何把[0，X )范围上的数，从概率X调整为概率X^2作法:调用两次f( )，返回较大的数即可。所以本题只用">
+<meta name="twitter:title" content="删除链表的倒数第N个节点">
+<meta name="twitter:description" content="题目描述给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。 示例：  给定一个链表: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5, 和 n = 2.当删除了倒数第二个节点后，链表变为 1-&amp;gt;2-&amp;gt;3-&amp;gt;5.说明：给定的 n 保证是有效的。  进阶：你能尝试使用一趟扫描实现吗 解决方法如何一趟遍历获取倒数第n个节点？使用2个指针first,second，fi">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://lierabbit.cn/2018/02/25/随机区间函数/index.html">
+  <link rel="canonical" href="https://lierabbit.cn/2018/08/31/删除链表的倒数第N个节点/index.html">
   
     <link rel="alternate" href="/atom.xml" title="谎话兔博客" type="application/atom+xml">
   
@@ -190,6 +190,15 @@
   <div class="slimContent">
     
       
+<div class="widget">
+    <nav class="article-toc">
+        <h3 class="toc-title">
+            文章目录
+        </h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a></li></ol>
+    </nav>
+</div>
+
     
       <div class="widget">
     <h3 class="widget-title">公告</h3>
@@ -312,27 +321,27 @@
   
   <main class="main" role="main">
   <div class="content">
-  <article id="post-随机区间函数" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-删除链表的倒数第N个节点" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/25/随机区间函数/">随机区间函数</a>
+      <a class="article-title" href="/2018/08/31/删除链表的倒数第N个节点/">删除链表的倒数第N个节点</a>
     </h1>
 
       
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2018/02/25/随机区间函数/" class="article-date">
-	  <time datetime="2018-02-25T05:49:42.000Z" itemprop="datePublished">2018-02-25 13:49:42</time>
+	<a href="/2018/08/31/删除链表的倒数第N个节点/" class="article-date">
+	  <time datetime="2018-08-31T02:37:17.000Z" itemprop="datePublished">2018-08-31 10:37:17</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/直通BAT面试算法/">直通BAT面试算法</a>
+    <a class="article-category-link" href="/categories/LeetCode算法之旅/">LeetCode算法之旅</a>
   </span>
 
         
@@ -346,7 +355,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/02/25/随机区间函数/" class="leancloud_visitors"  data-flag-title="随机区间函数">0</span>
+    	<span id="/2018/08/31/删除链表的倒数第N个节点/" class="leancloud_visitors"  data-flag-title="删除链表的倒数第N个节点">0</span>
     </span>
 
         
@@ -354,9 +363,16 @@
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <p>假设函数f()等概率随机返回一个在[0,1)范围上的浮点数，那么我们知道，在[0,x)区间上的数出现的概率为x(0&lt;x≤1)。给定一个大于0的整数k，并且可以使用f()函数，请实现一个函数依然返回在[0,1)范围上的数，但是在[0,x)区间上的数出现的概率为x的k次方。</p>
-<p>思路：<br>先来看看如何把[0，X )范围上的数，从概率X调整为概率X^2<br>作法:调用两次f( )，返回较大的数即可。<br>所以本题只用调用K次f( )，返回较大的数，即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Random rand = <span class="keyword">new</span> Random(<span class="number">12345</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> rand.nextFloat();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 请调用f()函数实现</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">random</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">double</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> max = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++)</span><br><span class="line">        max = Math.max(max, f());</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。</p>
+<p>示例：</p>
+<blockquote>
+<p>给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 n = 2.<br>当删除了倒数第二个节点后，链表变为 1-&gt;2-&gt;3-&gt;5.<br>说明：<br>给定的 n 保证是有效的。</p>
+</blockquote>
+<p>进阶：<br>你能尝试使用一趟扫描实现吗</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>如何一趟遍历获取倒数第n个节点？<br>使用2个指针first,second，first在前，second在后，保持间隔n走到链尾，这样second就是倒数第n个节点</p>
+<p>如何简化头节点删除操作？<br>在头节点前面加入临时头节点，这样原头节点就和普通节点一致</p>
+<p>解决了上述2个问题可得出以下代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 为了方便操作建立临时头节点</span></span><br><span class="line">    ListNode tempHead = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">    tempHead.next = head;</span><br><span class="line">    ListNode first = tempHead;</span><br><span class="line">    ListNode second = tempHead;</span><br><span class="line">    <span class="comment">// 让first先走n+1步</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n + <span class="number">1</span>; i++) &#123;</span><br><span class="line">        first = first.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 两个指针一起走，当first走到链尾，second就走到倒数第n+1个节点</span></span><br><span class="line">    <span class="keyword">while</span> (first != <span class="keyword">null</span>) &#123;</span><br><span class="line">        first = first.next;</span><br><span class="line">        second = second.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 删除下一个节点即删除倒数第n个节点</span></span><br><span class="line">    second.next = second.next.next;</span><br><span class="line">    <span class="keyword">return</span> tempHead.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <div class="article-footer">
@@ -365,7 +381,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://lierabbit.cn/2018/02/25/随机区间函数/" title="随机区间函数" target="_blank" rel="external">https://lierabbit.cn/2018/02/25/随机区间函数/</a>
+      <a href="https://lierabbit.cn/2018/08/31/删除链表的倒数第N个节点/" title="删除链表的倒数第N个节点" target="_blank" rel="external">https://lierabbit.cn/2018/08/31/删除链表的倒数第N个节点/</a>
     </li>
     
     
@@ -416,13 +432,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2018/02/25/随机数组打印/" title="随机数组打印"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2018/02/25/随机01/" title="随机01"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2018/08/30/四数之和/" title="四数之和（4Sum）"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
   </ul>
