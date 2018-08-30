@@ -9240,11 +9240,13 @@ body.okayNav-loaded {
 
 .article-more-link{
   text-align: center;
+  margin-top: 10px;
 }
 
 .category-more-article,
 .tag-more-article{
   text-align: left;
+  margin-top: 10px;
 }
 
 .category-more-article a,
