@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="谎话兔博客">
 <meta property="og:description" content="题目描述给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。 示例：  给定一个链表: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5, 和 n = 2.当删除了倒数第二个节点后，链表变为 1-&amp;gt;2-&amp;gt;3-&amp;gt;5.说明：给定的 n 保证是有效的。  进阶：你能尝试使用一趟扫描实现吗 解决方法如何一趟遍历获取倒数第n个节点？使用2个指针first,second，fi">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-30T15:26:42.573Z">
+<meta property="og:updated_time" content="2018-09-01T11:16:35.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="删除链表的倒数第N个节点（Remove Nth Node From End of List）">
 <meta name="twitter:description" content="题目描述给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。 示例：  给定一个链表: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5, 和 n = 2.当删除了倒数第二个节点后，链表变为 1-&amp;gt;2-&amp;gt;3-&amp;gt;5.说明：给定的 n 保证是有效的。  进阶：你能尝试使用一趟扫描实现吗 解决方法如何一趟遍历获取倒数第n个节点？使用2个指针first,second，fi">
@@ -370,8 +370,9 @@
 </blockquote>
 <p>进阶：<br>你能尝试使用一趟扫描实现吗</p>
 <h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>如何一趟遍历获取倒数第n个节点？<br>使用2个指针first,second，first在前，second在后，保持间隔n走到链尾，这样second就是倒数第n个节点</p>
-<p>如何简化头节点删除操作？<br>在头节点前面加入临时头节点，这样原头节点就和普通节点一致</p>
-<p>解决了上述2个问题可得出以下代码</p>
+<p>如何删除当前节点操作？<br>前一个节点.next = 前一个节点.next.next</p>
+<p>由于头节点没有前一个节点了，如何删除头节点？<br>在头节点前面加入临时头节点，这样原头节点就和普通节点一致</p>
+<p>解决了上述3个问题可得出以下代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 为了方便操作建立临时头节点</span></span><br><span class="line">    ListNode tempHead = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">    tempHead.next = head;</span><br><span class="line">    ListNode first = tempHead;</span><br><span class="line">    ListNode second = tempHead;</span><br><span class="line">    <span class="comment">// 让first先走n+1步</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n + <span class="number">1</span>; i++) &#123;</span><br><span class="line">        first = first.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 两个指针一起走，当first走到链尾，second就走到倒数第n+1个节点</span></span><br><span class="line">    <span class="keyword">while</span> (first != <span class="keyword">null</span>) &#123;</span><br><span class="line">        first = first.next;</span><br><span class="line">        second = second.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 删除下一个节点即删除倒数第n个节点</span></span><br><span class="line">    second.next = second.next.next;</span><br><span class="line">    <span class="keyword">return</span> tempHead.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
