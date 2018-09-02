@@ -3202,7 +3202,7 @@ button.close {
  * scrollbar
  */
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 6px;
   height: 4px;
   background: transparent;
@@ -3242,7 +3242,7 @@ button.close {
 
 ::-webkit-scrollbar-track-piece {
   background: rgba(0, 0, 0, 0.15);
-}
+} */
 
 *,
 *:before,
@@ -5030,7 +5030,6 @@ table > tbody > tr:hover {
 
 .table-wrap{
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 table {
