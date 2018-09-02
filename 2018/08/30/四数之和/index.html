@@ -739,6 +739,18 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 </script>
 
 
+    
+        <script defer>
+    let markdownBody = $('.markdown-body')[0];
+    let tables = $('table');
+    
+    tables.each((index, table) => {
+        if (table.parentElement == markdownBody && table.clientWidth > markdownBody.clientWidth) {
+            table.outerHTML = "<div class='table-wrap'>" + table.outerHTML + "</div>";
+        }
+    });
+</script>
+    
 
 </body>
 </html>

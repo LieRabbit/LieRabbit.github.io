@@ -5028,6 +5028,11 @@ table > tbody > tr:hover {
   background-color: #fbfbfb;
 }
 
+.table-wrap{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 table {
   padding: 0;
   width: 100%;
