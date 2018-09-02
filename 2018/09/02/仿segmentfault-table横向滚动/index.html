@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/2.png">
 <meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/3.png">
 <meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/4.png">
-<meta property="og:updated_time" content="2018-09-02T09:46:42.687Z">
+<meta property="og:updated_time" content="2018-09-02T09:50:15.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="仿segmentfault-table横向滚动">
 <meta name="twitter:description" content="问题描述自己的博客在用移动端访问时，如果table的列数足够多会显示不全，如下图红圈所示  正常情况如图  解决过程使用chrome发现segmentfault的解决方法是在table上套一个table-wrap，如下图蓝色背景和红圈所示  首先想到直接在table上套一个table-wrap即可接着查看别的table时发现并不是每一个table都被套上一个table-wrap，如下图所示，也就是">
@@ -369,7 +369,7 @@
 <p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/2.png" alt=""></p>
 <h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>使用chrome发现<a href="https://segmentfault.com" target="_blank" rel="noopener">segmentfault</a>的解决方法是在table上套一个table-wrap，如下图蓝色背景和红圈所示</p>
 <p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/3.png" alt=""></p>
-<p>首先想到直接在table上套一个table-wrap即可<br>接着查看别的table时发现并不是每一个table都被套上一个table-wrap，如下图所示，也就是说只有显示不全的table才会加上table-wrap</p>
+<p>首先想到直接在table上套一个table-wrap即可<br>接着查看别的table时发现并不是每一个table都被套上一个table-wrap，如下图所示，也就是说只有显示不全的table才会套上table-wrap</p>
 <p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/4.png" alt=""></p>
 <p>table什么情况是显示不全？<br>那就是table的宽度 &gt; 文章的宽度</p>
 <p>通过以上分析可以得出简单的步骤：</p>
