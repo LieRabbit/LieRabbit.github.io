@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lierabbit.cn/"/>
-  <updated>2018-09-01T12:32:51.241Z</updated>
+  <updated>2018-09-02T09:46:42.687Z</updated>
   <id>https://lierabbit.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>仿segmentfault-table横向滚动</title>
+    <link href="https://lierabbit.cn/2018/09/02/%E4%BB%BFsegmentfault-table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/"/>
+    <id>https://lierabbit.cn/2018/09/02/仿segmentfault-table横向滚动/</id>
+    <published>2018-09-02T08:37:47.000Z</published>
+    <updated>2018-09-02T09:46:42.687Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p><a href="https://lierabbit.cn">自己的博客</a>在用移动端访问时，如果table的列数足够多会显示不全，如下图红圈所示</p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/1.png" alt=""></p><p>正常情况如图</p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/2.png" alt=""></p><h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>使用chrome发现<a href="https://segmentfault.com" target="_blank" rel="noopener">segmentfault</a>的解决方法是在table上套一个table-wrap，如下图蓝色背景和红圈所示</p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/3.png" alt=""></p><p>首先想到直接在table上套一个table-wrap即可<br>接着查看别的table时发现并不是每一个table都被套上一个table-wrap，如下图所示，也就是说只有显示不全的table才会加上table-wrap</p><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/4.png" alt=""></p><p>table什么情况是显示不全？<br>那就是table的宽度 &gt; 文章的宽度</p><p>通过以上分析可以得出简单的步骤：</p><ol><li>获取文章的宽度(articleWidth)</li><li>获取所有的table</li><li>找出比articleWidth宽的table</li><li>使其被.table-wrap包囊</li></ol><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> articleWidth = <span class="built_in">document</span>.getElementById(<span class="string">'文章'</span>).clientWidth;</span><br><span class="line"><span class="keyword">let</span> tables = $(<span class="string">'table'</span>);</span><br><span class="line"></span><br><span class="line">tables.each(<span class="function">(<span class="params">index, table</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (table.clientWidth &gt; articleWidth) &#123;</span><br><span class="line">        table.outerHTML = <span class="string">"&lt;div class='table-wrap'&gt;"</span> + table.outerHTML + <span class="string">"&lt;/div&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>别忘了补上css<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.table-wrap</span>&#123;</span><br><span class="line">  <span class="attribute">overflow-x</span>: scroll;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>其实不用判断table的宽度 &gt; 文章的宽度也能实现，让每一个table都套上.table-wrap，使用如下css<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.table-wrap</span>&#123;</span><br><span class="line">  <span class="attribute">overflow-x</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>这样的话只是会在html上多一点<code>&lt;div class=&quot;table-wrap&quot;&gt;&lt;/div&gt;</code>而已，并且当页面大小发生变化也会根据需要是否出现滚动条</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://lierabbit.cn&quot;&gt;自己的博客&lt;/a&gt;在用移动端访问时，如果table的列数足够多
+      
+    
+    </summary>
+    
+    
+      <category term="html" scheme="https://lierabbit.cn/tags/html/"/>
+    
+      <category term="css" scheme="https://lierabbit.cn/tags/css/"/>
+    
+      <category term="js" scheme="https://lierabbit.cn/tags/js/"/>
+    
+  </entry>
   
   <entry>
     <title>有效的括号（Valid Parentheses）</title>
@@ -493,31 +520,6 @@
       
       
         &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;给定两个非空链表来表示两个非负整数。位数按照逆序方式存储，它们的每个节点只存储单个数字。将两数相加返回一个新的链表。&lt;br&gt;
-      
-    
-    </summary>
-    
-      <category term="LeetCode算法之旅" scheme="https://lierabbit.cn/categories/LeetCode%E7%AE%97%E6%B3%95%E4%B9%8B%E6%97%85/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>两数之和（Two Sum）</title>
-    <link href="https://lierabbit.cn/2018/04/22/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
-    <id>https://lierabbit.cn/2018/04/22/两数之和/</id>
-    <published>2018-04-22T04:19:19.000Z</published>
-    <updated>2018-08-29T07:37:19.532Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。<br>你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。</p><blockquote><p>示例:<br>给定 nums = [2, 7, 11, 15], target = 9<br>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]</p></blockquote><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>若a + b = c，则 c - a = b。所以只需记录所有遍历过的数，然后利用预期值-当前值得出的值查询是否已有记录，如果有则退出循环。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">    <span class="comment">// 记录遍历过的数和索引</span></span><br><span class="line">    Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="comment">// 获取target-nums[i]，看是否存在，存在则表明可以相加为target</span></span><br><span class="line">        Integer value = map.get(target - nums[i]);</span><br><span class="line">        <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</span><br><span class="line">            res[<span class="number">0</span>] = value;</span><br><span class="line">            res[<span class="number">1</span>] = i;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 用键保存遍历过的数，用值保存遍历过的索引</span></span><br><span class="line">        map.put(nums[i], i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>时间复杂度：O(n)<br>空间复杂度：O(n)</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。&lt;br&gt;你可以假设每个输入只对应一种答案，且同样的元素不能被重复
       
     
     </summary>

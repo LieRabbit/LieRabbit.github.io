@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+    <meta name="baidu-site-verification" content="YlYjMlxgL7" />
+  
+  
+  <title>仿segmentfault-table横向滚动 | 谎话兔</title>
+  <meta name="description" content="问题描述自己的博客在用移动端访问时，如果table的列数足够多会显示不全，如下图红圈所示  正常情况如图  解决过程使用chrome发现segmentfault的解决方法是在table上套一个table-wrap，如下图蓝色背景和红圈所示  首先想到直接在table上套一个table-wrap即可接着查看别的table时发现并不是每一个table都被套上一个table-wrap，如下图所示，也就是">
+<meta name="keywords" content="html,css,js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="仿segmentfault-table横向滚动">
+<meta property="og:url" content="https://lierabbit.cn/2018/09/02/仿segmentfault-table横向滚动/index.html">
+<meta property="og:site_name" content="谎话兔博客">
+<meta property="og:description" content="问题描述自己的博客在用移动端访问时，如果table的列数足够多会显示不全，如下图红圈所示  正常情况如图  解决过程使用chrome发现segmentfault的解决方法是在table上套一个table-wrap，如下图蓝色背景和红圈所示  首先想到直接在table上套一个table-wrap即可接着查看别的table时发现并不是每一个table都被套上一个table-wrap，如下图所示，也就是">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/1.png">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/2.png">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/3.png">
+<meta property="og:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/4.png">
+<meta property="og:updated_time" content="2018-09-02T09:46:42.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="仿segmentfault-table横向滚动">
+<meta name="twitter:description" content="问题描述自己的博客在用移动端访问时，如果table的列数足够多会显示不全，如下图红圈所示  正常情况如图  解决过程使用chrome发现segmentfault的解决方法是在table上套一个table-wrap，如下图蓝色背景和红圈所示  首先想到直接在table上套一个table-wrap即可接着查看别的table时发现并不是每一个table都被套上一个table-wrap，如下图所示，也就是">
+<meta name="twitter:image" content="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/1.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://lierabbit.cn/2018/09/02/仿segmentfault-table横向滚动/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="谎话兔博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.jpg" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/LieRabbit" target="_blank">
+          <img class="img-circle img-rotate" src="/images/LieRabbit.gif" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">谎话兔</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">业余开发者</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> 广州, 中国</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      
+<div class="widget">
+    <nav class="article-toc">
+        <h3 class="toc-title">
+            文章目录
+        </h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决过程"><span class="toc-text">解决过程</span></a></li></ol>
+    </nav>
+</div>
+
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">
+      最新文章
+    </h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-09-02T08:37:47.000Z" itemprop="datePublished">2018-09-02</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/09/02/仿segmentfault-table横向滚动/" class="title">仿segmentfault-table横向滚动</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-09-01T12:16:02.000Z" itemprop="datePublished">2018-09-01</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/09/01/有效的括号/" class="title">有效的括号（Valid Parentheses）</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-08-31T02:37:17.000Z" itemprop="datePublished">2018-08-31</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/08/31/删除链表的倒数第N个节点/" class="title">删除链表的倒数第N个节点（Remove Nth Node From End of List）</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-08-30T06:33:15.000Z" itemprop="datePublished">2018-08-30</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/08/30/四数之和/" class="title">四数之和（4Sum）</a>
+                  </p>
+                </div>
+          </li>
+          
+          <li>
+            
+                <div class="item-inner">
+                  <p class="item-date">
+                    <time datetime="2018-08-29T03:01:19.000Z" itemprop="datePublished">2018-08-29</time>
+                  </p>
+                  <p class="item-title">
+                    <a href="/2018/08/29/电话号码的字母组合/" class="title">电话号码的字母组合（Letter Combinations of a Phone Number）</a>
+                  </p>
+                </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java从深入到放弃/">Java从深入到放弃</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode算法之旅/">LeetCode算法之旅</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot快速入门/">SpringBoot快速入门</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/剑指Offer/">剑指Offer</a><span class="category-list-count">66</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/直通BAT面试算法/">直通BAT面试算法</a><span class="category-list-count">92</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NodeJs/">NodeJs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">178</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">49</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">95</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  <main class="main" role="main">
+  <div class="content">
+  <article id="post-仿segmentfault-table横向滚动" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/02/仿segmentfault-table横向滚动/">仿segmentfault-table横向滚动</a>
+    </h1>
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/09/02/仿segmentfault-table横向滚动/" class="article-date">
+	  <time datetime="2018-09-02T08:37:47.000Z" itemprop="datePublished">2018-09-02 16:37:47</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/css/">css</a>, <a class="article-tag-link" href="/tags/html/">html</a>, <a class="article-tag-link" href="/tags/js/">js</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2018/09/02/仿segmentfault-table横向滚动/" class="leancloud_visitors"  data-flag-title="仿segmentfault-table横向滚动">0</span>
+    </span>
+
+        
+      </div>
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p><a href="https://lierabbit.cn">自己的博客</a>在用移动端访问时，如果table的列数足够多会显示不全，如下图红圈所示</p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/1.png" alt=""></p>
+<p>正常情况如图</p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/2.png" alt=""></p>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>使用chrome发现<a href="https://segmentfault.com" target="_blank" rel="noopener">segmentfault</a>的解决方法是在table上套一个table-wrap，如下图蓝色背景和红圈所示</p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/3.png" alt=""></p>
+<p>首先想到直接在table上套一个table-wrap即可<br>接着查看别的table时发现并不是每一个table都被套上一个table-wrap，如下图所示，也就是说只有显示不全的table才会加上table-wrap</p>
+<p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/02/%E4%BB%BFsf--table%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8/4.png" alt=""></p>
+<p>table什么情况是显示不全？<br>那就是table的宽度 &gt; 文章的宽度</p>
+<p>通过以上分析可以得出简单的步骤：</p>
+<ol>
+<li>获取文章的宽度(articleWidth)</li>
+<li>获取所有的table</li>
+<li>找出比articleWidth宽的table</li>
+<li>使其被.table-wrap包囊</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> articleWidth = <span class="built_in">document</span>.getElementById(<span class="string">'文章'</span>).clientWidth;</span><br><span class="line"><span class="keyword">let</span> tables = $(<span class="string">'table'</span>);</span><br><span class="line"></span><br><span class="line">tables.each(<span class="function">(<span class="params">index, table</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (table.clientWidth &gt; articleWidth) &#123;</span><br><span class="line">        table.outerHTML = <span class="string">"&lt;div class='table-wrap'&gt;"</span> + table.outerHTML + <span class="string">"&lt;/div&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>别忘了补上css<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.table-wrap</span>&#123;</span><br><span class="line">  <span class="attribute">overflow-x</span>: scroll;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其实不用判断table的宽度 &gt; 文章的宽度也能实现，让每一个table都套上.table-wrap，使用如下css<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.table-wrap</span>&#123;</span><br><span class="line">  <span class="attribute">overflow-x</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样的话只是会在html上多一点<code>&lt;div class=&quot;table-wrap&quot;&gt;&lt;/div&gt;</code>而已，并且当页面大小发生变化也会根据需要是否出现滚动条</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://lierabbit.cn/2018/09/02/仿segmentfault-table横向滚动/" title="仿segmentfault-table横向滚动" target="_blank" rel="external">https://lierabbit.cn/2018/09/02/仿segmentfault-table横向滚动/</a>
+    </li>
+    
+    
+      <li class="post-copyright-license">
+        <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+      </li>
+    
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/LieRabbit" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/LieRabbit.gif" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/LieRabbit" target="_blank"><span class="text-dark">谎话兔</span><small class="ml-1x">业余开发者</small></a></h3>
+        <div>有些梦虽然遥不可及，但并不是不可能实现，只要我足够的强</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+    <div id="vcomments"></div>
+
+    
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2018/09/01/有效的括号/" title="有效的括号（Valid Parentheses）"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipay.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpay.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+    
+        <div class="WXGongZhongHao">
+    <img src="/images/WXGongZhongHao.jpg" style="height:172px" />
+    <br>
+    <span>关注公众号，同步最新博文</span>
+</div>
+    
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/LieRabbit" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://segmentfault.com/u/lierabbit" target="_blank" title="Segmentfault" data-toggle=tooltip data-placement=top><i class="icon icon-segmentfault"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2018 <a href="https://lierabbit.cn" target="_blank">谎话兔</a>
+        
+        
+            总浏览量：<span id="all_leancloud_visitors">0</span>
+        
+        <div class="publishby">
+        	Theme by <a href="https://github.com/LieRabbit" target="_blank"> LieRabbit </a>base on <a target="_blank">easy</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+    
+
+		
+			<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+			<script>
+				AV.init({
+					appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+					appKey: '6FDWhh254T0GfhCBQsQ9OfWv'
+				});
+				function showTime(Counter) {
+					let visitors = $('.leancloud_visitors');
+					let months = [];
+					visitors.each(function () {
+						let url = $(this).attr('id').trim();
+						month = url.slice(0, 8);
+						if (!months.includes(month))
+							months.push(month);
+					});
+					for (let i = 0, len = months.length; i < len; i++) {
+						let query = new AV.Query(Counter);
+						query.startsWith("url", months[i]);
+						query.find({
+							success: function (results) {
+								if (results.length == 0) {
+									return;
+								}
+								let data = results;
+								visitors.each(function () {
+									let url = $(this).attr('id').trim();
+									for (let i = 0; i < data.length; i++) {
+										let object = data[i];
+										let content = object.get('time');
+										let _url = object.get('url')
+										if (url == _url) {
+											$(this).text(content);
+										}
+									}
+								})
+
+							},
+							error: function (object, error) {
+								console.log("Error: " + error.code + " " + error.message);
+							}
+						});
+					}
+				}
+
+				function addCount(Counter) {
+					url = $(".leancloud_visitors").attr('id').trim();
+					title = $(".leancloud_visitors").attr('data-flag-title').trim();
+					let query = new AV.Query(Counter);
+					query.equalTo("url", url);
+					query.find().then(results => {
+						if (results.length > 0) {
+							let counter = results[0];
+							counter.increment("time");
+							counter.save({ fetchWhenSave: true }).then(counter => {
+								let content = counter.get('time');
+								$(document.getElementById(url)).text(content);
+							}, error => console.log('Failed to save Visitor num, with error message: ' + error.message));
+						} else {
+							let newcounter = new Counter();
+							newcounter.set("title", title);
+							newcounter.set("url", url);
+							newcounter.set("time", 1);
+							newcounter.save().then(newcounter => {
+								let content = newcounter.get('time');
+								$(document.getElementById(url)).text(content);
+							}, error => {
+								console.log('Failed to create');
+							})
+						}
+					}, errors => console.log('Error:' + error.code + " " + error.message));
+				}
+
+				// 全站浏览量计数
+				function addAllCount(Counter) {
+					let query = new AV.Query(Counter);
+					query.equalTo("url", "/");
+					query.find().then(results => {
+						if (results.length > 0) {
+							let counter = results[0];
+							counter.increment("time");
+							counter.save({ fetchWhenSave: true }).then(counter => {
+								let content = counter.get('time');
+								$('#all_leancloud_visitors').text(content);
+							}, error => console.log('Failed to save Visitor num, with error message: ' + error.message));
+						} else {
+							let newcounter = new Counter();
+							newcounter.set("title", "全站浏览量");
+							newcounter.set("url", "/");
+							newcounter.set("time", 1);
+							newcounter.save().then(newcounter => {
+								let content = newcounter.get('time');
+								$('#all_leancloud_visitors').text(content);
+							}, error => {
+								console.log('Failed to create');
+							})
+						}
+					});
+				}
+
+				
+					$(function () {
+						let Counter = AV.Object.extend("Counter");
+						addCount(Counter);
+						addAllCount(Counter);
+					});
+				
+			</script>
+			
+    
+        
+    
+   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+     var meta = 'nick,mail,link';
+     meta = meta.split(',').filter(function (item) {
+       return GUEST.indexOf(item)>-1;
+     });
+     new Valine({
+         el: '#vcomments' ,
+         verify: false,
+         notify: false,
+         appId: 'BMWmY1n99OaXYgxElxicuKHY-gzGzoHsz',
+         appKey: '6FDWhh254T0GfhCBQsQ9OfWv',
+         placeholder: 'BB一下',
+         avatar:'mm',
+         meta:meta,
+         pageSize:'10' || 10,
+         visitor: false
+     });
+   </script>
+
+    
+
+    
+    
+
+    <script defer>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?316169812d1efd741be4d945728aecd2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+        console.info("百度统计开启");
+    })();
+</script>
+
+
+    <script defer>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+        console.info('百度推送开启');
+    })();
+</script>
+
+
+    
+        <script defer>
+    let markdownBody = $('.markdown-body')[0];
+    let tables = $('table');
+    
+    tables.each((index, table) => {
+        if (table.parentElement == markdownBody) {
+            table.outerHTML = "<div class='table-wrap'>" + table.outerHTML + "</div>";
+        }
+    });
+</script>
+    
+
+</body>
+</html>
