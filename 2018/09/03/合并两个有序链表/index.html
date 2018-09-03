@@ -19,21 +19,21 @@
     <meta name="baidu-site-verification" content="YlYjMlxgL7" />
   
   
-  <title>链表的分化 | 谎话兔</title>
-  <meta name="description" content="对于一个链表，我们需要用一个特定阈值完成对它的分化，使得小于等于这个值的结点移到前面，大于该值的结点在后面，同时保证两类结点内部的位置关系不变。给定一个链表的头结点head，同时给定阈值val，请返回一个链表，使小于等于它的结点在前，大于等于它的在后，保证结点值不重复。测试样例： 12&amp;#123;1,4,2,5&amp;#125;,3&amp;#123;1,2,4,5&amp;#125; 思路：使用2个链表，一个放小于等">
+  <title>合并两个有序链表 | 谎话兔</title>
+  <meta name="description" content="题目描述将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。   示例：输入：1-&amp;gt;2-&amp;gt;4, 1-&amp;gt;3-&amp;gt;4输出：1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;4  解决方法先比较头节点，然后递归比较剩下的节点，最后将其连接起来 1234567891011121314public ListNode mergeTwoLi">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="链表的分化">
-<meta property="og:url" content="https://lierabbit.cn/2018/02/19/链表的分化/index.html">
+<meta property="og:title" content="合并两个有序链表">
+<meta property="og:url" content="https://lierabbit.cn/2018/09/03/合并两个有序链表/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="对于一个链表，我们需要用一个特定阈值完成对它的分化，使得小于等于这个值的结点移到前面，大于该值的结点在后面，同时保证两类结点内部的位置关系不变。给定一个链表的头结点head，同时给定阈值val，请返回一个链表，使小于等于它的结点在前，大于等于它的在后，保证结点值不重复。测试样例： 12&amp;#123;1,4,2,5&amp;#125;,3&amp;#123;1,2,4,5&amp;#125; 思路：使用2个链表，一个放小于等">
+<meta property="og:description" content="题目描述将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。   示例：输入：1-&amp;gt;2-&amp;gt;4, 1-&amp;gt;3-&amp;gt;4输出：1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;4  解决方法先比较头节点，然后递归比较剩下的节点，最后将其连接起来 1234567891011121314public ListNode mergeTwoLi">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-24T09:13:31.273Z">
+<meta property="og:updated_time" content="2018-09-03T08:55:09.881Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="链表的分化">
-<meta name="twitter:description" content="对于一个链表，我们需要用一个特定阈值完成对它的分化，使得小于等于这个值的结点移到前面，大于该值的结点在后面，同时保证两类结点内部的位置关系不变。给定一个链表的头结点head，同时给定阈值val，请返回一个链表，使小于等于它的结点在前，大于等于它的在后，保证结点值不重复。测试样例： 12&amp;#123;1,4,2,5&amp;#125;,3&amp;#123;1,2,4,5&amp;#125; 思路：使用2个链表，一个放小于等">
+<meta name="twitter:title" content="合并两个有序链表">
+<meta name="twitter:description" content="题目描述将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。   示例：输入：1-&amp;gt;2-&amp;gt;4, 1-&amp;gt;3-&amp;gt;4输出：1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;4  解决方法先比较头节点，然后递归比较剩下的节点，最后将其连接起来 1234567891011121314public ListNode mergeTwoLi">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://lierabbit.cn/2018/02/19/链表的分化/index.html">
+  <link rel="canonical" href="https://lierabbit.cn/2018/09/03/合并两个有序链表/index.html">
   
     <link rel="alternate" href="/atom.xml" title="谎话兔博客" type="application/atom+xml">
   
@@ -190,6 +190,15 @@
   <div class="slimContent">
     
       
+<div class="widget">
+    <nav class="article-toc">
+        <h3 class="toc-title">
+            文章目录
+        </h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a></li></ol>
+    </nav>
+</div>
+
     
       <div class="widget">
     <h3 class="widget-title">公告</h3>
@@ -312,27 +321,27 @@
   
   <main class="main" role="main">
   <div class="content">
-  <article id="post-链表的分化" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-合并两个有序链表" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/19/链表的分化/">链表的分化</a>
+      <a class="article-title" href="/2018/09/03/合并两个有序链表/">合并两个有序链表</a>
     </h1>
 
       
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2018/02/19/链表的分化/" class="article-date">
-	  <time datetime="2018-02-19T03:42:18.000Z" itemprop="datePublished">2018-02-19 11:42:18</time>
+	<a href="/2018/09/03/合并两个有序链表/" class="article-date">
+	  <time datetime="2018-09-03T08:46:54.000Z" itemprop="datePublished">2018-09-03 16:46:54</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/直通BAT面试算法/">直通BAT面试算法</a>
+    <a class="article-category-link" href="/categories/LeetCode算法之旅/">LeetCode算法之旅</a>
   </span>
 
         
@@ -346,7 +355,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/02/19/链表的分化/" class="leancloud_visitors"  data-flag-title="链表的分化">0</span>
+    	<span id="/2018/09/03/合并两个有序链表/" class="leancloud_visitors"  data-flag-title="合并两个有序链表">0</span>
     </span>
 
         
@@ -354,10 +363,12 @@
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <p>对于一个链表，我们需要用一个特定阈值完成对它的分化，使得小于等于这个值的结点移到前面，大于该值的结点在后面，同时保证两类结点内部的位置关系不变。<br>给定一个链表的头结点head，同时给定阈值val，请返回一个链表，使小于等于它的结点在前，大于等于它的在后，保证结点值不重复。<br>测试样例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;1,4,2,5&#125;,3</span><br><span class="line">&#123;1,2,4,5&#125;</span><br></pre></td></tr></table></figure>
-<p>思路：使用2个链表，一个放小于等于阈值的节点，一个放大于阈值的节点，最后连接2个链表<br>注意：阈(yu)值(zhi)不是阀(fa)值(zhi)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> val = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> TreeNode left = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">public</span> TreeNode right = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TreeNode</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">listDivide</span><span class="params">(ListNode head, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line"></span><br><span class="line">        ListNode leftHead = <span class="keyword">null</span>;</span><br><span class="line">        ListNode leftNode = <span class="keyword">null</span>;</span><br><span class="line">        ListNode rightHead = <span class="keyword">null</span>;</span><br><span class="line">        ListNode rightNode = <span class="keyword">null</span>;</span><br><span class="line">        ListNode node = head;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (node != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (node.val &lt;= val) &#123;</span><br><span class="line">                <span class="keyword">if</span> (leftHead == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    leftHead = node;</span><br><span class="line">                    leftNode = leftHead;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    leftNode.next = node;</span><br><span class="line">                    leftNode = node;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (rightHead == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    rightHead = node;</span><br><span class="line">                    rightNode = rightHead;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    rightNode.next = node;</span><br><span class="line">                    rightNode = node;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果没有小于等于阈值，则只有大于阀值的部分，令头节点等于右边起始节点</span></span><br><span class="line">        <span class="keyword">if</span> (leftHead == <span class="keyword">null</span>)</span><br><span class="line">            head = rightHead;</span><br><span class="line">        <span class="keyword">else</span> &#123;  <span class="comment">// 否则就是要连接左右部分</span></span><br><span class="line">            head = leftHead;</span><br><span class="line">            leftNode.next = rightHead;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (rightHead != <span class="keyword">null</span>)  <span class="comment">// 如果有右部分，则把尾节点的next置空</span></span><br><span class="line">            rightNode.next = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 </p>
+<blockquote>
+<p>示例：<br>输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4<br>输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</p>
+</blockquote>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>先比较头节点，然后递归比较剩下的节点，最后将其连接起来</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeTwoLists</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l1 == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> l2;</span><br><span class="line">    <span class="keyword">if</span> (l2 == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> l1;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (l1.val &lt; l2.val) &#123;</span><br><span class="line">        l1.next = mergeTwoLists(l1.next, l2);</span><br><span class="line">        <span class="keyword">return</span> l1;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        l2.next = mergeTwoLists(l1, l2.next);</span><br><span class="line">        <span class="keyword">return</span> l2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <div class="article-footer">
@@ -366,7 +377,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://lierabbit.cn/2018/02/19/链表的分化/" title="链表的分化" target="_blank" rel="external">https://lierabbit.cn/2018/02/19/链表的分化/</a>
+      <a href="https://lierabbit.cn/2018/09/03/合并两个有序链表/" title="合并两个有序链表" target="_blank" rel="external">https://lierabbit.cn/2018/09/03/合并两个有序链表/</a>
     </li>
     
     
@@ -417,13 +428,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2018/02/19/打印两个链表的公共值/" title="打印两个链表的公共值"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2018/02/19/访问单个节点的删除/" title="访问单个节点的删除"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2018/09/02/仿segmentfault-table横向滚动/" title="仿segmentfault-table横向滚动"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
   </ul>
