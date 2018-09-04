@@ -1,1 +1,1 @@
-https://lierabbit.cn/2018/09/03/合并两个有序链表/
+https://lierabbit.cn/2018/09/04/括号生成/
