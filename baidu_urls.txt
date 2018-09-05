@@ -1,1 +1,1 @@
-https://lierabbit.cn/2018/09/04/括号生成/
+https://lierabbit.cn/2018/09/05/合并K个排序链表/
