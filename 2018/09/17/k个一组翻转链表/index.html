@@ -18,21 +18,21 @@
   
     <meta name="baidu-site-verification" content="YlYjMlxgL7" />
   
-  <title>可查询最值的栈</title>
-  <meta name="description" content="定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的min函数。 思路：用一个栈data保存数据，用另外一个min栈保存依次入栈最小的数比如，data中依次入栈，5,  4,  3, 8, 10, 11, 12, 1则min依次入栈，5,  4,  3，no,no, no, no, 1no代表此次不如栈，每次入栈的时候，如果入栈的元素比min中的栈顶元素小或等于则入栈，否则不如栈。 1234">
+  <title>k个一组翻转链表（Reverse Nodes in k-Group）</title>
+  <meta name="description" content="题目描述给出一个链表，每 k 个节点一组进行翻转，并返回翻转后的链表。 k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么将最后剩余节点保持原有顺序。 示例 : 给定这个链表：1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5 当 k = 2 时，应当返回: 2-&amp;gt;1-&amp;gt;4-&amp;gt;3-&amp;gt;5 当 k = 3 时，应当返回: 3-&amp;gt;2-&amp;gt;">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="可查询最值的栈">
-<meta property="og:url" content="https://lierabbit.cn/2018/03/06/可查询最值的栈-1/index.html">
+<meta property="og:title" content="k个一组翻转链表（Reverse Nodes in k-Group）">
+<meta property="og:url" content="https://lierabbit.cn/2018/09/17/k个一组翻转链表/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的min函数。 思路：用一个栈data保存数据，用另外一个min栈保存依次入栈最小的数比如，data中依次入栈，5,  4,  3, 8, 10, 11, 12, 1则min依次入栈，5,  4,  3，no,no, no, no, 1no代表此次不如栈，每次入栈的时候，如果入栈的元素比min中的栈顶元素小或等于则入栈，否则不如栈。 1234">
+<meta property="og:description" content="题目描述给出一个链表，每 k 个节点一组进行翻转，并返回翻转后的链表。 k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么将最后剩余节点保持原有顺序。 示例 : 给定这个链表：1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5 当 k = 2 时，应当返回: 2-&amp;gt;1-&amp;gt;4-&amp;gt;3-&amp;gt;5 当 k = 3 时，应当返回: 3-&amp;gt;2-&amp;gt;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-26T11:23:26.719Z">
+<meta property="og:updated_time" content="2018-09-17T07:35:54.182Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="可查询最值的栈">
-<meta name="twitter:description" content="定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的min函数。 思路：用一个栈data保存数据，用另外一个min栈保存依次入栈最小的数比如，data中依次入栈，5,  4,  3, 8, 10, 11, 12, 1则min依次入栈，5,  4,  3，no,no, no, no, 1no代表此次不如栈，每次入栈的时候，如果入栈的元素比min中的栈顶元素小或等于则入栈，否则不如栈。 1234">
+<meta name="twitter:title" content="k个一组翻转链表（Reverse Nodes in k-Group）">
+<meta name="twitter:description" content="题目描述给出一个链表，每 k 个节点一组进行翻转，并返回翻转后的链表。 k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么将最后剩余节点保持原有顺序。 示例 : 给定这个链表：1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5 当 k = 2 时，应当返回: 2-&amp;gt;1-&amp;gt;4-&amp;gt;3-&amp;gt;5 当 k = 3 时，应当返回: 3-&amp;gt;2-&amp;gt;">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://lierabbit.cn/2018/03/06/可查询最值的栈-1/index.html">
+  <link rel="canonical" href="https://lierabbit.cn/2018/09/17/k个一组翻转链表/index.html">
   
     <link rel="alternate" href="/atom.xml" title="谎话兔博客" type="application/atom+xml">
   
@@ -192,6 +192,15 @@
   <div class="slimContent">
     
       
+<div class="widget">
+    <nav class="article-toc">
+        <h3 class="toc-title">
+            文章目录
+        </h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a></li></ol>
+    </nav>
+</div>
+
     
       <div class="widget">
     <h3 class="widget-title">公告</h3>
@@ -314,27 +323,27 @@
   
   <main class="main" role="main">
   <div class="content">
-  <article id="post-可查询最值的栈-1" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-k个一组翻转链表" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/06/可查询最值的栈-1/">可查询最值的栈</a>
+      <a class="article-title" href="/2018/09/17/k个一组翻转链表/">k个一组翻转链表（Reverse Nodes in k-Group）</a>
     </h1>
 
       
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2018/03/06/可查询最值的栈-1/" class="article-date">
-	  <time datetime="2018-03-06T15:21:34.000Z" itemprop="datePublished">2018-03-06 23:21:34</time>
+	<a href="/2018/09/17/k个一组翻转链表/" class="article-date">
+	  <time datetime="2018-09-17T07:09:11.000Z" itemprop="datePublished">2018-09-17 15:09:11</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/剑指Offer/">剑指Offer</a>
+    <a class="article-category-link" href="/categories/LeetCode算法之旅/">LeetCode算法之旅</a>
   </span>
 
         
@@ -348,7 +357,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/03/06/可查询最值的栈-1/" class="leancloud_visitors"  data-flag-title="可查询最值的栈">0</span>
+    	<span id="/2018/09/17/k个一组翻转链表/" class="leancloud_visitors"  data-flag-title="k个一组翻转链表（Reverse Nodes in k-Group）">0</span>
     </span>
 
         
@@ -356,9 +365,30 @@
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <p>定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的min函数。</p>
-<p>思路：用一个栈data保存数据，用另外一个min栈保存依次入栈最小的数<br>比如，data中依次入栈，5,  4,  3, 8, 10, 11, 12, 1<br>则min依次入栈，5,  4,  3，no,no, no, no, 1<br>no代表此次不如栈，每次入栈的时候，如果入栈的元素比min中的栈顶元素小或等于则入栈，否则不如栈。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 包含<span class="title">min</span>函数的栈 </span>&#123;</span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    Stack&lt;Integer&gt; minStack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</span><br><span class="line">        stack.add(node);</span><br><span class="line">        <span class="keyword">if</span> (minStack.empty())</span><br><span class="line">            minStack.add(node);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (node &lt;= minStack.peek())</span><br><span class="line">            minStack.add(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> value = stack.pop();</span><br><span class="line">        <span class="keyword">if</span> (value == minStack.peek())</span><br><span class="line">            minStack.pop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> stack.peek();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> minStack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给出一个链表，每 k 个节点一组进行翻转，并返回翻转后的链表。</p>
+<p>k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么将最后剩余节点保持原有顺序。</p>
+<p>示例 :</p>
+<p>给定这个链表：1-&gt;2-&gt;3-&gt;4-&gt;5</p>
+<p>当 k = 2 时，应当返回: 2-&gt;1-&gt;4-&gt;3-&gt;5</p>
+<p>当 k = 3 时，应当返回: 3-&gt;2-&gt;1-&gt;4-&gt;5</p>
+<p>说明 :</p>
+<ul>
+<li>你的算法只能使用常数的额外空间。</li>
+<li>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</li>
+</ul>
+<p>ListNode结构<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode next;</span><br><span class="line"></span><br><span class="line">    ListNode(<span class="keyword">int</span> x) &#123;</span><br><span class="line">        val = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>使用4个指针反转链表</p>
+<ul>
+<li><code>start</code>下一次循环的开始节点</li>
+<li><code>kStep</code>提前走k步</li>
+<li><code>cur</code>当前要移动的节点</li>
+<li><code>pre</code>固定的开始节点</li>
+</ul>
+<blockquote>
+<p>例如:<br>list = 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5, k = 3</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">首先使用虚拟头节点简化操作</span><br><span class="line">dummy  -&gt;  1  -&gt;  2  -&gt;  3  -&gt;  4  -&gt;  5</span><br><span class="line"></span><br><span class="line">第一次反转链表过程如下</span><br><span class="line">dummy  -&gt;  1  -&gt;  2  -&gt;  3  -&gt;  4  -&gt;  5</span><br><span class="line"> pre      cur          kStep</span><br><span class="line">         start</span><br><span class="line"></span><br><span class="line">dummy  -&gt;  2  -&gt;  3  -&gt;  1  -&gt;  4  -&gt;  5</span><br><span class="line"> pre      cur   kStep  start</span><br><span class="line"></span><br><span class="line">dummy  -&gt;  3  -&gt;  2  -&gt;  1  -&gt;  4  -&gt;  5</span><br><span class="line"> pre      cur          start</span><br><span class="line">         kStep</span><br><span class="line"></span><br><span class="line">第二次反转遍历过程如下</span><br><span class="line">dummy  -&gt;  3  -&gt;  2  -&gt;  1  -&gt;  4  -&gt;  5  -&gt;  null</span><br><span class="line">                        pre   start           kStep</span><br><span class="line"></span><br><span class="line">kStep为null退出循环</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKGroup</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">    dummy.next = head;</span><br><span class="line">    ListNode start = dummy;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        ListNode kStep = start, pre = start, cur;</span><br><span class="line">        start = pre.next;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k &amp;&amp; kStep != <span class="keyword">null</span>; i++)</span><br><span class="line">            kStep = kStep.next;</span><br><span class="line">        <span class="keyword">if</span> (kStep == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            cur = pre.next;</span><br><span class="line">            pre.next = cur.next;</span><br><span class="line">            cur.next = kStep.next;</span><br><span class="line">            kStep.next = cur;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dummy.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <div class="article-footer">
@@ -367,7 +397,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://lierabbit.cn/2018/03/06/可查询最值的栈-1/" title="可查询最值的栈" target="_blank" rel="external">https://lierabbit.cn/2018/03/06/可查询最值的栈-1/</a>
+      <a href="https://lierabbit.cn/2018/09/17/k个一组翻转链表/" title="k个一组翻转链表（Reverse Nodes in k-Group）" target="_blank" rel="external">https://lierabbit.cn/2018/09/17/k个一组翻转链表/</a>
     </li>
     
     
@@ -404,13 +434,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2018/03/07/栈的压入弹出序列/" title="栈的压入弹出序列"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2018/03/05/二叉树的镜像/" title="二叉树的镜像"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2018/09/09/两两交换链表中的节点/" title="两两交换链表中的节点（Swap Nodes in Pairs）"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
   </ul>

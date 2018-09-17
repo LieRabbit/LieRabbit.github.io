@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lierabbit.cn/"/>
-  <updated>2018-09-09T13:17:10.367Z</updated>
+  <updated>2018-09-17T07:35:54.182Z</updated>
   <id>https://lierabbit.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>k个一组翻转链表（Reverse Nodes in k-Group）</title>
+    <link href="https://lierabbit.cn/2018/09/17/k%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8/"/>
+    <id>https://lierabbit.cn/2018/09/17/k个一组翻转链表/</id>
+    <published>2018-09-17T07:09:11.000Z</published>
+    <updated>2018-09-17T07:35:54.182Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给出一个链表，每 k 个节点一组进行翻转，并返回翻转后的链表。</p><p>k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么将最后剩余节点保持原有顺序。</p><p>示例 :</p><p>给定这个链表：1-&gt;2-&gt;3-&gt;4-&gt;5</p><p>当 k = 2 时，应当返回: 2-&gt;1-&gt;4-&gt;3-&gt;5</p><p>当 k = 3 时，应当返回: 3-&gt;2-&gt;1-&gt;4-&gt;5</p><p>说明 :</p><ul><li>你的算法只能使用常数的额外空间。</li><li>你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</li></ul><p>ListNode结构<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode next;</span><br><span class="line"></span><br><span class="line">    ListNode(<span class="keyword">int</span> x) &#123;</span><br><span class="line">        val = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>使用4个指针反转链表</p><ul><li><code>start</code>下一次循环的开始节点</li><li><code>kStep</code>提前走k步</li><li><code>cur</code>当前要移动的节点</li><li><code>pre</code>固定的开始节点</li></ul><blockquote><p>例如:<br>list = 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5, k = 3</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">首先使用虚拟头节点简化操作</span><br><span class="line">dummy  -&gt;  1  -&gt;  2  -&gt;  3  -&gt;  4  -&gt;  5</span><br><span class="line"></span><br><span class="line">第一次反转链表过程如下</span><br><span class="line">dummy  -&gt;  1  -&gt;  2  -&gt;  3  -&gt;  4  -&gt;  5</span><br><span class="line"> pre      cur          kStep</span><br><span class="line">         start</span><br><span class="line"></span><br><span class="line">dummy  -&gt;  2  -&gt;  3  -&gt;  1  -&gt;  4  -&gt;  5</span><br><span class="line"> pre      cur   kStep  start</span><br><span class="line"></span><br><span class="line">dummy  -&gt;  3  -&gt;  2  -&gt;  1  -&gt;  4  -&gt;  5</span><br><span class="line"> pre      cur          start</span><br><span class="line">         kStep</span><br><span class="line"></span><br><span class="line">第二次反转遍历过程如下</span><br><span class="line">dummy  -&gt;  3  -&gt;  2  -&gt;  1  -&gt;  4  -&gt;  5  -&gt;  null</span><br><span class="line">                        pre   start           kStep</span><br><span class="line"></span><br><span class="line">kStep为null退出循环</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKGroup</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">    dummy.next = head;</span><br><span class="line">    ListNode start = dummy;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        ListNode kStep = start, pre = start, cur;</span><br><span class="line">        start = pre.next;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k &amp;&amp; kStep != <span class="keyword">null</span>; i++)</span><br><span class="line">            kStep = kStep.next;</span><br><span class="line">        <span class="keyword">if</span> (kStep == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            cur = pre.next;</span><br><span class="line">            pre.next = cur.next;</span><br><span class="line">            cur.next = kStep.next;</span><br><span class="line">            kStep.next = cur;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dummy.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;给出一个链表，每 k 个节点一组进行翻转，并返回翻转后的链表。&lt;/p&gt;
+&lt;p&gt;k 是一个正整数，它的值小于或等于链表的长度。
+      
+    
+    </summary>
+    
+      <category term="LeetCode算法之旅" scheme="https://lierabbit.cn/categories/LeetCode%E7%AE%97%E6%B3%95%E4%B9%8B%E6%97%85/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>两两交换链表中的节点（Swap Nodes in Pairs）</title>
@@ -498,31 +524,6 @@
         &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;给定一个 32 位有符号整数，将整数中的数字进行反转。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;示例 1:&lt;br&gt;输入: 1
-      
-    
-    </summary>
-    
-      <category term="LeetCode算法之旅" scheme="https://lierabbit.cn/categories/LeetCode%E7%AE%97%E6%B3%95%E4%B9%8B%E6%97%85/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Z字形变换（ZigZag Conversion）</title>
-    <link href="https://lierabbit.cn/2018/05/09/Z%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2/"/>
-    <id>https://lierabbit.cn/2018/05/09/Z字形变换/</id>
-    <published>2018-05-09T02:17:52.000Z</published>
-    <updated>2018-09-09T13:11:36.124Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>将字符串 “PAYPALISHIRING” 以Z字形排列成给定的行数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">P   A   H   N</span><br><span class="line">A P L S I I G</span><br><span class="line">Y   I   R</span><br></pre></td></tr></table></figure></p><p>之后从左往右，逐行读取字符：”PAHNAPLSIIGYIR”<br>实现一个将字符串进行指定行数变换的函数:<br>string convert(string s, int numRows);</p><blockquote><p>示例 1:<br>输入: s = “PAYPALISHIRING”, numRows = 3<br>输出: “PAHNAPLSIIGYIR”</p></blockquote><blockquote><p>示例 2:<br>输入: s = “PAYPALISHIRING”, numRows = 4<br>输出: “PINALSIGYAHRPI”<br>解释:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">P     I    N</span><br><span class="line">A   L S  I G</span><br><span class="line">Y A   H R</span><br><span class="line">P     I</span><br></pre></td></tr></table></figure></p></blockquote><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>观察示例可知，往下走要走numRows步，往上走要走numRows-2步（除去头尾，因为和往下走重叠）<br>模拟Z字遍历字符串</p><ol><li>往下走numRows步</li><li>往上走numRows-2步</li><li>重复1，2直到字符串遍历结束</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">convert</span><span class="params">(String s, <span class="keyword">int</span> numRows)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (numRows &lt; <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line"></span><br><span class="line">    StringBuilder[] sbs = <span class="keyword">new</span> StringBuilder[numRows];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numRows; i++)</span><br><span class="line">        sbs[i] = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>, len = s.length();</span><br><span class="line">    <span class="keyword">while</span> (index &lt; len) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> row = <span class="number">0</span>; row &lt; numRows &amp;&amp; index &lt; len; row++) <span class="comment">// 往下走</span></span><br><span class="line">            sbs[row].append(s.charAt(index++));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> row = numRows - <span class="number">2</span>; row &gt; <span class="number">0</span> &amp;&amp; index &lt; len; row--) <span class="comment">// 往上走</span></span><br><span class="line">            sbs[row].append(s.charAt(index++));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> row = <span class="number">1</span>; row &lt; numRows; row++)</span><br><span class="line">        sbs[<span class="number">0</span>].append(sbs[row]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sbs[<span class="number">0</span>].toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;将字符串 “PAYPALISHIRING” 以Z字形排列成给定的行数：&lt;br&gt;&lt;figure class=&quot;highligh
       
     
     </summary>
