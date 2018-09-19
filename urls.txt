@@ -1,1 +1,1 @@
-https://lierabbit.cn/2018/09/18/删除排序数组中的重复项/
+https://lierabbit.cn/2018/09/19/移除元素/

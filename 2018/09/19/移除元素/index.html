@@ -18,21 +18,21 @@
   
     <meta name="baidu-site-verification" content="YlYjMlxgL7" />
   
-  <title>拓扑结构相同子树</title>
-  <meta name="description" content="对于两棵彼此独立的二叉树A和B，请编写一个高效算法，检查A中是否存在一棵子树与B树的拓扑结构完全相同。给定两棵二叉树的头结点A和B，请返回一个bool值，代表A中是否存在一棵同构于B的子树。 思路：将树序列化成字符串。如果A树中存在一棵子树与B树的拓扑结构完全相同则A序列化后的字符串必定包含B序列化后的字符串。 1234567891011121314151617181920212223242526">
+  <title>移除元素（Remove Element）</title>
+  <meta name="description" content="题目描述给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。 示例 1:  给定 nums = [3,2,2,3], val = 3,函数应该返回新的长度 2, 并且 nums 中的前两个元素">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="拓扑结构相同子树">
-<meta property="og:url" content="https://lierabbit.cn/2018/02/18/拓扑结构相同子树/index.html">
+<meta property="og:title" content="移除元素（Remove Element）">
+<meta property="og:url" content="https://lierabbit.cn/2018/09/19/移除元素/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="对于两棵彼此独立的二叉树A和B，请编写一个高效算法，检查A中是否存在一棵子树与B树的拓扑结构完全相同。给定两棵二叉树的头结点A和B，请返回一个bool值，代表A中是否存在一棵同构于B的子树。 思路：将树序列化成字符串。如果A树中存在一棵子树与B树的拓扑结构完全相同则A序列化后的字符串必定包含B序列化后的字符串。 1234567891011121314151617181920212223242526">
+<meta property="og:description" content="题目描述给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。 示例 1:  给定 nums = [3,2,2,3], val = 3,函数应该返回新的长度 2, 并且 nums 中的前两个元素">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-24T07:41:54.834Z">
+<meta property="og:updated_time" content="2018-09-19T03:22:55.901Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="拓扑结构相同子树">
-<meta name="twitter:description" content="对于两棵彼此独立的二叉树A和B，请编写一个高效算法，检查A中是否存在一棵子树与B树的拓扑结构完全相同。给定两棵二叉树的头结点A和B，请返回一个bool值，代表A中是否存在一棵同构于B的子树。 思路：将树序列化成字符串。如果A树中存在一棵子树与B树的拓扑结构完全相同则A序列化后的字符串必定包含B序列化后的字符串。 1234567891011121314151617181920212223242526">
+<meta name="twitter:title" content="移除元素（Remove Element）">
+<meta name="twitter:description" content="题目描述给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。 示例 1:  给定 nums = [3,2,2,3], val = 3,函数应该返回新的长度 2, 并且 nums 中的前两个元素">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://lierabbit.cn/2018/02/18/拓扑结构相同子树/index.html">
+  <link rel="canonical" href="https://lierabbit.cn/2018/09/19/移除元素/index.html">
   
     <link rel="alternate" href="/atom.xml" title="谎话兔博客" type="application/atom+xml">
   
@@ -50,10 +50,10 @@
 <script type="application/ld+json">
         {
             "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
-            "@id": "https://lierabbit.cn/2018/02/18/拓扑结构相同子树/",
+            "@id": "https://lierabbit.cn/2018/09/19/移除元素/",
             "appid": "1610779002344768",
-            "title": "拓扑结构相同子树",
-            "pubDate": "2018-02-18T17:33:25"
+            "title": "移除元素（Remove Element）",
+            "pubDate": "2018-09-19T11:13:42"
         }
 </script>
 <script src="https://xiongzhang.baidu.com/sdk/c.js?appid=1610779002344768"></script>
@@ -201,6 +201,15 @@
   <div class="slimContent">
     
       
+<div class="widget">
+    <nav class="article-toc">
+        <h3 class="toc-title">
+            文章目录
+        </h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a></li></ol>
+    </nav>
+</div>
+
     
       <div class="widget">
     <h3 class="widget-title">公告</h3>
@@ -323,27 +332,27 @@
   
   <main class="main" role="main">
   <div class="content">
-  <article id="post-拓扑结构相同子树" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-移除元素" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/18/拓扑结构相同子树/">拓扑结构相同子树</a>
+      <a class="article-title" href="/2018/09/19/移除元素/">移除元素（Remove Element）</a>
     </h1>
 
       
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2018/02/18/拓扑结构相同子树/" class="article-date">
-	  <time datetime="2018-02-18T09:33:25.000Z" itemprop="datePublished">2018-02-18 17:33:25</time>
+	<a href="/2018/09/19/移除元素/" class="article-date">
+	  <time datetime="2018-09-19T03:13:42.000Z" itemprop="datePublished">2018-09-19 11:13:42</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/直通BAT面试算法/">直通BAT面试算法</a>
+    <a class="article-category-link" href="/categories/LeetCode算法之旅/">LeetCode算法之旅</a>
   </span>
 
         
@@ -357,7 +366,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/02/18/拓扑结构相同子树/" class="leancloud_visitors"  data-flag-title="拓扑结构相同子树">0</span>
+    	<span id="/2018/09/19/移除元素/" class="leancloud_visitors"  data-flag-title="移除元素（Remove Element）">0</span>
     </span>
 
         
@@ -365,9 +374,18 @@
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <p>对于两棵彼此独立的二叉树A和B，请编写一个高效算法，检查A中是否存在一棵子树与B树的拓扑结构完全相同。<br>给定两棵二叉树的头结点A和B，请返回一个bool值，代表A中是否存在一棵同构于B的子树。</p>
-<p>思路：将树序列化成字符串。如果A树中存在一棵子树与B树的拓扑结构完全相同则A序列化后的字符串必定包含B序列化后的字符串。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> val = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> TreeNode left = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">public</span> TreeNode right = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TreeNode</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">chkIdentical</span><span class="params">(TreeNode A, TreeNode B)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        String AS = treeToStringWithStack(A);</span><br><span class="line">        String BS = treeToStringWithStack(B);</span><br><span class="line">        <span class="keyword">return</span> AS.contains(BS);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 先序遍历</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">treeToStringWithStack</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        StringBuilder result = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        stack.add(root);</span><br><span class="line">        TreeNode node;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!stack.empty()) &#123;</span><br><span class="line">            node = stack.pop();</span><br><span class="line">            <span class="keyword">if</span> (node == <span class="keyword">null</span>)</span><br><span class="line">                result.append(<span class="string">"#!"</span>);</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                result.append(node.val).append(<span class="string">"!"</span>);</span><br><span class="line">                stack.add(node.right);</span><br><span class="line">                stack.add(node.left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 递归先序遍历</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">serialByPre</span><span class="params">(TreeNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"#!"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        String res = head.val + <span class="string">"!"</span>;</span><br><span class="line">        res += serialByPre(head.left);</span><br><span class="line">        res += serialByPre(head.right);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。<br>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
+<p>示例 1:</p>
+<blockquote>
+<p>给定 nums = [3,2,2,3], val = 3,<br>函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。<br>你不需要考虑数组中超出新长度后面的元素。</p>
+</blockquote>
+<p>示例 2:</p>
+<blockquote>
+<p>给定 nums = [0,1,2,2,3,0,4,2], val = 2,<br>函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。<br>注意这五个元素可为任意顺序。<br>你不需要考虑数组中超出新长度后面的元素。</p>
+</blockquote>
+<p>说明:<br>为什么返回数值是整数，但输出的答案是数组呢?<br>请注意，输入数组是以“引用”方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。<br>你可以想象内部操作如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// nums 是以“引用”方式传递的。也就是说，不对实参作任何拷贝</span><br><span class="line">int len = removeElement(nums, val);</span><br><span class="line"></span><br><span class="line">// 在函数里修改输入数组对于调用者是可见的。</span><br><span class="line">// 根据你的函数返回的长度, 它会打印出数组中该长度范围内的所有元素。</span><br><span class="line">for (int i = 0; i &lt; len; i++) &#123;</span><br><span class="line">    print(nums[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>使用2个索引len，i，其中len用来复制，i用来检查是否移除元素<br>当<code>nums[i] != val</code>时，说明这时不需要移除元素，将其复制到nums[len]<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] != val)</span><br><span class="line">            nums[len++] = nums[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     <div class="article-footer">
@@ -376,7 +394,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://lierabbit.cn/2018/02/18/拓扑结构相同子树/" title="拓扑结构相同子树" target="_blank" rel="external">https://lierabbit.cn/2018/02/18/拓扑结构相同子树/</a>
+      <a href="https://lierabbit.cn/2018/09/19/移除元素/" title="移除元素（Remove Element）" target="_blank" rel="external">https://lierabbit.cn/2018/09/19/移除元素/</a>
     </li>
     
     
@@ -413,13 +431,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2018/02/18/词语变形/" title="词语变形"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2018/02/18/相邻两数最大差值/" title="相邻两数最大差值"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2018/09/18/删除排序数组中的重复项/" title="删除排序数组中的重复项（Remove Duplicates from Sorted Array）"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
   </ul>
