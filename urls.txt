@@ -1,1 +1,1 @@
-https://lierabbit.cn/2018/09/19/移除元素/
+https://lierabbit.cn/2018/09/20/实现strStr/
