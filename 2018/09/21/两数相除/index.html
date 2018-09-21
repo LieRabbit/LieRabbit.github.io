@@ -18,21 +18,21 @@
   
     <meta name="baidu-site-verification" content="YlYjMlxgL7" />
   
-  <title>复杂链表的复制</title>
-  <meta name="description" content="输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点） 思路：使用在原始元素后面插入克隆元素解决难以设置随机指针问题，第一次遍历在每个元素后面添加一个克隆元素，第二次遍历设置克隆元素的随机指针即原随机指针的下一个，第三次遍历分割出克隆链表 1234567891011121314151617181920212223242526272829303132">
+  <title>两数相除（Divide Two Integers）</title>
+  <meta name="description" content="题目描述给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。返回被除数 dividend 除以除数 divisor 得到的商。 示例 1:  输入: dividend = 10, divisor = 3输出: 3  示例 2:  输入: dividend = 7, divisor = -3输出: -2  说明:被除数和除数均为 32">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="复杂链表的复制">
-<meta property="og:url" content="https://lierabbit.cn/2018/02/19/复杂链表的复制/index.html">
+<meta property="og:title" content="两数相除（Divide Two Integers）">
+<meta property="og:url" content="https://lierabbit.cn/2018/09/21/两数相除/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点） 思路：使用在原始元素后面插入克隆元素解决难以设置随机指针问题，第一次遍历在每个元素后面添加一个克隆元素，第二次遍历设置克隆元素的随机指针即原随机指针的下一个，第三次遍历分割出克隆链表 1234567891011121314151617181920212223242526272829303132">
+<meta property="og:description" content="题目描述给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。返回被除数 dividend 除以除数 divisor 得到的商。 示例 1:  输入: dividend = 10, divisor = 3输出: 3  示例 2:  输入: dividend = 7, divisor = -3输出: -2  说明:被除数和除数均为 32">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-24T09:51:18.438Z">
+<meta property="og:updated_time" content="2018-09-21T10:04:48.874Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="复杂链表的复制">
-<meta name="twitter:description" content="输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点） 思路：使用在原始元素后面插入克隆元素解决难以设置随机指针问题，第一次遍历在每个元素后面添加一个克隆元素，第二次遍历设置克隆元素的随机指针即原随机指针的下一个，第三次遍历分割出克隆链表 1234567891011121314151617181920212223242526272829303132">
+<meta name="twitter:title" content="两数相除（Divide Two Integers）">
+<meta name="twitter:description" content="题目描述给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。返回被除数 dividend 除以除数 divisor 得到的商。 示例 1:  输入: dividend = 10, divisor = 3输出: 3  示例 2:  输入: dividend = 7, divisor = -3输出: -2  说明:被除数和除数均为 32">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://lierabbit.cn/2018/02/19/复杂链表的复制/index.html">
+  <link rel="canonical" href="https://lierabbit.cn/2018/09/21/两数相除/index.html">
   
     <link rel="alternate" href="/atom.xml" title="谎话兔博客" type="application/atom+xml">
   
@@ -50,10 +50,10 @@
 <script type="application/ld+json">
         {
             "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
-            "@id": "https://lierabbit.cn/2018/02/19/复杂链表的复制/",
+            "@id": "https://lierabbit.cn/2018/09/21/两数相除/",
             "appid": "1610779002344768",
-            "title": "复杂链表的复制",
-            "pubDate": "2018-02-19T12:44:30"
+            "title": "两数相除（Divide Two Integers）",
+            "pubDate": "2018-09-21T15:58:44"
         }
 </script>
 <script src="https://xiongzhang.baidu.com/sdk/c.js?appid=1610779002344768"></script>
@@ -201,6 +201,15 @@
   <div class="slimContent">
     
       
+<div class="widget">
+    <nav class="article-toc">
+        <h3 class="toc-title">
+            文章目录
+        </h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a></li></ol>
+    </nav>
+</div>
+
     
       <div class="widget">
     <h3 class="widget-title">公告</h3>
@@ -323,27 +332,27 @@
   
   <main class="main" role="main">
   <div class="content">
-  <article id="post-复杂链表的复制" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-两数相除" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/19/复杂链表的复制/">复杂链表的复制</a>
+      <a class="article-title" href="/2018/09/21/两数相除/">两数相除（Divide Two Integers）</a>
     </h1>
 
       
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2018/02/19/复杂链表的复制/" class="article-date">
-	  <time datetime="2018-02-19T04:44:30.000Z" itemprop="datePublished">2018-02-19 12:44:30</time>
+	<a href="/2018/09/21/两数相除/" class="article-date">
+	  <time datetime="2018-09-21T07:58:44.000Z" itemprop="datePublished">2018-09-21 15:58:44</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/直通BAT面试算法/">直通BAT面试算法</a>
+    <a class="article-category-link" href="/categories/LeetCode算法之旅/">LeetCode算法之旅</a>
   </span>
 
         
@@ -357,7 +366,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/02/19/复杂链表的复制/" class="leancloud_visitors"  data-flag-title="复杂链表的复制">0</span>
+    	<span id="/2018/09/21/两数相除/" class="leancloud_visitors"  data-flag-title="两数相除（Divide Two Integers）">0</span>
     </span>
 
         
@@ -365,9 +374,18 @@
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <p>输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点）</p>
-<p>思路：使用在原始元素后面插入克隆元素解决难以设置随机指针问题，第一次遍历在每个元素后面添加一个克隆元素，第二次遍历设置克隆元素的随机指针即原随机指针的下一个，第三次遍历分割出克隆链表</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RandomListNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> label;</span><br><span class="line">    RandomListNode next = <span class="keyword">null</span>;</span><br><span class="line">    RandomListNode random = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    RandomListNode(<span class="keyword">int</span> label) &#123;</span><br><span class="line">        <span class="keyword">this</span>.label = label;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RandomListNode <span class="title">Clone</span><span class="params">(RandomListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        RandomListNode cur = head;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="keyword">null</span>) &#123; <span class="comment">// 在链表每个元素后面添加一个克隆元素</span></span><br><span class="line">            RandomListNode newNode = <span class="keyword">new</span> RandomListNode(cur.label);</span><br><span class="line">            newNode.next = cur.next;</span><br><span class="line">            cur.next = newNode;</span><br><span class="line">            cur = newNode.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cur = head;</span><br><span class="line">        RandomListNode newNode;</span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="keyword">null</span>) &#123; <span class="comment">// 给每个克隆元素设置随机指针</span></span><br><span class="line">            newNode = cur.next;</span><br><span class="line">            newNode.random = cur.random == <span class="keyword">null</span> ? <span class="keyword">null</span> : cur.random.next;</span><br><span class="line">            cur = cur.next.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cur = head;</span><br><span class="line">        RandomListNode newHead = cur.next;</span><br><span class="line">        RandomListNode next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="keyword">null</span>) &#123; <span class="comment">// 分割出克隆链表，还原原链表</span></span><br><span class="line">            next = cur.next.next;</span><br><span class="line">            newNode = cur.next;</span><br><span class="line">            newNode.next = next == <span class="keyword">null</span> ? <span class="keyword">null</span> : next.next;</span><br><span class="line">            cur.next = next;</span><br><span class="line">            cur = next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。<br>返回被除数 dividend 除以除数 divisor 得到的商。</p>
+<p>示例 1:</p>
+<blockquote>
+<p>输入: dividend = 10, divisor = 3<br>输出: 3</p>
+</blockquote>
+<p>示例 2:</p>
+<blockquote>
+<p>输入: dividend = 7, divisor = -3<br>输出: -2</p>
+</blockquote>
+<p>说明:<br>被除数和除数均为 32 位有符号整数。<br>除数不为 0。<br>假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 − 1]。本题中，如果除法结果溢出，则返回 231 − 1。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>任何一个整数都可以表示成：<br><strong>num=a<sub>0</sub><em>2<sup>0</sup>+a<sub>1</sub></em>2<sup>1</sup>+a<sub>2</sub><em>2<sup>2</sup>+…+a<sub>n</sub></em>2<sup>n</sup></strong><br>基于这个公式以及左移一位相当于乘以2，得出以下算法<br>1.先让除数左移直到大于被除数之前得到一个最大的数（temp）<br>2.被除数每次减去temp，商（res）加上2<sup>k</sup>，k为左移的次数，被除数减去temp<br>3.重复1、2直到被除数小于除数为止<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (divisor == <span class="number">0</span> || (dividend == Integer.MIN_VALUE &amp;&amp; divisor == -<span class="number">1</span>))</span><br><span class="line">        <span class="keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> sign = (dividend &lt; <span class="number">0</span>) ^ (divisor &lt; <span class="number">0</span>) ? -<span class="number">1</span> : <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">long</span> dvd = Math.abs(dividend);</span><br><span class="line">    <span class="keyword">long</span> dvs = Math.abs(divisor);</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (dvd &gt;= dvs) &#123;</span><br><span class="line">        <span class="keyword">long</span> temp = dvs, multiple = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (dvd &gt;= (temp &lt;&lt; <span class="number">1</span>)) &#123;</span><br><span class="line">            temp &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">            multiple &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        dvd -= temp;</span><br><span class="line">        res += multiple;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sign == <span class="number">1</span> ? res : -res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     <div class="article-footer">
@@ -376,7 +394,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://lierabbit.cn/2018/02/19/复杂链表的复制/" title="复杂链表的复制" target="_blank" rel="external">https://lierabbit.cn/2018/02/19/复杂链表的复制/</a>
+      <a href="https://lierabbit.cn/2018/09/21/两数相除/" title="两数相除（Divide Two Integers）" target="_blank" rel="external">https://lierabbit.cn/2018/09/21/两数相除/</a>
     </li>
     
     
@@ -413,13 +431,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2018/02/19/链表判环/" title="链表判环"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2018/02/19/链表的回文结构/" title="链表的回文结构"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2018/09/20/实现strStr/" title="实现strStr（Implement strStr）"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
   </ul>

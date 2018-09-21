@@ -1,1 +1,1 @@
-https://lierabbit.cn/2018/09/20/实现strStr/
+https://lierabbit.cn/2018/09/21/两数相除/
