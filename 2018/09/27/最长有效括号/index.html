@@ -19,21 +19,21 @@
   
     <meta name="baidu-site-verification" content="YlYjMlxgL7" />
   
-  <title>LIS（最长上升子序列）</title>
-  <meta name="description" content="这是一个经典的LIS(即最长上升子序列)问题，请设计一个尽量优的解法求出序列的最长上升子序列的长度。给定一个序列A及它的长度n(长度小于等于500)，请返回LIS的长度。 测试样例：12[1,4,2,5,3],5返回：3 思路：记录以每一个数结尾的最大上升子序列长度，取最大的即为结果maxs[i]表示以maxs[i]结尾的最大上升子序列长度，maxs[i] = 前面所有比它小的数的最大上升子序列长">
+  <title>最长有效括号（Longest Valid Parentheses）</title>
+  <meta name="description" content="题目描述给定一个只包含 ‘(‘ 和 ‘)’ 的字符串，找出最长的包含有效括号的子串的长度。 示例 1: 输入: “(()”输出: 2解释: 最长有效括号子串为 “()”示例 2: 输入: “)()())”输出: 4解释: 最长有效括号子串为 “()()” 解决方法在扫描字符串的时候使用堆栈来检查目前为止扫描的字符串是否是有效的括号，以及统计最长的有效括号长度  当字符为’(‘时将其压入堆栈 当字符">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LIS（最长上升子序列）">
-<meta property="og:url" content="https://lierabbit.cn/2018/02/27/LIS（最长上升子序列）/index.html">
+<meta property="og:title" content="最长有效括号（Longest Valid Parentheses）">
+<meta property="og:url" content="https://lierabbit.cn/2018/09/27/最长有效括号/index.html">
 <meta property="og:site_name" content="谎话兔博客">
-<meta property="og:description" content="这是一个经典的LIS(即最长上升子序列)问题，请设计一个尽量优的解法求出序列的最长上升子序列的长度。给定一个序列A及它的长度n(长度小于等于500)，请返回LIS的长度。 测试样例：12[1,4,2,5,3],5返回：3 思路：记录以每一个数结尾的最大上升子序列长度，取最大的即为结果maxs[i]表示以maxs[i]结尾的最大上升子序列长度，maxs[i] = 前面所有比它小的数的最大上升子序列长">
+<meta property="og:description" content="题目描述给定一个只包含 ‘(‘ 和 ‘)’ 的字符串，找出最长的包含有效括号的子串的长度。 示例 1: 输入: “(()”输出: 2解释: 最长有效括号子串为 “()”示例 2: 输入: “)()())”输出: 4解释: 最长有效括号子串为 “()()” 解决方法在扫描字符串的时候使用堆栈来检查目前为止扫描的字符串是否是有效的括号，以及统计最长的有效括号长度  当字符为’(‘时将其压入堆栈 当字符">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-25T09:12:31.522Z">
+<meta property="og:updated_time" content="2018-09-27T04:27:59.369Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LIS（最长上升子序列）">
-<meta name="twitter:description" content="这是一个经典的LIS(即最长上升子序列)问题，请设计一个尽量优的解法求出序列的最长上升子序列的长度。给定一个序列A及它的长度n(长度小于等于500)，请返回LIS的长度。 测试样例：12[1,4,2,5,3],5返回：3 思路：记录以每一个数结尾的最大上升子序列长度，取最大的即为结果maxs[i]表示以maxs[i]结尾的最大上升子序列长度，maxs[i] = 前面所有比它小的数的最大上升子序列长">
+<meta name="twitter:title" content="最长有效括号（Longest Valid Parentheses）">
+<meta name="twitter:description" content="题目描述给定一个只包含 ‘(‘ 和 ‘)’ 的字符串，找出最长的包含有效括号的子串的长度。 示例 1: 输入: “(()”输出: 2解释: 最长有效括号子串为 “()”示例 2: 输入: “)()())”输出: 4解释: 最长有效括号子串为 “()()” 解决方法在扫描字符串的时候使用堆栈来检查目前为止扫描的字符串是否是有效的括号，以及统计最长的有效括号长度  当字符为’(‘时将其压入堆栈 当字符">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://lierabbit.cn/2018/02/27/LIS（最长上升子序列）/index.html">
+  <link rel="canonical" href="https://lierabbit.cn/2018/09/27/最长有效括号/index.html">
   
     <link rel="alternate" href="/atom.xml" title="谎话兔博客" type="application/atom+xml">
   
@@ -51,10 +51,10 @@
 <script type="application/ld+json">
         {
             "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
-            "@id": "https://lierabbit.cn/2018/02/27/LIS（最长上升子序列）/",
+            "@id": "https://lierabbit.cn/2018/09/27/最长有效括号/",
             "appid": "1610779002344768",
-            "title": "LIS（最长上升子序列）",
-            "pubDate": "2018-02-27T13:06:20"
+            "title": "最长有效括号（Longest Valid Parentheses）",
+            "pubDate": "2018-09-27T12:15:50"
         }
 </script>
 <script src="https://xiongzhang.baidu.com/sdk/c.js?appid=1610779002344768"></script>
@@ -202,6 +202,15 @@
   <div class="slimContent">
     
       
+<div class="widget">
+    <nav class="article-toc">
+        <h3 class="toc-title">
+            文章目录
+        </h3>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-text">解决方法</span></a></li></ol>
+    </nav>
+</div>
+
     
       <div class="widget">
     <h3 class="widget-title">公告</h3>
@@ -324,27 +333,27 @@
   
   <main class="main" role="main">
   <div class="content">
-  <article id="post-LIS（最长上升子序列）" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-最长有效括号" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/27/LIS（最长上升子序列）/">LIS（最长上升子序列）</a>
+      <a class="article-title" href="/2018/09/27/最长有效括号/">最长有效括号（Longest Valid Parentheses）</a>
     </h1>
 
       
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2018/02/27/LIS（最长上升子序列）/" class="article-date">
-	  <time datetime="2018-02-27T05:06:20.000Z" itemprop="datePublished">2018-02-27 13:06:20</time>
+	<a href="/2018/09/27/最长有效括号/" class="article-date">
+	  <time datetime="2018-09-27T04:15:50.000Z" itemprop="datePublished">2018-09-27 12:15:50</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/直通BAT面试算法/">直通BAT面试算法</a>
+    <a class="article-category-link" href="/categories/LeetCode算法之旅/">LeetCode算法之旅</a>
   </span>
 
         
@@ -358,7 +367,7 @@
 
 	<span class="article-read hidden-xs">
     	<i class="icon icon-eye-fill" aria-hidden="true"></i>
-    	<span id="/2018/02/27/LIS（最长上升子序列）/" class="leancloud_visitors"  data-flag-title="LIS（最长上升子序列）">0</span>
+    	<span id="/2018/09/27/最长有效括号/" class="leancloud_visitors"  data-flag-title="最长有效括号（Longest Valid Parentheses）">0</span>
     </span>
 
         
@@ -366,10 +375,16 @@
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <p>这是一个经典的LIS(即最长上升子序列)问题，请设计一个尽量优的解法求出序列的最长上升子序列的长度。<br>给定一个序列A及它的长度n(长度小于等于500)，请返回LIS的长度。</p>
-<p>测试样例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1,4,2,5,3],5</span><br><span class="line">返回：3</span><br></pre></td></tr></table></figure></p>
-<p>思路：记录以每一个数结尾的最大上升子序列长度，取最大的即为结果<br>maxs[i]表示以maxs[i]结尾的最大上升子序列长度，maxs[i] = 前面所有比它小的数的最大上升子序列长度中最大的+1</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getLIS</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] maxs = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    maxs[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> maxLen = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; i; k++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i] &gt; arr[k])</span><br><span class="line">                max = Math.max(max, maxs[k] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        maxs[i] = max;</span><br><span class="line">        maxLen = Math.max(maxLen, max);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> maxLen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个只包含 ‘(‘ 和 ‘)’ 的字符串，找出最长的包含有效括号的子串的长度。</p>
+<p>示例 1:</p>
+<p>输入: “(()”<br>输出: 2<br>解释: 最长有效括号子串为 “()”<br>示例 2:</p>
+<p>输入: “)()())”<br>输出: 4<br>解释: 最长有效括号子串为 “()()”</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>在扫描字符串的时候使用堆栈来检查目前为止扫描的字符串是否是有效的括号，以及统计最长的有效括号长度</p>
+<ul>
+<li>当字符为’(‘时将其压入堆栈</li>
+<li>当字符为’)’时，弹出栈顶，如果此时栈空则将当前索引i入栈，否则当前有效括号字串的长度为<strong>i - 当前栈顶</strong>，更新最长的有效括号长度<br><video src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/09/27/最长有效括号/最长有效括号.mp4" controls="controls">你的浏览器不支持观看视频，请使用新版chrome浏览</video><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestValidParentheses</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    stack.push(-<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s.charAt(i) == <span class="string">'('</span>)</span><br><span class="line">            stack.push(i);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            stack.pop();</span><br><span class="line">            <span class="keyword">if</span> (stack.isEmpty())</span><br><span class="line">                stack.push(i);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                maxLen = Math.max(maxLen, i - stack.peek());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> maxLen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
       
     </div>
     <div class="article-footer">
@@ -378,7 +393,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://lierabbit.cn/2018/02/27/LIS（最长上升子序列）/" title="LIS（最长上升子序列）" target="_blank" rel="external">https://lierabbit.cn/2018/02/27/LIS（最长上升子序列）/</a>
+      <a href="https://lierabbit.cn/2018/09/27/最长有效括号/" title="最长有效括号（Longest Valid Parentheses）" target="_blank" rel="external">https://lierabbit.cn/2018/09/27/最长有效括号/</a>
     </li>
     
     
@@ -415,13 +430,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2018/02/27/LCS（最长公共子序列）/" title="LCS（最长公共子序列）"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2018/02/26/矩阵最小路径和/" title="矩阵最小路径和"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2018/09/26/下一个排列/" title="下一个排列（Next Permutation）"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
   </ul>
