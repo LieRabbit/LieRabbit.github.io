@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lierabbit.cn/"/>
-  <updated>2018-09-27T04:27:59.369Z</updated>
+  <updated>2018-09-28T07:48:00.289Z</updated>
   <id>https://lierabbit.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>搜索旋转排序数组</title>
+    <link href="https://lierabbit.cn/2018/09/28/%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84/"/>
+    <id>https://lierabbit.cn/2018/09/28/搜索旋转排序数组/</id>
+    <published>2018-09-28T07:32:09.000Z</published>
+    <updated>2018-09-28T07:48:00.289Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。<br>( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。<br>搜索一个给定的目标值，如果数组中存在这个目标值，则返回它的索引，否则返回 -1 。<br>你可以假设数组中不存在重复的元素。<br>你的算法时间复杂度必须是 O(log n) 级别。</p><p>示例 1:</p><blockquote><p>输入: nums = [4,5,6,7,0,1,2], target = 0<br>输出: 4</p></blockquote><p>示例 2:</p><blockquote><p>输入: nums = [4,5,6,7,0,1,2], target = 3<br>输出: -1</p></blockquote><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>由于是旋转排序数组，所以局部有序，可以使用二分搜索</p><ul><li>当局部数组中间元素(nums[mid])等于目标(target)，则返回mid</li><li>当局部数组头元素(nums[left])小于等于nums[mid]，等于是用于left==mid的时候，则[left,mid]这区间的元素是有序的。如果target &gt;= nums[left]且target &lt; nums[mid]说明target在[left,mid)区间里</li><li>当上面的条件不成立，则说明nums[mid] &lt; nums[right]，说明[mid,right]这区间的元素是有序的，当target &gt; nums[mid] 且 target &lt;= nums[right]，说明target在(mid,right]区间里<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = left + ((right - left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] == target)</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (nums[left] &lt;= nums[mid]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (target &gt;= nums[left] &amp;&amp; target &lt; nums[mid])</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (target &gt; nums[mid] &amp;&amp; target &lt;= nums[right])</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当left == right时，判断一下是否是target</span></span><br><span class="line">    <span class="keyword">return</span> nums[left] == target ? left : -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;假设按照升序排序的数组在预先未知的某个点上进行了旋转。&lt;br&gt;( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4
+      
+    
+    </summary>
+    
+      <category term="LeetCode算法之旅" scheme="https://lierabbit.cn/categories/LeetCode%E7%AE%97%E6%B3%95%E4%B9%8B%E6%97%85/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>最长有效括号（Longest Valid Parentheses）</title>
@@ -496,32 +521,6 @@
       
       
         &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0
-      
-    
-    </summary>
-    
-      <category term="LeetCode算法之旅" scheme="https://lierabbit.cn/categories/LeetCode%E7%AE%97%E6%B3%95%E4%B9%8B%E6%97%85/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>最长公共前缀（Longest Common Prefix）</title>
-    <link href="https://lierabbit.cn/2018/05/21/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80/"/>
-    <id>https://lierabbit.cn/2018/05/21/最长公共前缀/</id>
-    <published>2018-05-21T06:48:08.000Z</published>
-    <updated>2018-09-25T04:16:08.001Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>编写一个函数来查找字符串数组中的最长公共前缀。<br>如果不存在公共前缀，返回空字符串 “”。</p><blockquote><p>示例 1:<br>输入: [“flower”,”flow”,”flight”]<br>输出: “fl”</p></blockquote><blockquote><p>示例 2:<br>输入: [“dog”,”racecar”,”car”]<br>输出: “”<br>解释: 输入不存在公共前缀。</p></blockquote><blockquote><p>说明:<br>所有输入只包含小写字母 a-z 。</p></blockquote><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="横向匹配所有字符串"><a href="#横向匹配所有字符串" class="headerlink" title="横向匹配所有字符串"></a>横向匹配所有字符串</h3><p>取出字符串数组里任意一个字符串prefix，遍历其余的字符串判断prefix是否是其的前缀，不是就去掉prefix最后一个字符，直到prefix为空<br><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/05/21/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80/1.jpg" alt=""></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (strs == <span class="keyword">null</span> || strs.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">    String prefix = strs[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; strs.length; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (strs[i].indexOf(prefix) != <span class="number">0</span>) &#123;</span><br><span class="line">            prefix = prefix.substring(<span class="number">0</span>, prefix.length() - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (prefix.isEmpty())</span><br><span class="line">                <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> prefix;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>时间复杂度：O(S)，其中S是所有字符串中所有字符的总和<br>空间复杂度：O(1)，只使用了恒定的额外空间</p><h3 id="二分搜索"><a href="#二分搜索" class="headerlink" title="二分搜索"></a>二分搜索</h3><ol><li>取最短的字符串的长度minLen作为右边界right，因为最长公共前缀的长度不可能大于字符串数组里最短字符串的长度</li><li>判断左半部分是否是公共前缀，是的话向右寻找更长的公共前缀，反之向左寻找公共前缀</li><li>当 左边界left &gt; 右边界right 寻找结束，最长公共前缀范围就是[0, (left + right) / 2)<br><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/05/21/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80/2.jpg" alt=""></li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix2</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (strs == <span class="keyword">null</span> || strs.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> minLen = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (String str : strs)</span><br><span class="line">        minLen = Math.min(minLen, str.length());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">1</span>, right = minLen;</span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">        <span class="keyword">int</span> middle = (left + right) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (isCommonPrefix(strs, middle))</span><br><span class="line">            left = middle + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            right = middle - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> strs[<span class="number">0</span>].substring(<span class="number">0</span>, (left + right) / <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isCommonPrefix</span><span class="params">(String[] strs, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">    String str1 = strs[<span class="number">0</span>].substring(<span class="number">0</span>, len);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; strs.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!strs[i].startsWith(str1))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>时间复杂度：O(S*log(n))，其中S是所有字符串中所有字符的总和。<br>空间复杂度：O(1)。我们只使用了恒定的额外空间。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;编写一个函数来查找字符串数组中的最长公共前缀。&lt;br&gt;如果不存在公共前缀，返回空字符串 “”。&lt;/p&gt;
-&lt;blockquot
       
     
     </summary>
