@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lierabbit.cn/"/>
-  <updated>2018-09-30T04:28:03.143Z</updated>
+  <updated>2018-10-08T02:51:07.526Z</updated>
   <id>https://lierabbit.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>有效的数独</title>
+    <link href="https://lierabbit.cn/2018/10/08/%E6%9C%89%E6%95%88%E7%9A%84%E6%95%B0%E7%8B%AC/"/>
+    <id>https://lierabbit.cn/2018/10/08/有效的数独/</id>
+    <published>2018-10-08T02:29:33.000Z</published>
+    <updated>2018-10-08T02:51:07.526Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。</p><ol><li>数字 1-9 在每一行只能出现一次。</li><li>数字 1-9 在每一列只能出现一次。</li><li>数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。</li></ol><p><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/10/08/有效的数独/1.png" alt=""></p><p>上图是一个部分填充的有效的数独。<br>数独部分空格内已填入了数字，空白格用 ‘.’ 表示。</p><p>示例 1:</p><blockquote><p>输入:<br>[<br>  [“5”,”3”,”.”,”.”,”7”,”.”,”.”,”.”,”.”],<br>  [“6”,”.”,”.”,”1”,”9”,”5”,”.”,”.”,”.”],<br>  [“.”,”9”,”8”,”.”,”.”,”.”,”.”,”6”,”.”],<br>  [“8”,”.”,”.”,”.”,”6”,”.”,”.”,”.”,”3”],<br>  [“4”,”.”,”.”,”8”,”.”,”3”,”.”,”.”,”1”],<br>  [“7”,”.”,”.”,”.”,”2”,”.”,”.”,”.”,”6”],<br>  [“.”,”6”,”.”,”.”,”.”,”.”,”2”,”8”,”.”],<br>  [“.”,”.”,”.”,”4”,”1”,”9”,”.”,”.”,”5”],<br>  [“.”,”.”,”.”,”.”,”8”,”.”,”.”,”7”,”9”]<br>]<br>输出: true</p></blockquote><p>示例 2:</p><blockquote><p>输入:<br>[<br>  [“8”,”3”,”.”,”.”,”7”,”.”,”.”,”.”,”.”],<br>  [“6”,”.”,”.”,”1”,”9”,”5”,”.”,”.”,”.”],<br>  [“.”,”9”,”8”,”.”,”.”,”.”,”.”,”6”,”.”],<br>  [“8”,”.”,”.”,”.”,”6”,”.”,”.”,”.”,”3”],<br>  [“4”,”.”,”.”,”8”,”.”,”3”,”.”,”.”,”1”],<br>  [“7”,”.”,”.”,”.”,”2”,”.”,”.”,”.”,”6”],<br>  [“.”,”6”,”.”,”.”,”.”,”.”,”2”,”8”,”.”],<br>  [“.”,”.”,”.”,”4”,”1”,”9”,”.”,”.”,”5”],<br>  [“.”,”.”,”.”,”.”,”8”,”.”,”.”,”7”,”9”]<br>]<br>输出: false<br>解释: 除了第一行的第一个数字从 5 改为 8 以外，空格内其他数字均与 示例1 相同。<br>     但由于位于左上角的 3x3 宫内有两个 8 存在, 因此这个数独是无效的。</p></blockquote><p>说明:</p><ul><li>一个有效的数独（部分已被填充）不一定是可解的。</li><li>只需要根据以上规则，验证已经填入的数字是否有效即可。</li><li>给定数独序列只包含数字<code>1-9</code>和字符<code>&#39;.&#39;</code>。</li><li>给定数独永远是<code>9x9</code>形式的。</li></ul><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>遍历所有格子，收集出现过的字符，将其编码成如下所示：</p><ul><li>‘7’ 出现在第4行(row=3)，则编码成”row37”</li><li>‘7’ 出现在第4列(col=3)，则编码成”col37”</li><li>‘7’ 出现在第4行第4列(row=3,col=3)，将其编码成”area” + row / 3 + col / 3 + ‘7’ 即”area117”</li></ul><p>如果发现有一样的编码格式则说明不符合规则返回<code>false</code></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidSudoku</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (board == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    Set&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> row = <span class="number">0</span>; row &lt; board.length; row++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> col = <span class="number">0</span>; col &lt; board[row].length; col++) &#123;</span><br><span class="line">            <span class="keyword">char</span> ch = board[row][col];</span><br><span class="line">            <span class="keyword">if</span> (ch != <span class="string">'.'</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!set.add(<span class="string">"row"</span> + row + ch) || !set.add(<span class="string">"col"</span> + col + ch) || !set.add(<span class="string">"area"</span> + row / <span class="number">3</span> + col / <span class="number">3</span> + ch))</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;数字 1-
+      
+    
+    </summary>
+    
+      <category term="LeetCode算法之旅" scheme="https://lierabbit.cn/categories/LeetCode%E7%AE%97%E6%B3%95%E4%B9%8B%E6%97%85/"/>
+    
+    
+      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>搜索插入位置（Search Insert Position）</title>
@@ -496,31 +523,6 @@
       
       
         &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d
-      
-    
-    </summary>
-    
-      <category term="LeetCode算法之旅" scheme="https://lierabbit.cn/categories/LeetCode%E7%AE%97%E6%B3%95%E4%B9%8B%E6%97%85/"/>
-    
-    
-      <category term="算法" scheme="https://lierabbit.cn/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>电话号码的字母组合（Letter Combinations of a Phone Number）</title>
-    <link href="https://lierabbit.cn/2018/08/29/%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/"/>
-    <id>https://lierabbit.cn/2018/08/29/电话号码的字母组合/</id>
-    <published>2018-08-29T03:01:19.000Z</published>
-    <updated>2018-09-17T07:54:46.139Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。<br>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。<br><img src="https://blog-1252204470.cos.ap-guangzhou.myqcloud.com/2018/08/29/%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/1.png" alt=""></p><p><strong>示例:</strong></p><blockquote><p>输入：”23”<br>输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].</p></blockquote><p><strong>说明:</strong><br>尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>利用队列先进先出的性质进行横向组合。<br>例如输入“23”</p><ol><li>首先取出输入中的第一个数2，它所代表的字母为a,b,c，依次放入队列，</li><li>接着取出输入中的下一个数3，它所代表的字母为d,e,f。</li><li>队列依次出队与d,e,f进行组合</li></ol><p>过程如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot; + a = a</span><br><span class="line">&quot;&quot; + b = b</span><br><span class="line">&quot;&quot; + c = c</span><br><span class="line">a + d = ad</span><br><span class="line">a + e = ae</span><br><span class="line">a + f = af</span><br><span class="line">b + d = bd</span><br><span class="line">b + e = be</span><br><span class="line">b + f = bf</span><br><span class="line">c + d = cd</span><br><span class="line">c + e = ce</span><br><span class="line">c + f = cf</span><br></pre></td></tr></table></figure></p><p>如果输入的是“234”，重复2，3步骤即可</p><p>现在还剩2个问题：<br>何时退出这个循环？<br>通过观察可知，<code>输入字符串的长度 == 组合后子项的长度</code><br>也就是说<code>队列里的所有字符串长度 == 输入的字符串长度</code>时组合完成<br>如何取得输入中的下一个数？<br>既然<code>输入字符串的长度 == 组合后子项的长度</code>，那么通过队列里的字符长度获取输入中的下一个数即可</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">letterCombinations</span><span class="params">(String digits)</span> </span>&#123;</span><br><span class="line">    LinkedList&lt;String&gt; res = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="comment">// 使用数组模拟按键映射，这里可以换成HashMap</span></span><br><span class="line">    String[] map = <span class="keyword">new</span> String[]&#123;<span class="string">""</span>, <span class="string">""</span>, <span class="string">"abc"</span>, <span class="string">"def"</span>, <span class="string">"ghi"</span>, <span class="string">"jkl"</span>, <span class="string">"mno"</span>, <span class="string">"pqrs"</span>, <span class="string">"tuv"</span>, <span class="string">"wxyz"</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (digits.isEmpty())</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    res.add(<span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (res.peek().length() != digits.length()) &#123;</span><br><span class="line">        String temp = res.pop();</span><br><span class="line">        String value = map[digits.charAt(temp.length()) - <span class="string">'0'</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : value.toCharArray())</span><br><span class="line">            res.add(temp + c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。&lt;br&gt;给出数字到字母的映射如下（与电话按键相同）。注意 
       
     
     </summary>
